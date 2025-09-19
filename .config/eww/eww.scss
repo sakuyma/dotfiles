@@ -1,0 +1,206 @@
+# ~/.config/eww/eww.scss
+@import "theme.scss";
+
+* {
+  all: unset;
+  font-family: "JetBrainsMono Nerd Font", "Fira Mono";
+  font-weight: 700;
+  font-size: 12.5px;
+  transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.bar {
+  background-color: $bg-main;
+  border: 2px solid $border-main;
+  border-radius: 12px;
+  padding: 10px;
+  margin: 12px;
+}
+
+.left-side, .right-side, .control-center, .workspaces {
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  margin: 3px;
+  padding: 0;
+  box-shadow: none;
+}
+
+.workspaces {
+  background: transparent;
+  margin: 0 1.5px;
+  padding: 0 20px;
+}
+
+.workspaces button {
+  color: $fg-unactive;
+  transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+  padding: 2px 10px;
+  margin: 3px 4px;
+  background-color: $bg-third;
+  border-radius: 10px;
+  border-color: $bg-main;
+  
+  &:hover {
+    background: $fg-main;
+    color: $bg-main;
+  }
+  
+  &.active {
+    color: $bg-main;
+    border-radius: 8px;
+    background: $fg-main;
+    padding: 0 20px;
+  }
+  
+  &.urgent {
+    background: rgba(255, 200, 0, 0.35);
+    border-bottom: 0 dashed $warned-color;
+    color: $warned-color;
+  }
+}
+
+.custom-os-button,
+.mpris,
+.network,
+.pulseaudio,
+.backlight {
+  padding: 0 6px;
+  font-size: 15px;
+}
+
+.battery {
+  padding: 2px 7px;
+  background: transparent;
+  border-radius: 15px;
+  margin: 0 3px;
+}
+
+.clock,
+.tray {
+  margin: 0 5px;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  padding: 0 10px;
+  background-color: transparent;
+}
+
+.tray menu {
+  font-family: "JetBrainsMono Nerd Font";
+  border: 2px solid $border-main;
+  border-radius: 10px;
+  transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+  background-color: $bg-main;
+  padding: 5px 2px;
+  
+  > * {
+    color: $fg-main;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+    padding: 0 8px;
+    
+    &:hover {
+      border: 2px solid $border-main;
+      background-color: $bg-third2;
+      border-bottom: 2px solid $fg-main;
+    }
+    
+    &:active {
+      background-color: $bg-third2;
+    }
+  }
+}
+
+.bluetooth {
+  background-color: $bg-second;
+  border-radius: 8px;
+  padding: 0 8px;
+  margin: 2px 1px;
+  transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+  
+  &.disabled, &.off {
+    color: #565858;
+  }
+  
+  &.on, &.connected {
+    color: #6f7dd8;
+  }
+}
+
+.backlight:hover,
+.clock:hover,
+.tray:hover,
+.bluetooth:hover {
+  background-color: $bg-hover;
+}
+
+.power-profiles {
+  background-color: $bg-main;
+  color: $fg-main;
+  padding: 0 5px 0 10px;
+  font-size: 14px;
+  border-radius: 10px;
+  margin: 2px 6px;
+  transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.cpu, .memory, .custom-search, .custom-os-button, 
+.custom-runner, .mpris, .clock {
+  font-family: "Symbols Nerd Font", "JetbrainsMono Nerd Font";
+  background-color: $bg-main;
+  font-weight: bold;
+  border-radius: 16px;
+  padding: 0 10px;
+  border: 0 solid $border-main;
+  transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.mpris {
+  padding: 0;
+  margin: 0 8px;
+  min-width: 90px;
+  
+  &.paused {
+    color: $bg-third;
+  }
+}
+
+.custom-search:hover, .custom-os-button:hover, 
+.custom-runner:hover, .mpris:hover, .clock:hover, 
+.power-profiles:hover {
+  background-color: $bg-hover;
+}
+
+.hardware-group {
+  background-color: $bg-second;
+  font-weight: bold;
+  padding: 0 10px;
+  margin: 2px 0;
+  border-radius: 10px;
+}
+
+.cpu, .memory {
+  background-color: unset;
+}
+
+tooltip {
+  background: $bg-tooltip;
+  border-radius: 5px;
+  border: 1px solid $border-main;
+  
+  label {
+    color: $fg-main;
+  }
+}
+
+.control-center {
+  background-color: $bg-second;
+  border-radius: 15px;
+  padding: 0 8px;
+  margin: 0 10px;
+  
+  &:hover {
+    background-color: $fg-unactive;
+  }
+}

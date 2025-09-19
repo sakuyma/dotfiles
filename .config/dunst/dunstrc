@@ -1,0 +1,29 @@
+[global]
+frame_color = "#89b4fa"
+separator_color = frame
+highlight = "#89b4fa"
+
+# Новые настройки для внешнего вида и позиционирования
+geometry = "400x200-30+30"  # Центрирование
+width = 400             # Ширина уведомления
+height = 200            # Высота уведомления
+offset = "0x0"          # Смещение от центра
+origin = "top-center"       # Позиционирование по центру
+corner_radius = 12      # Скругление углов
+padding = 16            # Внутренние отступы
+horizontal_padding = 16 # Горизонтальные отступы
+font = "Monospace 11"   # Шрифт (можно изменить)
+frame_width = 2         # Толщина рамки
+
+[urgency_low]
+background = "#1e1e2e"
+foreground = "#cdd6f4"
+
+[urgency_normal]
+background = "#1e1e2e"
+foreground = "#cdd6f4"
+
+[urgency_critical]
+background = "#1e1e2e"
+foreground = "#cdd6f4"
+frame_color = "#fab387"
