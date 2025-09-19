@@ -22,3 +22,17 @@
 <img src="demo/4.png">
 <img src="demo/5.png">
 <img src="demo/6.png">
+
+## 💻 HotKeys
+* **Open the terminal** - `super + q`
+* **Set a random wallpaper** - `super + w`
+* **Open the application menu** - `super + r`
+* **Launch Telegram** - `super + t`
+* **Close the window that is in focus** - `super + c`
+* **Take a screenshot** - `print`
+* **Take a screenshot of region** - `ctrl + print`
+* **Take a screenshot of window** - `super + print`
+* **Switch to another desktop** - `super + 1/10`
+* **Move the window to another desktop** - `super + shift + 1/10`
+* **Switch the window to floating mode** - `super + v`
+* **Move window** - `super + alt + left/right/down/up`
