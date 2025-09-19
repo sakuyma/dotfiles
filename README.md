@@ -16,9 +16,9 @@
 
 </br>
 ## 🖼️ Gallery
-![gallery](demonstration/1.png)
-![gallery](demonstration/2.png)
-![gallery](demonstration/3.png)
-![gallery](demonstration/4.png)
-![gallery](demonstration/5.png)
-![gallery](demonstration/6.png)
+![gallery](demo/1.png)
+![gallery](demo/2.png)
+![gallery](demo/3.png)
+![gallery](demo/4.png)
+![gallery](demo/5.png)
+![gallery](demo/6.png)
