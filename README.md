@@ -16,7 +16,8 @@
 
 </br>
 ## 🖼️ Gallery
-![gallery](demo/1.png)
+<img src="demo/1.png">
+<img src="demo/2.png">
 ![gallery](demo/2.png)
 ![gallery](demo/3.png)
 ![gallery](demo/4.png)
