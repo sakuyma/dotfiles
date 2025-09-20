@@ -15,7 +15,7 @@
  - Shell: [**`Zsh`**](https://github.com/zsh-users/zsh)
 
 </br>
-<h1 align="left"> :blue_book:🖼️ Gallery </h1> 
+<h1 align="left"> 🖼️ Gallery </h1> 
 <img src="demo/1.png">
 <img src="demo/2.png">
 <img src="demo/3.png">
