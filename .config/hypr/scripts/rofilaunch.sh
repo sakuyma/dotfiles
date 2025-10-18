@@ -40,6 +40,7 @@ custom_menu() {
 
     # Prompt user to choose an option
     chosen=$(echo -e "$options" | rofi -config ~/.config/rofi/submenu.rasi -dmenu -p "Select an option:")
+    
 
     # Execute the corresponding command based on the selected option
     case $chosen in

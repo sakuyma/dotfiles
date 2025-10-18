@@ -1,0 +1,32 @@
+
+/* Base border color*/
+@define-color border-main @fg-main;
+@define-color border-alt @fg-main;
+
+/* Background Colors */
+@define-color bg-main #262627;
+@define-color bg-alt #1d2021;
+@define-color bg-hover #504935;
+@define-color bg-hover-alt #3c3836;
+@define-color bg-tooltip @bg-main;
+@define-color bg-second #665c54;
+@define-color bg-third #7c6f64;
+@define-color sway-bg @bg-main;
+
+/*text color for entries, views and content in general */
+@define-color fg-main #a89984;
+@define-color fg-unactive @bg-hover;
+@define-color content-act #d5c4a1;
+
+/* Player colors */
+@define-color ply-main #a89984;
+@define-color ply-hover #bdae93;
+@define-color ply-act #d5c4a1;
+@define-color msc-act #928374;
+
+/* Wlogout */
+@define-color wlogout-hover rgba(37, 37, 68, 0.541);
+@define-color wlogout-bg rgba(17, 17, 17, 0.45);
+@define-color wlogout-button rgba(17, 17, 27, 0.781);
+
+

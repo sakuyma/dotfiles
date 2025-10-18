@@ -1,0 +1,60 @@
+// Notification History Styles
+.notification-history {
+  background: #1e1e2e;
+  border: 2px solid #B4BEFE;
+  border-radius: 16px;
+  padding: 12px;
+  margin: 8px;
+  min-width: 300px;
+}
+
+.history-header {
+  color: #B4BEFE;
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.history-content {
+  spacing: 8px;
+}
+
+.notification-item {
+  background: #313244;
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin: 4px 0;
+}
+
+.notification-icon {
+  color: #B4BEFE;
+  font-size: 14px;
+  margin-right: 8px;
+}
+
+.notification-app {
+  color: #f5c2e7;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.notification-summary {
+  color: #cdd6f4;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.notification-body {
+  color: #a6adc8;
+  font-size: 12px;
+}
+
+.notification-line {
+  color: #cdd6f4;
+  font-size: 13px;
+}
+
+.error {
+  color: #f38ba8;
+  font-size: 14px;
+}

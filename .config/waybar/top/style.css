@@ -1,0 +1,252 @@
+/* __        __          _                  ____  _         _       
+ * \ \      / /_ _ _   _| |__   __ _ _ __  / ___|| |_ _   _| | ___  
+ *  \ \ /\ / / _` | | | | '_ \ / _` | '__| \___ \| __| | | | |/ _ \ 
+ *   \ V  V / (_| | |_| | |_) | (_| | |     ___) | |_| |_| | |  __/ 
+ *    \_/\_/ \__,_|\__, |_.__/ \__,_|_|    |____/ \__|\__, |_|\___| 
+ *                 |___/                              |___/         
+ *  
+ * by Binary Harbinger
+ * ----------------------------------------------------- 
+*/
+
+/*Import the theme.css file */
+@import "theme.css";
+
+* {
+    all: unset;
+    font-family: "JetBrainsMono Nerd Font","Fira Mono";
+    font-weight: 700;
+    font-size: 12.5px;
+    transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+
+#window {
+    border-radius: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+window#waybar {
+    background-color: rgba(17, 17, 27, 0.92);
+    margin: 6px;
+    border: 2px solid @border-main;
+    border-radius: 12px;
+}
+
+/* Единая панель для всех элементов */
+#waybar {
+    background: @bg-main;
+    border: 2px solid @border-main;
+    border-radius: 12px;
+    padding: 10px 10px;
+    margin: 12px;
+}
+
+/* Убираем отдельные границы у групп */
+#leftSide, #rightSide, #controlCenter, #workspaces {
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    margin: 3;
+    padding: 0;
+    box-shadow: none;
+}
+
+/* Стили для workspace */
+#workspaces {
+    background: transparent;
+    margin-right: 1.5px;
+    margin-left: 1.5px;
+    padding: 0px 20px;
+}
+
+#workspaces button {
+    color: @fg-unactive;
+    transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+    padding: 2px 10px;
+    margin: 3px 4px;
+    background-color: @bg-third;
+    border-radius: 10px;
+    border-color: @bg-main;
+}
+
+#workspaces button.active {
+    color: @bg-main;
+    border-radius: 8px;
+    background: @fg-main;
+    padding: 0px 20px;
+}
+
+#workspaces button.focused {
+    color: @bg-second;
+}
+
+#workspaces button.urgent {
+    background: rgba(255, 200, 0, 0.35);
+    border-bottom: 0px dashed @warned_color;
+    color: @warned_color;
+} 
+#workspaces button:hover {
+    background: @fg-main;
+    color: @bg-main
+}
+
+/* Общие стили для всех модулей */
+#custom-os_button
+#mpris, 
+#network, #pulseaudio, #backlight {
+    padding: 0px 6px;
+    font-size: 15px;
+}
+#battery {
+    padding: 2px 7px;
+    background: transparent;
+    border-radius: 15px;
+    margin: 0 3px;
+
+}
+#clock,
+#tray {
+    margin-left: 5px;
+    margin-right: 5px;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    padding: 0px 10px;
+    background-color: transparent;    
+}
+#tray > .passive {
+    border-bottom: none;
+}
+#tray > widget {
+    transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+    border-radius: 8px;
+    padding: 0px 3px;
+}
+#tray menu, menu {
+    font-family: "JetBrainsMono Nerd Font";
+      border: 2px solid @border-main;
+      border-radius: 10px;
+      transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+      background-color: @bg-main;
+      padding: 5px 2px;
+}
+
+#tray menu > *, menu > * {
+  color: @fg-main;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+  padding: 0px 8px; /* Alt öğeler arasında boşluk */
+}
+#tray menu > *:hover, menu > *:hover {
+  border: 2px solid @border-main;
+    background-color: @bg-third2;
+    border: 2px solid transparent;
+    transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+      border-bottom: 2px solid @fg-main;
+}
+#tray menu > *:active, menu > *:active {
+    background-color: @bg-third2;
+	transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+
+#bluetooth {
+    background-color: @bg-second;
+    border-radius: 8px;
+    padding: 0px 8px;
+    margin: 2px 1px;
+    transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+#biuetooth.disabled, #bluetooth.off {
+    color: #565858;
+}
+#bluetooth.on, #bluetooth.connected {
+    color: #6f7dd8;
+}
+
+/* Ховер эффекты */
+#backlight:hover,
+#clock:hover,
+#tray:hover,
+#bluetooth:hover {
+    background-color: @bg-hover;
+}
+
+/* Power profile daemon widget styling */
+#power-profiles-daemon {
+    background-color: @bg-main;
+    color: @fg-main;
+    padding: 0px 5px;
+    padding-left: 10px;
+    font-size: 14px;
+    border-radius: 10px;
+    margin: 2px 6px;
+    transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* Styling for memory, search, os button, etc. */
+#cpu, #memory, #custom-search, #custom-os_button, #custom-runner, #mpris, #custom-cafein, #cava, #clock {
+    font-family: "Symbols Nerd Font", "JetbrainsMono Nerd Font";
+    background-color: @bg-main;
+    font-weight: bold;
+    border-radius: 16px;
+    padding: 0px 10px;
+    border: 0px solid @border-main;
+    transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+#mpris {
+	padding: 0px;
+    margin: 0px 8px;
+	min-width: 90px;
+}
+
+#mpris.paused {
+	color: @bg-third;
+}
+
+/* Hover effect for bar elements */
+#custom-swaync:hover,#tray > widget:hover,#custom-search:hover, #custom-os_button:hover, #custom-runner:hover, #mpris:hover, #custom-cafein:hover, #clock:hover, #power-profiles-daemon:hover{
+    background-color: @bg-hover;
+}
+
+/* Hardware widget styling */
+#hardware {
+    background-color: @bg-second;
+    font-weight: bold;
+    padding: 0px 10px;
+    margin: 2px 0px;
+    border-radius: 10px;
+}
+
+#cpu, #memory, #disk {
+    background-color: unset;
+}
+
+tooltip {
+    background: @bg-tooltip;
+    border-radius: 5px;
+    border: 1px solid @border-main;
+}
+
+tooltip label {
+    color: @fg-main;
+}
+
+#controlCenter {
+    background-color: @bg-second;
+    border-radius: 15px;
+    padding: 0px 8px;
+    margin: 0px 10px;
+}
+
+#controlCenter:hover {
+    background-color: @fg-unactive;
+}
+
+#network, #pulseaudio, #backlight {
+    padding: 0px 6px;
+    font-size: 15px;
+}

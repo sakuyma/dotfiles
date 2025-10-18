@@ -1,0 +1,87 @@
+/**
+ * Rofi Dashboard - Minimal Catppuccin
+ */
+
+configuration {
+    show-icons: false;
+    disable-history: true;
+    sidebar-mode: false;
+    lines: 15;
+    width: 300px;
+    fixed-height: true;
+    eh: 1;
+    location: 2;
+    x-offset: -60;
+    y-offset: 8;
+    columns: 2;
+}
+
+window {
+    background-color: #1e1e2e;
+    border-color: #B4BEFE;
+    border: 2px;
+    border-radius: 16px;
+    padding: 16px;
+}
+
+inputbar {
+    enabled: true;
+    children: [prompt, entry];
+    background-color: #1e1e2e;
+    border-radius: 8px;
+    padding: 8px 8px;
+    margin: 0px 0px 0px 0px;
+}
+
+prompt {
+    background-color: #1e1e2e;
+    text-color: #ffffff;
+    font: "JetBrains Mono 14";
+}
+
+entry {
+    background-color: #1e1e2e;
+    text-color: #ffffff;
+    font: "JetBrains Mono 14";
+}
+
+listview {
+    background-color: #1e1e2e;
+    spacing: 4px;
+    scrollbar: false;
+    columns: 2;
+}
+
+element {
+    background-color: #1e1e2e;
+    text-color: #ffffff;
+    padding: 0px 0px;
+    margin: 0px 0px;
+    border-radius: 0px;
+}
+
+element selected.normal {
+    background-color: #1e1e2e;
+    text-color: #ffffff;
+    border-radius: 0px;
+}
+
+element-text {
+    background-color: #1e1e2e;
+    text-color: #ffffff;
+    font: "JetBrains Mono 12";
+    vertical-align: 0.5;
+    padding: 0px 0px;
+}
+
+element-text selected {
+    background-color: #1e1e2e;
+    text-color: #ffffff;
+    padding: 0px 0px;
+}
+
+message {
+    background-color: #1e1e2e;
+    padding: 0px;
+    border: 0px;
+}

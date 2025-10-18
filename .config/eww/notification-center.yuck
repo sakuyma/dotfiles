@@ -1,0 +1,65 @@
+;; Notification Center Widget
+(defwidget notification-center []
+  (box :class "notification-center" :orientation "vertical" :space-evenly false
+    ;; Заголовок
+    (box :class "nc-header" :orientation "horizontal" :halign "center" :space-evenly false
+      (button :class "nc-title" :onclick "notify-send 'Notification Center' 'History loaded'" "󰂚 Notification Center")
+      (button :class "nc-clear-btn" :onclick "dunstctl history-clear" "")
+    )
+    
+    ;; Текущие активные уведомления
+    (box :class "nc-active-section" :orientation "vertical" :space-evenly false
+      (label :class "nc-section-title" "Active Notifications")
+      (box :class "nc-active-list" :orientation "vertical" :space-evenly false
+        ;; Здесь будут активные уведомления
+        (label :class "nc-empty" "No active notifications")
+      )
+    )
+    
+    ;; История уведомлений
+    (box :class "nc-history-section" :orientation "vertical" :space-evenly false
+      (box :class "nc-history-header" :orientation "horizontal" :halign "space-between"
+        (label :class "nc-section-title" "History")
+        (button :class "nc-refresh-btn" :onclick "pkill -USR1 eww" "󰑐")
+      )
+      
+      ;; Список истории
+      (scroll :height 400 :width 350
+        (box :class "nc-history-list" :orientation "vertical" :space-evenly false
+          (literal :content `sh -c "~/.config/eww/scripts/notification-history.sh"`)
+        )
+      )
+    )
+    
+    ;; Статус Dunst
+    (box :class "nc-footer" :orientation "horizontal" :halign "space-between"
+      (box :class "nc-status" :orientation "horizontal" :space-evenly false
+        (label :class "nc-status-icon" "")
+        (label :class "nc-status-text" 
+          :text `sh -c "if command -v dunstctl >/dev/null; then dunstctl is-paused | grep -q 'false' && echo 'Enabled' || echo 'Paused'; else echo 'Not running'; fi"`)
+      )
+      
+      (box :class "nc-controls" :orientation "horizontal" :space-evenly false
+        (button :class "nc-pause-btn" :onclick "dunstctl set-paused toggle" "⏸️")
+        (button :class "nc-close-btn" :onclick "eww close notification-center" "✕")
+      )
+    )
+  )
+)
+
+;; Упрощенная версия если хочешь минимализм
+(defwidget notification-center-simple []
+  (box :class "notification-center-simple" :orientation "vertical"
+    (label :class "nc-simple-header" "󰂚 Notifications")
+    
+    (scroll :height 500
+      (box :class "nc-simple-list" :orientation "vertical"
+        (literal :content `sh -c "~/.config/eww/scripts/notification-history.sh"`)
+      )
+    )
+    
+    (box :class "nc-simple-footer" :orientation "horizontal" :halign "end"
+      (button :class "nc-clear-simple" :onclick "dunstctl history-clear && pkill -USR1 eww" "Clear History")
+    )
+  )
+)

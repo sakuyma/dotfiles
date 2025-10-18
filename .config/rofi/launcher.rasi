@@ -1,0 +1,74 @@
+/**
+ * Rofi App Launcher - Minimal Catppuccin
+ */
+
+configuration {
+    modi: "drun";
+    show-icons: true;
+    disable-history: false;
+    drun-display-format: "{name}";
+    display-drun: "Apps: ";
+    lines: 8;
+    width: 70ch;
+}
+
+window {
+    background-color: #1e1e2e;
+    border: 2px;
+    border-color: #B4BEFE;
+    border-radius: 16px;
+    padding: 12px;
+    height: 580px;
+}
+
+inputbar {
+    children: [prompt, entry];
+    background-color: #1e1e2e;
+    border-radius: -4px;
+    padding: 10px 10px;
+    margin: 0px 0px -45px 0px;
+}
+
+prompt {
+    background-color: inherit;
+    text-color: #B4BEFE;
+    font: "JetBrains Mono 16";
+}
+
+entry {
+    background-color: inherit;
+    text-color: #ffffff;
+    font: "JetBrains Mono 14";
+}
+
+listview {
+    background-color: #1e1e2e;
+    spacing: 4px;
+    padding: 0px;
+    margin: 40px 0px 0px 0px;
+}
+
+element {
+    background-color: #1e1e2e;
+    text-color: #cdd6f4;
+    padding: 4px 0px;
+}
+
+element selected {
+    background-color: #B4BEFE;
+    text-color: #1e1e2e;
+    border-radius: 8px;
+}
+
+element-text {
+    background-color: transparent;
+    text-color: inherit;
+    font: "JetBrains Mono 16";
+    padding: 0px 8px;
+}
+
+element-icon {
+    background-color: transparent;
+    text-color: inherit;
+    size: 36px;
+}

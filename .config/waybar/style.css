@@ -48,7 +48,7 @@ window#waybar {
     background-color: transparent;
     border: none;
     border-radius: 0;
-    margin: 3;
+    margin: 3px;
     padding: 0;
     box-shadow: none;
 }
@@ -187,7 +187,7 @@ window#waybar {
 }
 
 /* Styling for memory, search, os button, etc. */
-#cpu, #memory, #custom-search, #custom-os_button, #custom-runner, #mpris, #custom-cafein, #cava, #clock {
+#cpu, #memory, #custom-os_button, #mpris, #custom-cafein, #cava, #clock {
     font-family: "Symbols Nerd Font", "JetbrainsMono Nerd Font";
     background-color: @bg-main;
     font-weight: bold;
@@ -208,7 +208,7 @@ window#waybar {
 }
 
 /* Hover effect for bar elements */
-#custom-swaync:hover,#tray > widget:hover,#custom-search:hover, #custom-os_button:hover, #custom-runner:hover, #mpris:hover, #custom-cafein:hover, #clock:hover, #power-profiles-daemon:hover{
+#custom-swaync:hover,#tray > widget:hover, #custom-os_button:hover, #mpris:hover, #custom-cafein:hover, #clock:hover, #power-profiles-daemon:hover{
     background-color: @bg-hover;
 }
 
@@ -225,13 +225,13 @@ window#waybar {
     background-color: unset;
 }
 
-tooltip {
+#tooltip {
     background: @bg-tooltip;
     border-radius: 5px;
     border: 1px solid @border-main;
 }
 
-tooltip label {
+#tooltip label {
     color: @fg-main;
 }
 

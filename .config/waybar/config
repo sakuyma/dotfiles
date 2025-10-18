@@ -25,11 +25,11 @@
     "margin-right": 20,
 
     "passthrough": false,
-    "height": 30,
+    "height": 33,
 
     "modules-left": ["group/leftSide"],
     "modules-center": ["hyprland/workspaces"],
-    "modules-right": ["tray", "group/rightSide"],
+    "modules-right": ["hyprland/language", "tray", "group/rightSide"],
   
     "hyprland/language": {
         "format": "{}",
@@ -77,7 +77,7 @@
 "network": {
 
     "format-wifi": "{icon}",
-    "format-ethernet": " ",
+    "format-ethernet": "🖧",
     "format-disconnected": "󰌙 ",
     "tooltip-format": "{icon} {essid}",
     "format-icons": ["󰤯 ", "󰤟 ", "󰤢 ", "󰤢 ", "󰤨 "],
@@ -107,19 +107,6 @@
 
 // ====================== System ======================
   
-"power-profiles-daemon": {
-    
-    "format": "{icon}",
-    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
-    "tooltip": true,
-    "format-icons": {
-        "default": " ",
-        "performance": " ",
-        "balanced": " ",
-        "power-saver": " "
-        }
-    },
-
 "battery": {
     "interval": 20,
     "full-at": 100,
@@ -189,9 +176,9 @@
         //"4": "四",
         //"5": "五",
         "urgent": "",
-        // "active": "",
-        // "default": "󰧞",
-        "sort-by-number": true
+        //"active": "一",
+        //"default": "󰧞"",
+        "sort-by-number": false
     },
 
 },
@@ -274,17 +261,15 @@
 "group/leftSide": {
 	"orientation": "horizontal",
 	"modules": [
-			"custom/search",
-            "custom/runner",
-            "custom/os_button",
-            "mpris",
-            "group/hardware"
-            ]
+          "custom/os_button",
+          "mpris",
+          "group/hardware"
+          ]
 },
 
 "group/rightSide": {
 	"orientation": "horizontal",
-	"modules": ["group/controlCenter","power-profiles-daemon", "clock"]
+	"modules": ["group/controlCenter", "clock"]
 	},
 }
 
