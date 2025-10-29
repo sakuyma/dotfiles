@@ -1,3 +1,5 @@
+general.import = ["./theme.toml"]
+
 [env]
 TERM = "xterm-256color"
 
@@ -6,12 +8,11 @@ padding.x = 20
 padding.y = 20
 
 decorations = "Buttonless"
-opacity = 0.92
+opacity = 1
 blur = true
 
 [font]
 normal.family = "JetBrainsMono Nerd Font"
 size = 16
 
-[colors]
-draw_bold_text_with_bright_colors = true
+

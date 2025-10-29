@@ -1,0 +1,53 @@
+[global]
+frame_color = "#9ccfd8"
+separator_color = frame
+highlight = "#ffffff"
+
+geometry = "400x200-30+50"
+width = 400
+height = 200
+offset = "30x20"           # Увеличил смещение для правой стороны
+origin = "top-right"       # Изменил на правый верхний угол
+corner_radius = 12
+padding = 16
+horizontal_padding = 16
+font = "Monospace 11"
+frame_width = 2
+
+# Анимации
+progress_bar = true
+progress_bar_height = 4
+progress_bar_frame_width = 0
+progress_bar_min_width = 300
+progress_bar_max_width = 400
+
+# Настройки анимации
+browser = /usr/bin/firefox
+
+# Анимация появления/исчезновения
+fadein = "fade"           # Плавное появление
+fadeout = "fade"          # Плавное исчезновение
+fade_delay = 500          # Задержка перед исчезновением (мс)
+fade_timeout = 200        # Длительность анимации (мс)
+
+slide = "left"           # Сдвиг справа налево при появлении
+slide_timeout = 200       # Длительность сдвига
+slide_origin = "top-left" # Начальная позиция для сдвига
+
+# Эффекты при наведении
+mouse_left = "do_action,close_current"
+mouse_middle = "close_current"
+mouse_right = "close_all"
+
+[urgency_low]
+background = "#191724"
+foreground = "#9ccfd8"
+
+[urgency_normal]
+background = "#191724"
+foreground = "#9ccfd8"
+
+[urgency_critical]
+background = "#191724"
+foreground = "#9ccfd8"
+frame_color = "#9ccfd8"
