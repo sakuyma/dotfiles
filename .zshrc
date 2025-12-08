@@ -66,5 +66,5 @@ alias exit="sudo systemctl start sddm && hyprctl dispatch exit"
 if [[ -n "$DISPLAY" ]] || [[ -n "$WAYLAND_DISPLAY" ]]; then
   cd ~
   clear
-  pfetch
+  nerdfetch
 fi
