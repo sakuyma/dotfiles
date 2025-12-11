@@ -58,6 +58,10 @@ fzf
 tmux
 nvim
 zoxide
+lsd
+tty-clock
+bat
+yazi
 
 # --------------------------------------------------- // Applications
 zen-browser-bin

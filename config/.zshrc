@@ -46,7 +46,7 @@ export PATH="${(j[:])paths}"
 
 export BUN_INSTALL="$HOME/.bun"
 export EDITOR="nvim"
-export FETCH="pfetch"
+export FETCH="nitch"
 
 eval "$(fzf --zsh)"
 eval "$(zoxide init zsh)"
