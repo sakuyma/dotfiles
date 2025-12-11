@@ -1,0 +1,22 @@
+import qs.settings
+import qs.modules.bar
+import qs.modules.background
+import qs.modules.launcher
+import qs.modules.overlays
+import qs.modules.notifications
+import qs.modules.controlCenter
+import qs.modules.settings
+
+import QtQuick 
+import Quickshell  
+
+ShellRoot {
+    GlobalProcesses{}
+    Background{}
+    Bar{}
+    Launcher{}
+    Overlays{}
+    Notification{}
+    ControlCenter{}
+    Settings{}
+}
