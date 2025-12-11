@@ -22,6 +22,33 @@
 <img src="demo/4.png">
 <img src="demo/5.png">
 <img src="demo/6.png">
+## :wrench: INSTALLATION
+
+> [!WARNING]
+> **This installation script only works on Arch Linux.**
+> **This Configuration is designed for 1920X1080 monitors, some functionality of the shell may not work as it should. In this case you need to make adjustments manually.**
+> **If you find errors in the shell, please report the problem.**
+
+### :bulb: STEPS
+
+**1. install python3 and git:**
+
+```bash
+sudo pacman -S python3 git
+```
+**2. clone repo:**
+
+```bash
+cd /tmp
+git clone https://github.com/sakuyma/dotfiles
+cd dotfiles
+```
+
+**3. run installer:**
+
+```bash
+bash install.sh
+```
 
 ## 💻 HotKeys
 * **Open the terminal** - `super + q`
