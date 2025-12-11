@@ -35,7 +35,7 @@
 **1. install python3 and git:**
 
 ```bash
-sudo pacman -S python3 git
+sudo pacman -S git
 ```
 **2. clone repo:**
 
