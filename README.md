@@ -22,6 +22,7 @@
 <img src="demo/4.png">
 <img src="demo/5.png">
 <img src="demo/6.png">
+
 ## :wrench: INSTALLATION
 
 > [!WARNING]
