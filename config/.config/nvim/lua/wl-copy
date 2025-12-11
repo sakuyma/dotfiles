@@ -1,0 +1,134 @@
+vim.diagnostic.config {
+  virtual_text = false,
+  update_in_insert = false,
+  underline = true,
+  severity_sort = true,
+  float = {
+    source = "always",
+    border = "rounded",
+  },
+  signs = true,
+  signs = {
+    text = {
+      [vim.diagnostic.severity.INFO] = "",
+      [vim.diagnostic.severity.HINT] = "",
+      [vim.diagnostic.severity.WARN] = "",
+      [vim.diagnostic.severity.ERROR] = "",
+    },
+  },
+}
+local cmp = require("cmp")
+local lspkind = require("lspkind")
+
+
+cmp.setup {
+  snippet = {
+    expand = function(args)
+      require("luasnip").lsp_expand(args.body)
+    end,
+  },
+  window = {
+    completion = cmp.config.window.bordered {
+      winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+      scrollbar = false,
+    },
+    documentation = cmp.config.disable,
+  },
+  formatting = {
+    format = lspkind.cmp_format {
+      mode = "symbol_text",
+      maxwidth = 20,
+      ellipsis_char = "..",
+      preset = "codicons",
+      symbol_map = require("icons").completion,
+      menu = {},
+    },
+  },
+  mapping = cmp.mapping.preset.insert {
+    ["<c-j>"] = cmp.mapping.select_next_item(),
+    ["<c-k>"] = cmp.mapping.select_prev_item(),
+    ["<c-space>"] = cmp.mapping.complete(),
+    ["<c-c>"] = cmp.mapping.abort(),
+    ["<cr>"] = cmp.mapping.confirm({ select = true }),
+  },
+  sources = cmp.config.sources {
+    { name = "nvim_lsp" },
+    { name = "luasnip" },
+    { name = "buffer" },
+    { name = "path" },
+  },
+}
+
+
+vim.opt.pumheight = 6
+require("mason").setup {
+  automatic_installation = true,
+  ensure_installed = {
+    "rust-analyzer",
+    "codelldb",
+    "clangd",
+    "pyright",
+  },
+  ui = {
+    check_outdated_packages_on_open = true,
+    border = "rounded",
+    height = 0.75,
+    width = 0.75,
+    icons = require("icons").manager,
+  },
+}
+vim.lsp.enable('pyright', {
+    cmd = { "pyright-langserver", "--stdio" },
+    filetypes = { "py", "python" },
+    root_dir = function(filename)
+        return util.root_pattern(unpack(root_files))(filename) or util.path.dirname(filename)
+      end,
+    settings = {
+      python = {
+        analysis = {
+          autoSearchPaths = true,
+          diagnosticMode = "workspace",
+          useLibraryCodeForTypes = true
+    }
+  }
+}
+
+
+})
+vim.lsp.enable('clangd', {
+capabilities = capabilities,
+  cmd = {
+    "clangd",
+    "--background-index",
+    "--clang-tidy",
+    "--header-insertion=never",
+    "--completion-style=detailed",
+    "--offset-encoding=utf-16",
+  },
+  filetypes = {
+    "c", "cpp",
+  },
+})
+vim.lsp.enable('rust-analyzer', {
+  cmd = { "rust-analyzer" }
+  filetypes = { "rust", "rs" }
+  root_dir = function(fname)
+      local cargo_crate_dir = util.root_pattern 'Cargo.toml'(fname)
+      local cmd = 'cargo metadata --no-deps --format-version 1'
+      if cargo_crate_dir ~= nil then
+        cmd = cmd .. ' --manifest-path ' .. util.path.join(cargo_crate_dir, 'Cargo.toml')
+      end
+      local cargo_metadata = vim.fn.system(cmd)
+      local cargo_workspace_dir = nil
+      if vim.v.shell_error == 0 then
+        cargo_workspace_dir = vim.fn.json_decode(cargo_metadata)['workspace_root']
+      end
+      return cargo_workspace_dir
+        or cargo_crate_dir
+        or util.root_pattern 'rust-project.json'(fname)
+        or util.find_git_ancestor(fname)
+    end,
+settings = {
+  ["rust-analyzer"] = {}
+}
+})
