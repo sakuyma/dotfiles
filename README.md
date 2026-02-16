@@ -64,8 +64,8 @@ bash install.sh
 * **Move window** - `super + alt + h/j/k/l`
 
 ## ToDO:
-* - [ ]**1. Fix installer**
-* - [ ]**2. Add 2-10 more color themes
-* - [ ]**3. add 2-5 more waybar themes**
-* - [ ]**4. Migrate to ags (maybe)**
+- [ ] 1. Fix installer
+- [ ] 2. Add 2-10 more color themes
+- [ ] 3. add 2-5 more waybar themes
+- [ ] 4. Migrate to ags (maybe)
 
