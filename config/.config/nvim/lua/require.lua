@@ -9,11 +9,11 @@ require("code.formatter")
 require("code.indents")
 require("code.outline")
 require("code.syntax")
+require("code.autocomplete")
 require("code.vcs")
 require("code.linters")
-
--- lsp --
-require("lsp")
+require("code.lsp")
+require("code.ai")
 
 -- ui --
 require("ui.theme")
@@ -29,10 +29,9 @@ require("utils.finder")
 require("utils.terminal")
 require("utils.todocomments")
 require("utils.troubleshoots")
-
+require("utils.autocmd")
 
 -- settings --
-require("settings.autocmds")
 require("settings.colors")
 require("settings.keymaps")
 require("settings.options")

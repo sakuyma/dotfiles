@@ -11,13 +11,18 @@ function cfg.linterConfigs()
 		sh = { "shellcheck" },
 		markdown = { "markdownlint" },
 		yaml = { "yamllint" },
-		python = { "pylint" },
-		gitcommit = {},
-		json = {},
-		javascript = {},
-		typescript = {},
-		toml = {},
+		python = { "ruff" },
+		gitcommit = { "gitlint" },
+		json = { "jsonlint" },
+		javascript = { "eslint_d" },
+		typescript = { "eslint_d" },
+		toml = { "taplo" },
 		text = {},
+    c = { "clang_tidy" },
+    cpp = { "clang_tidy" },
+    
+    -- Docker
+    dockerfile = { "hadolint" },
 	}
 
 	-- use for codespell for all except bib and css

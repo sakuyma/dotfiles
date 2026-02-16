@@ -46,7 +46,7 @@ key("v", "<leader>hr", "<cmd>Gitsigns reset_hunk<cr>")
 
 
 -- explorer --
-key("n", "<leader>n", "<cmd>NvimTreeToggle<cr>", { silent = true })
+key("n", "<leader>n", "<cmd>Neotree toggle<cr>", { silent = true })
 
 
 -- finder --
@@ -79,3 +79,12 @@ key('n', '<leader>te', ':tabedit ', { noremap = true, desc = 'Edit file in new t
 key('n', '<leader>tc', '<Cmd>tabclose<CR>', { desc = 'Close tab' })
 key('n', '<leader>to', '<Cmd>tabonly<CR>', { desc = 'Close other tabs' })
 key('n', '<leader>tm', '<Cmd>tabmove ', { desc = 'Move tab to position' })
+
+
+-- Open LazyGit menu -- 
+key('n', '<leader>lg', '<cmd>lua Snacks.lazygit()<cr>', { desc = 'LazyGit' })
+key('n', '<bs>', ':edit #<cr>', { silent = true })
+
+-- Open Sidekick (Ai) menu --
+
+key("n", "<leader>sc", "<cmd>Sidekick cli toggle<cr>", { silent = true, desc = "Toggle Sidekick CLI" })

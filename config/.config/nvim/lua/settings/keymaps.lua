@@ -1,8 +1,6 @@
 -- general options --
 local key = vim.keymap.set                  -- set local variable
 vim.g.mapleader = ""                       -- set <leader> key
-
-
 -- files --
 key("n", "<leader>w", "<cmd>w<cr>", { silent = true }) -- save file
 key("n", "<leader>q", "<cmd>q!<cr>", { silent = true })-- exit without saving
@@ -11,6 +9,7 @@ key("n", "<leader>q", "<cmd>q!<cr>", { silent = true })-- exit without saving
 -- movement --
 key("n", "j", "gj")                         -- move down based on transfer
 key("n", "k", "gk")                         -- move up based on transfer
+
 key("n", "H", "b")                          -- move to previous word
 key("n", "L", "w")                          -- move to next word
 key("n", "J", "^")                          -- move to beginning of line
@@ -34,8 +33,11 @@ key("v", ">", ">gv")                        -- indent right and keep selection
 
 -- yank and paste --
 key("n", "x", "\"_x")                       -- cut without storing to clipboard
-key("n", "<leader>c", "yyp")                -- duplicate line
-
+key("n", "Y", "yyp")
+key("n", "<C-Y>", function()
+  vim.cmd('normal! yyp')
+  vim.cmd('normal! ==')
+end)
 
 -- window management --
 key("n", "<leader>sv", "<c-w>v")           -- split window vertical

@@ -13,12 +13,16 @@ configuration {
     display-drun: "Apps: ";
     lines: 8;
     width: 70ch;
+    font: "Google Sans Text 12";
 }
 
 window {
     background-color: @bg;
     padding: 12px;
     height: 580px;
+    border-radius: 8px;
+    border-color: @fg;
+    border: 2px;
 }
 
 inputbar {

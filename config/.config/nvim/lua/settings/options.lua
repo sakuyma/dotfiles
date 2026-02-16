@@ -1,60 +1,60 @@
+local option = vim.opt -- set local variable 
 -- general --
-vim.opt.termguicolors = true                -- enable true color
-vim.opt.encoding = "utf-8"                  -- set UTF-8 encoding
-vim.opt.fileencoding = "utf-8"              -- default file encoding
-vim.opt.modelines = 0                       -- disable CVE-2007-2438 vulnerability
-vim.opt.wildmode = "longest:full,full"      -- autocompletes in command line
-vim.opt.clipboard = "unnamedplus"           -- use system clipboard
-vim.opt.updatetime = 5000                   -- update timeout
-vim.opt.mouse = "a"                         -- enable mouse support
-vim.opt.langmap:append {
+option.termguicolors = true                -- enable true color
+option.encoding = "utf-8"                  -- set UTF-8 encoding
+option.fileencoding = "utf-8"              -- default file encoding
+option.modelines = 0                       -- disable CVE-2007-2438 vulnerability
+option.wildmode = "longest:full,full"      -- autocompletes in command line
+option.clipboard = "unnamedplus"           -- use system clipboard
+option.updatetime = 100                    -- update timeout
+option.mouse = "a"                         -- enable mouse support
+option.langmap:append {
   "ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ",
   "фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz",
 }                                           -- enable support russian layout
 
-
 -- editor --
-vim.opt.number = true                       -- enable absolute numbering of current line
-vim.opt.relativenumber = true               -- enable relative line numbering
-vim.opt.numberwidth = 2                     -- line number width
-vim.opt.fillchars = {
+option.number = true                       -- enable absolute numbering of current line
+option.relativenumber = true               -- enable relative line numbering
+option.numberwidth = 2                     -- line number width
+option.fillchars = {
   eob = " ",
-}                                           -- interface symbols
-vim.opt.scrolloff = 10                      -- minimum number of lines above/below cursor when scrolling
-vim.opt.smoothscroll = true                 -- enable smooth scrolling
-vim.opt.cursorline = true                   -- highlight cursor line
-vim.opt.signcolumn = "yes"                  -- enable sign column
-vim.opt.splitbelow = true                   -- when horizontal split open new window at bottom
-vim.opt.splitright = true                   -- when vertically split open new window on right
+}                                          -- interface symbols
+option.scrolloff = 10                      -- minimum number of lines above/below cursor when scrolling
+option.smoothscroll = true                 -- enable smooth scrolling
+option.cursorline = true                   -- highlight cursor line
+option.signcolumn = "yes"                  -- enable sign column
+option.splitbelow = true                   -- when horizontal split open new window at bottom
+option.splitright = true                   -- when vertically split open new window on right
 
 
 -- indents --
-vim.opt.expandtab = true                    -- replace Tabs with spaces
-vim.opt.tabstop = 2                         -- number of spaces for tabs
-vim.opt.shiftwidth = 2                      -- number of spaces when auto-adding margins
-vim.opt.softtabstop = 2                     -- number of spaces during autotabulation
-vim.opt.smarttab = true                     -- smart tabulation behavior
-vim.opt.smartindent = true                  -- smart code alignment
+option.expandtab = true                    -- replace Tabs with spaces
+option.tabstop = 4                         -- number of spaces for tabs
+option.shiftwidth = 4                      -- number of spaces when auto-adding margins
+option.softtabstop = 4                     -- number of spaces during autotabulation
+option.smarttab = true                     -- smart tabulation behavior
+option.smartindent = true                  -- smart code alignment
 
 
 -- search --
-vim.opt.hlsearch = true                     -- enable search results highlight
-vim.opt.incsearch = true                    -- enable search as you type
-vim.opt.ignorecase = true                   -- ignore case when searching
-vim.opt.smartcase = true                    -- ignore case if there are no uppercase letters
-vim.opt.infercase = true                    -- save register when auto-complete
-
+option.hlsearch = true                     -- enable search results highlight
+option.incsearch = true                    -- enable search as you type
+option.ignorecase = true                   -- ignore case when searching
+option.smartcase = true                    -- ignore case if there are no uppercase letters
+option.infercase = true                    -- save register when auto-complete
+option.guicursor = "i:block"               -- block cursor in instert mode
 
 -- performance --
-vim.opt.laststatus = 3                      -- enable global status line
-vim.opt.ruler = false                       -- disable character ruler
-vim.opt.showtabline = 1                     -- enable tab line
-vim.opt.showmode = false                    -- disable display mode 
-vim.opt.wrap = true                         -- enable line wrapping
-vim.opt.linebreak = true                    -- enable wrap only by words
-vim.opt.whichwrap = ""                      -- which keys enable transfer to next line
-vim.opt.showbreak = " 󱞩 "                   -- add arrow at beginning of moved line
-vim.opt.backup = false                      -- disable backup files
-vim.opt.writebackup = false                 -- disable creation of temporary backups
-vim.opt.swapfile = false                    -- disable creation .swp files
-vim.opt.undofile = true                     -- save history of changes
+option.laststatus = 3                      -- enable global status line
+option.ruler = false                       -- disable character ruler
+option.showtabline = 2                     -- enable tab line
+option.showmode = false                    -- disable display mode 
+option.wrap = true                         -- enable line wrapping
+option.linebreak = true                    -- enable wrap only by words
+option.whichwrap = ""                      -- which keys enable transfer to next line
+option.showbreak = " 󱞩 "                   -- add arrow at beginning of moved line
+option.backup = false                      -- disable backup files
+option.writebackup = false                 -- disable creation of temporary backups
+option.swapfile = false                    -- disable creation .swp files
+option.undofile = true                     -- save history of changes

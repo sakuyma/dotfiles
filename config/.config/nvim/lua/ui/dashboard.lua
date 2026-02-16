@@ -3,24 +3,24 @@ local function header()
     "",
     "",
     "",
-    " _      ____ ____  ____ ________   ___  ____",
-    "| | /| / / // /\\ \\/ / // /  _/ /  / _ \\/ __/",
-    "| |/ |/ / _  /  \\  / _  // // /__/ // / _/  ",
-    "|__/|__/_//_/   /_/_//_/___/____/____/___/  ",
+    "               __                              ",
+    "   _________ _/ /____  ____  ______ ___  ____ _",
+    "  / ___/ __  / //_/ / / / / / / __  __ \\/ __  /",
+    " (__  ) /_/ / ,< / /_/ / /_/ / / / / / / /_/ / ",
+    "/____/\\____/_/|_|\\____/\\__  /_/ /_/ /_/\\____/  ",
+    "                      /____/                   ",
     "",
     "",
     "",
   }
 end
-
-
 require("dashboard").setup {
   theme = "doom",
   config = {
     header = header(),
     center = {
       {
-      desc = "New file",
+      desc = " New file",
       desc_hl = "Comment",
       key = "e",
       key_hl = "Comment",
@@ -28,15 +28,15 @@ require("dashboard").setup {
       action = ":enew",
       },
       {
-      desc = "Explorer",
+      desc = " Explorer",
       desc_hl = "Comment",
       key = "n",
       key_hl = "Comment",
       key_format = "%s",
-      action = ":NvimTreeToggle",
+      action = ":Neotree toggle",
       },
       {
-      desc = "Find file",
+      desc = " Find file",
       desc_hl = "Comment",
       key = "f",
       key_hl = "Comment",
@@ -44,7 +44,7 @@ require("dashboard").setup {
       action = ":Telescope find_files",
       },
       {
-      desc = "Recently",
+      desc = " Recently",
       desc_hl = "Comment",
       key = "r",
       key_hl = "Comment",
@@ -52,7 +52,7 @@ require("dashboard").setup {
       action = ":Telescope oldfiles",
       },
       {
-      desc = "Quit                       ",
+      desc = "󰈆 Quit",
       desc_hl = "Comment",
       key = "q",
       key_hl = "Comment",

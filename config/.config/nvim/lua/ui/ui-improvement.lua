@@ -36,3 +36,5 @@ require("noice").setup {
     },
   },
 }
+vim.opt.termguicolors = true
+require("colorizer").setup()

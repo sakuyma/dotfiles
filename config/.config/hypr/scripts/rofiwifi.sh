@@ -12,7 +12,7 @@ XOFF=0
 FONT="DejaVu Sans Mono 8"
 
 LIST=$(nmcli --fields "$FIELDS" device wifi list | sed '/^--/d')
-# For some reason rofi always approximates character width 2 short... hmmm
+# For some reason rofi always approximates character width 2 short...
 RWIDTH=$(($(echo "$LIST" | head -n 1 | awk '{print length($0); }')+2))
 # Dynamically change the height of the rofi menu
 LINENUM=$(echo "$LIST" | wc -l)
@@ -44,7 +44,7 @@ fi
 
 
 
-CHENTRY=$(echo -e "$TOGGLE\nmanual\n$LIST" | uniq -u | rofi -dmenu -config ~/.config/rofi/wifi.rasi -p "󰤨  Wi-Fi: " -lines "$LINENUM" -a "$HIGHLINE"  )
+CHENTRY=$(echo -e "$TOGGLE\nmanual\n$LIST" | uniq -u | rofi -dmenu -theme ~/.config/rofi/launcher.rasi -p "󰤨  Wi-Fi: " -lines "$LINENUM" -a "$HIGHLINE"  )
 #echo "$CHENTRY"
 CHSSID=$(echo "$CHENTRY" | sed  's/\s\{2,\}/\|/g' | awk -F "|" '{print $1}')
 #echo "$CHSSID"
@@ -52,7 +52,7 @@ CHSSID=$(echo "$CHENTRY" | sed  's/\s\{2,\}/\|/g' | awk -F "|" '{print $1}')
 # If the user inputs "manual" as their SSID in the start window, it will bring them to this screen
 if [ "$CHENTRY" = "manual" ] ; then
 	# Manual entry of the SSID and password (if appplicable)
-	  MSSID=$(echo "enter the SSID of the network (SSID,password)" | rofi -dmenu -p "Manual Entry: " -config ~/.config/rofi/wifi.rasi -lines 1)
+	  MSSID=$(echo "enter the SSID of the network (SSID,password)" | rofi -dmenu -p "Manual Entry: " -theme ~/.config/rofi/launcher.rasi -lines 1)
   # Separating the password from the entered string
 	MPASS=$(echo "$MSSID" | awk -F "," '{print $2}')
 
@@ -84,7 +84,7 @@ else
 		nmcli con up "$CHSSID"
 	else
 		if [[ "$CHENTRY" =~ "WPA2" ]] || [[ "$CHENTRY" =~ "WEP" ]]; then
-		  WIFIPASS=$(echo "if connection is stored, hit enter" | rofi -dmenu -p "password: " -lines 1 -config ~/.config/rofi/wifi.rasi)
+		  WIFIPASS=$(echo "if connection is stored, hit enter" | rofi -dmenu -p "password: " -lines 1 -theme ~/.config/rofi/launcher.rasi)
     fi
 		nmcli dev wifi con "$CHSSID" password "$WIFIPASS"
 	fi
