@@ -15,7 +15,7 @@
  - Shell: [**`Zsh`**](https://github.com/zsh-users/zsh)
 
 </br>
-<h1 align="left"> 🖼️ Gallery </h1> 
+<h1 align="left">Gallery </h1> 
 <img src="demo/1.png">
 <img src="demo/2.png">
 <img src="demo/3.png">
@@ -51,7 +51,7 @@ cd dotfiles
 bash install.sh
 ```
 
-## 💻 HotKeys
+## HotKeys
 * **Open the terminal** - `super + q`
 * **Open the application menu** - `super + r`
 * **Launch Telegram** - `super + t`
