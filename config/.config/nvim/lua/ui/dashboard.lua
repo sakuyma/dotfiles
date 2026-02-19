@@ -33,7 +33,7 @@ require("dashboard").setup {
       key = "n",
       key_hl = "Comment",
       key_format = "%s",
-      action = ":Neotree toggle",
+      action = ":lua Snacks.explorer()",
       },
       {
       desc = " Find file",

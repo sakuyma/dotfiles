@@ -1,3 +1,1 @@
-require("neo-tree").setup({
-	-- options go here
-})
+require("snacks").setup()

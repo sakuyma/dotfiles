@@ -46,7 +46,7 @@ key("v", "<leader>hr", "<cmd>Gitsigns reset_hunk<cr>")
 
 
 -- explorer --
-key("n", "<leader>n", "<cmd>Neotree toggle<cr>", { silent = true })
+key("n", "<leader>n", "<cmd>lua Snacks.explorer()<cr>", { silent = true })
 
 
 -- finder --

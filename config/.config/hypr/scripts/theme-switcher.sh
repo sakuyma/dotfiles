@@ -68,7 +68,7 @@ apply_theme() {
     local theme_path="$THEMES_DIR/$theme"
     
     if [ ! -d "$theme_path" ]; then
-        echo "❌ Theme directory not found: $theme_path"
+        echo "Theme directory not found: $theme_path"
         return 1
     fi
     
@@ -80,7 +80,6 @@ apply_theme() {
     echo "  Icons: $icon_theme"
     echo "  Cursors: $cursor_theme"
     echo "  Font: $font_name"
-    echo "  Firefox: $firefox_theme_id"
     
     # Copy each theme subdirectory to corresponding config folder
     if [ -d "$theme_path" ]; then
@@ -89,9 +88,9 @@ apply_theme() {
                 local app_name=$(basename "$app_dir")
                 local target_dir="$CONFIG_DIR/$app_name"
                 
-                echo "📁 Copying $app_name config..."
+                echo "Copying $app_name config..."
                 mkdir -p "$target_dir"
-                cp -r "$app_dir"/* "$target_dir/" 2>/dev/null && echo "  ✅ $app_name config applied" || echo "  ⚠️  Could not copy $app_name config"
+                cp -r "$app_dir"/* "$target_dir/" 2>/dev/null && echo "  ✅ $app_name config applied" || echo "Could not copy $app_name config"
             fi
         done
     fi
@@ -169,12 +168,13 @@ apply_theme() {
         kill -SIGUSR1 $(pgrep nvim)
     fi
 
-    # Restart dunst
-    if pgrep dunst > /dev/null; then
-        pkill dunst >/dev/null 2>&1
+    # Restart swaync 
+    if pgrep swaync > /dev/null; then
+        pkill swaync >/dev/null 2>&1
     fi
-    dunst >/dev/null 2>&1 &
-    
+    swaync >/dev/null 2>&1 &
+   
+
     # Theme change notification
     if command -v notify-send >/dev/null 2>&1; then
         local notification="Theme '$selected_theme' applied\n• GTK: $gtk_theme\n• Icons: $icon_theme\n• Cursors: $cursor_theme\n• Font: $font_name"

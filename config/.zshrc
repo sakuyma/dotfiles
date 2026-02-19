@@ -9,12 +9,6 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 fi
 
 # ========== THEME SETTINGS ========== # 
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-typeset -g POWERLEVEL9K_INSTANT_PROMT=quiet
-typeset -g POWERLEVEL10K_INSTANT_PROMT=off
-ZSH_THEME="powerlevel10k/powerlevel10k"
 
 export FZF_DEFAULT_OPTS=" \
 --color=bg+:#313244,bg:#1E1E2E,spinner:#B4BEFE,hl:#F38BA8 \
@@ -46,10 +40,11 @@ export PATH="${(j[:])paths}"
 
 export BUN_INSTALL="$HOME/.bun"
 export EDITOR="nvim"
-export FETCH="nitch"
+export FETCH="fastfetch"
 
 eval "$(fzf --zsh)"
 eval "$(zoxide init zsh)"
+eval "$(starship init zsh)"
 
 # ========== ALIASES  ========== # 
 function starttime() {
