@@ -33,6 +33,7 @@ require("utils.troubleshoots")
 -- settings --
 require("settings.autocmds")
 require("settings.colors")
+require("settings.colorsheme")
 require("settings.keymaps")
 require("settings.options")
 require("settings.plugins-keymaps")
