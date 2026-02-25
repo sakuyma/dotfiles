@@ -3,7 +3,7 @@
 dir="$HOME/.config/rofi"
 theme='launcher'
 
-CHOICE=$(echo -e "Blur Toggle\nGaps Toggle\nOpacity Toggle\nShadow Toggle\nRounding Toggle" | \
+CHOICE=$(echo -e "Blur Toggle\nGaps Toggle\nOpacity Toggle\nShadow Toggle\nRounding Toggle\nAnimations Toggle" | \
     rofi -dmenu -theme "${dir}/${theme}.rasi" -p "Quick Launch")
 
 case "$CHOICE" in
@@ -22,6 +22,10 @@ case "$CHOICE" in
     "Rounding Toggle")
         bash "$HOME/.config/hypr/scripts/Decorations/rounding_toggle.sh"
         ;;
+    "Animations Toggle")
+        bash "$HOME/.config/hypr/scripts/Decorations/animaton_toggle.sh"
+        ;;
+
     *)
         exit 0
         ;;

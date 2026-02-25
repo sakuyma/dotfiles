@@ -3,7 +3,7 @@
 dir="$HOME/.config/rofi"
 theme='launcher'
 
-CHOICE=$(echo -e "Wallpapers\nThemes\nBar\nLayouts\nDecorations" | \
+CHOICE=$(echo -e "Wallpapers\nThemes\nBar\nLayouts\nDecorations\nSettings" | \
     rofi -dmenu -theme "${dir}/${theme}.rasi" -p "Quick Launch")
 
 case "$CHOICE" in
@@ -22,6 +22,11 @@ case "$CHOICE" in
     "Decorations")
        ~/.config/hypr/scripts/Decorations.sh 
         ;;
+
+    "Settings")
+       ~/.config/hypr/scripts/Settings.sh 
+        ;;
+
     *)
         exit 0
         ;;
