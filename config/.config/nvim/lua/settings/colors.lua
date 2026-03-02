@@ -1,6 +1,7 @@
 -- general options --
 local hl = vim.api.nvim_set_hl              -- set local variable
 vim.opt.background = "dark"                 -- enable dark theme
+vim.cmd.colorscheme "catppuccin"            -- choose color scheme
 vim.opt.syntax = "on"                       -- enable syntax highlighting
 vim.opt.showmatch = false                   -- disable highlight pair elements
 
@@ -9,11 +10,6 @@ vim.opt.showmatch = false                   -- disable highlight pair elements
 hl(0, "FloatBorder", { fg = "#89b4fa", bg = "NONE" })
 hl(0, "SignColumn", { fg = "NONE" })
 
--- Indent-blankline --
-hl(0, "IndentBlankline", { fg = "#313244", bg = "NONE" })
-hl(0, "IndentBlanklineIndent", { fg = "#313244", bg = "NONE" })
-hl(0, "IndentBlanklineContextChar", { fg = "#89b4fa", bg = "NONE" }) 
-hl(0, "IndentBlanklineContextStart", { fg = "#89b4fa", bg = "NONE", sp = "#89b4fa", underline = true })
 
 -- notifications --
 hl(0, "NotifyERRORBorder", { fg = "#f38ba8" })

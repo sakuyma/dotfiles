@@ -1,0 +1,19 @@
+#!/bin/bash
+SOCKET="/tmp/nvim-server.pipe"
+
+# Проверяем, запущен ли сервер
+if [ ! -S "$SOCKET" ]; then
+    echo "Starting Neovim server..."
+    # Запускаем сервер в фоне
+    nvim --listen "$SOCKET" --headless +"echo 'Server started'"
+    # Даём время на инициализацию
+    sleep 1
+fi
+
+# Если переданы аргументы - используем как remote
+if [ $# -gt 0 ]; then
+    nvim --server "$SOCKET" --remote "$@"
+else
+    # Если аргументов нет - подключаемся к серверу
+    nvim --server "$SOCKET" --remote-send '<C-\><C-N>:terminal<CR>'
+fi

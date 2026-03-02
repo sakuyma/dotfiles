@@ -48,7 +48,7 @@ eval "$(starship init zsh)"
 
 # ========== ALIASES  ========== # 
 function starttime() {
-  echo "⏱️  .zsh loaded in ${ZSHRC_DURATION}s"
+  echo "zsh loaded in ${ZSHRC_DURATION}s"
 }
 
 function y() {
@@ -60,13 +60,12 @@ function y() {
 	rm -f -- "$tmp"
 }
 
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 alias calc="gcalccmd"
 alias c="clear"
 alias clock="tty-clock"
 alias ls='lsd'
 alias n='nvim'
+
 alias src='source'
 alias inv='nvim $(fzf --tmux top,60%  -m --preview="bat --color=always {}")'
 alias killfzf='kill -9 $(ps aux | fzf-tmux --height 60% --multi | awk "{print \$2}")'

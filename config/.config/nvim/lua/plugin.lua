@@ -84,7 +84,12 @@ require("lazy").setup({
 				"nvim-treesitter/nvim-treesitter",
 			},
 		},
-		-- ui-improvement
+		-- session control
+        {
+            "rmagatti/auto-session",
+            lazy = false,
+        },
+        -- ui-improvement
 		{
 			"folke/noice.nvim",
 			event = {
@@ -153,27 +158,7 @@ require("lazy").setup({
 			lazy = false,
 			priority = 1000,
 		},
-		{
-			"neanias/everforest-nvim",
-			lazy = false,
-			priority = 1000,
-		},
-		{
-			"ellisonleao/gruvbox.nvim",
-			lazy = false,
-			priority = 1000,
-		},
-		{
-			"rebelot/kanagawa.nvim",
-			lazy = false,
-			priority = 1000,
-		},
-		{
-			"rose-pine/neovim",
-			lazy = false,
-			priority = 1000,
-		},
-
+        -- tabs
 		{
 			"akinsho/bufferline.nvim",
 			version = "*",

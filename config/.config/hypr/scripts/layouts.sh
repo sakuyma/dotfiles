@@ -4,7 +4,7 @@ dir="$HOME/.config/rofi"
 theme='launcher'
 
 # Три основные опции
-CHOICE=$(echo -e "󰀻  Dwindle\n󰉋  Master\n󰕷  Scrolling" | \
+CHOICE=$(echo -e "󰀻  Dwindle\n󰉋  Master\n󰕷  Scrolling\n󰉋  Monocle" | \
     rofi -dmenu -theme ${dir}/${theme}.rasi -p "Quick Launch")
 
 case "$CHOICE" in
@@ -16,6 +16,10 @@ case "$CHOICE" in
       ;;
     "󰕷  Scrolling")
         hyprctl keyword general:layout scrolling &
+      ;;
+
+    "󰉋  Monocle")
+        hyprctl keyword general:layout monocle&
       ;;
     *)
         exit 0

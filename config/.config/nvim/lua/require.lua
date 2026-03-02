@@ -28,12 +28,11 @@ require("utils.finder")
 require("utils.terminal")
 require("utils.todocomments")
 require("utils.troubleshoots")
-
+require("utils.sessions")
 
 -- settings --
 require("settings.autocmds")
 require("settings.colors")
-require("settings.colorsheme")
 require("settings.keymaps")
 require("settings.options")
 require("settings.plugins-keymaps")

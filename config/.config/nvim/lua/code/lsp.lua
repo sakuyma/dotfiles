@@ -1,168 +1,282 @@
-vim.diagnostic.config {
-  virtual_text = false,
-  update_in_insert = false,
-  underline = true,
-  severity_sort = true,
-  float = {
-    source = "always",
-    border = "rounded",
-  },
-  signs = true,
-  signs = {
-    text = {
-      [vim.diagnostic.severity.INFO] = "",
-      [vim.diagnostic.severity.HINT] = "",
-      [vim.diagnostic.severity.WARN] = "",
-      [vim.diagnostic.severity.ERROR] = "",
-    },
-  },
-}
+-- Diagnostic config
+vim.diagnostic.config({
+	virtual_text = false,
+	update_in_insert = false,
+	underline = true,
+	severity_sort = true,
+	float = {
+		source = "always",
+		border = "rounded",
+	},
+	signs = {
+		text = {
+			[vim.diagnostic.severity.INFO] = "",
+			[vim.diagnostic.severity.HINT] = "",
+			[vim.diagnostic.severity.WARN] = "",
+			[vim.diagnostic.severity.ERROR] = "",
+		},
+	},
+})
+
+-- Completion setup
 local cmp = require("cmp")
 local lspkind = require("lspkind")
 
-cmp.setup {
-  snippet = {
-    expand = function(args)
-      require("luasnip").lsp_expand(args.body)
-    end,
-  },
-  window = {
-    completion = cmp.config.window.bordered {
-      winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
-      scrollbar = false,
-    },
-    documentation = cmp.config.disable,
-  },
-  formatting = {
-    format = lspkind.cmp_format {
-      mode = "symbol_text",
-      maxwidth = 20,
-      ellipsis_char = "..",
-      preset = "codicons",
-      symbol_map = require("icons").completion,
-      menu = {},
-    },
-  },
-  mapping = cmp.mapping.preset.insert {
-    ["<c-j>"] = cmp.mapping.select_next_item(),
-    ["<c-k>"] = cmp.mapping.select_prev_item(),
-    ["<c-space>"] = cmp.mapping.complete(),
-    ["<c-c>"] = cmp.mapping.abort(),
-    ["<cr>"] = cmp.mapping.confirm({ select = true }),
-  },
-  sources = cmp.config.sources {
-    { name = "nvim_lsp" },
-    { name = "luasnip" },
-    { name = "buffer" },
-    { name = "path" },
-  },
-}
-
-
-vim.opt.pumheight = 6
-require("mason").setup {
-  automatic_installation = true,
-  ensure_installed = {
-    -- LSP --
-    "rust-analyzer",
-    "clangd",
-    "pyright",
-    "lua_ls",
-    "stylua",
-    "typescript-language-server",
-    "marksman",
-    "ltex-ls",
-    "grammarly-languageserver",
-    "html-lsp",
-    "css-lsp", 
-    "json-lsp",
-    
-    -- Debugger     
-    "codelldb",
-    
-    -- Formatter
-    "black", -- python
-    "isort", --python
-    "rustfmt", -- rust
-    "clang-format", -- c like
-    "stylua", -- lua
-    "prettier", -- js/ts
-
-    -- Linter
-    "ruff",
-    "eslint_d",      -- js/ts
-    "clang-tidy",    -- C/C++
-    "luacheck",      -- Lua
-    "hadolint",      -- Dockerfile
-    "stylelint"      -- css
-  },
-  ui = {
-    check_outdated_packages_on_open = true,
-    border = "rounded",
-    height = 0.75,
-    width = 0.75,
-    icons = require("icons").manager,
-  },
-}
-vim.lsp.enable('pyright', {
-    cmd = { "pyright-langserver", "--stdio" },
-    filetypes = { "py", "python" },
-    root_dir = function(filename)
-        return util.root_pattern(unpack(root_files))(filename) or util.path.dirname(filename)
-      end,
-    settings = {
-      python = {
-        analysis = {
-          autoSearchPaths = true,
-          diagnosticMode = "workspace",
-          useLibraryCodeForTypes = true
-    }
-  }
-}
-
+cmp.setup({
+	snippet = {
+		expand = function(args)
+			require("luasnip").lsp_expand(args.body)
+		end,
+	},
+	window = {
+		completion = {
+			border = "rounded",
+			winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+			scrollbar = false,
+		},
+		documentation = {
+			border = "rounded",
+		},
+	},
+	formatting = {
+		format = lspkind.cmp_format({
+			mode = "symbol_text",
+			maxwidth = 50,
+			ellipsis_char = "...",
+			before = function(entry, vim_item)
+				vim_item.menu = ({
+					nvim_lsp = "[LSP]",
+					luasnip = "[Snip]",
+					buffer = "[Buf]",
+					path = "[Path]",
+				})[entry.source.name]
+				return vim_item
+			end,
+		}),
+	},
+	mapping = cmp.mapping.preset.insert({
+		["<C-j>"] = cmp.mapping.select_next_item(),
+		["<C-k>"] = cmp.mapping.select_prev_item(),
+		["<C-Space>"] = cmp.mapping.complete(),
+		["<C-c>"] = cmp.mapping.abort(),
+		["<CR>"] = cmp.mapping.confirm({ select = true }),
+	}),
+	sources = cmp.config.sources({
+		{ name = "nvim_lsp" },
+		{ name = "luasnip" },
+		{ name = "buffer" },
+		{ name = "path" },
+	}),
 })
 
-vim.lsp.enable('clangd', {
-capabilities = capabilities,
-  cmd = {
-    "clangd",
-    "--background-index",
-    "--clang-tidy",
-    "--header-insertion=never",
-    "--completion-style=detailed",
-    "--offset-encoding=utf-16",
-  },
-  filetypes = {
-    "c", "cpp",
-  },
+vim.opt.pumheight = 10
+
+-- Mason setup
+require("mason").setup({
+	automatic_installation = false,
+	ui = {
+		border = "rounded",
+		height = 0.75,
+		width = 0.75,
+		icons = require("icons").manager,
+	},
 })
-vim.lsp.enable('rust-analyzer', {
-    cmd = { "rust-analyzer" },
-    filetypes = { "rust" },
-    root_dir = function(fname)
-        local cargo_crate_dir = util.root_pattern('Cargo.toml')(fname)
-        local cmd = 'cargo metadata --no-deps --format-version 1'
-        if cargo_crate_dir ~= nil then
-            cmd = cmd .. ' --manifest-path ' .. util.path.join(cargo_crate_dir, 'Cargo.toml')
-        end
-        local cargo_metadata = vim.fn.system(cmd)
-        local cargo_workspace_dir = nil
-        if vim.v.shell_error == 0 then
-            cargo_workspace_dir = vim.fn.json_decode(cargo_metadata)['workspace_root']
-        end
-        return cargo_workspace_dir
-            or cargo_crate_dir
-            or util.root_pattern('rust-project.json')(fname)
-            or util.find_git_ancestor(fname)
-    end,
-    settings = {
-        ["rust-analyzer"] = {}
-    },
+
+-- Capabilities для cmp
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+
+-- Функция для проверки наличия команды
+local function has_cmd(cmd)
+	return vim.fn.executable(cmd) == 1
+end
+
+-- Регистрируем LSP серверы через vim.lsp.config (ПРАВИЛЬНЫЙ СИНТАКСИС)
+-- Каждый сервер регистрируется отдельным вызовом, а не одной таблицей
+
+-- Pyright
+if has_cmd("pyright-langserver") then
+	vim.lsp.config["pyright"] = {
+		cmd = { "pyright-langserver", "--stdio" },
+		filetypes = { "python" },
+		root_markers = { "pyproject.toml", "setup.py", "requirements.txt", ".git" },
+		settings = {
+			python = {
+				analysis = {
+					autoSearchPaths = true,
+					diagnosticMode = "workspace",
+					useLibraryCodeForTypes = true,
+				},
+			},
+		},
+		capabilities = capabilities,
+	}
+end
+
+-- Clangd
+if has_cmd("clangd") then
+	vim.lsp.config["clangd"] = {
+		cmd = {
+			"clangd",
+			"--background-index",
+			"--clang-tidy",
+			"--header-insertion=never",
+			"--completion-style=detailed",
+		},
+		filetypes = { "c", "cpp" },
+		root_markers = { ".clangd", "compile_commands.json", ".git" },
+		capabilities = capabilities,
+	}
+end
+
+-- Rust analyzer
+if has_cmd("rust-analyzer") then
+	vim.lsp.config["rust-analyzer"] = {
+		cmd = { "rust-analyzer" },
+		filetypes = { "rust" },
+		root_markers = { "Cargo.toml", "rust-project.json", ".git" },
+		settings = {
+			["rust-analyzer"] = {
+				checkOnSave = { command = "clippy" },
+			},
+		},
+		capabilities = capabilities,
+	}
+end
+
+-- Lua
+if has_cmd("lua-language-server") then
+	vim.lsp.config["lua_ls"] = {
+		cmd = { "lua-language-server" },
+		filetypes = { "lua" },
+		root_markers = { ".luarc.json", ".luacheckrc", ".git" },
+		settings = {
+			Lua = {
+				runtime = { version = "LuaJIT" },
+				diagnostics = { globals = { "vim" } },
+				workspace = {
+					library = vim.api.nvim_get_runtime_file("", true),
+					checkThirdParty = false,
+				},
+				telemetry = { enable = false },
+				hint = { enable = true, semicolon = "Disable" },
+				codeLens = { enable = true },
+			},
+		},
+		capabilities = capabilities,
+	}
+end
+
+-- HTML
+if has_cmd("vscode-html-language-server") then
+	vim.lsp.config["html"] = {
+		cmd = { "vscode-html-language-server", "--stdio" },
+		filetypes = { "html" },
+		root_markers = { "package.json", ".git" },
+		init_options = {
+			configurationSection = { "html", "css", "javascript" },
+			embeddedLanguages = { css = true, javascript = true },
+			provideFormatter = true,
+		},
+		capabilities = capabilities,
+	}
+end
+
+-- JSON
+if has_cmd("vscode-json-language-server") then
+	vim.lsp.config["jsonls"] = {
+		cmd = { "vscode-json-language-server", "--stdio" },
+		filetypes = { "json", "jsonc" },
+		root_markers = { ".git" },
+		init_options = { provideFormatter = true },
+		capabilities = capabilities,
+	}
+end
+
+-- CSS
+if has_cmd("vscode-css-language-server") then
+	vim.lsp.config["cssls"] = {
+		cmd = { "vscode-css-language-server", "--stdio" },
+		filetypes = { "css", "scss", "less" },
+		root_markers = { "package.json", ".git" },
+		settings = {
+			css = { validate = true },
+			less = { validate = true },
+			scss = { validate = true },
+		},
+		init_options = { provideFormatter = true },
+		capabilities = capabilities,
+	}
+end
+
+-- Marksman
+if has_cmd("marksman") then
+	vim.lsp.config["marksman"] = {
+		cmd = { "marksman", "server" },
+		filetypes = { "markdown" },
+		root_markers = { ".marksman.toml", ".git" },
+		capabilities = capabilities,
+	}
+end
+
+-- Grammarly
+if has_cmd("grammarly-languageserver") then
+	vim.lsp.config["grammarly"] = {
+		cmd = { "grammarly-languageserver", "--stdio" },
+		filetypes = { "markdown" },
+		root_markers = { ".git" },
+		init_options = {
+			clientId = "client_BaDkMgx4X19X9UxxYRCXZo",
+		},
+		capabilities = capabilities,
+	}
+end
+
+-- LTeX
+if has_cmd("ltex-ls") then
+	vim.lsp.config["ltex"] = {
+		cmd = { "ltex-ls" },
+		filetypes = { "markdown", "tex" },
+		root_markers = { ".git" },
+		settings = {
+			ltex = {
+				enabled = { "markdown", "tex" },
+			},
+		},
+		capabilities = capabilities,
+	}
+end
+
+vim.lsp.enable(vim.tbl_keys(vim.lsp.config))
+
+vim.api.nvim_create_autocmd("LspAttach", {
+	callback = function(args)
+		local client = vim.lsp.get_client_by_id(args.data.client_id)
+		if client then
+			client.server_capabilities.progressProvider = false
+		end
+	end,
 })
-vim.lsp.enable('lua_ls')
-vim.lsp.enable('html')
-vim.lsp.enable('jsonls')
-vim.lsp.enable('cssls')
-vim.lsp.enable('marksman')
-vim.lsp.enable('grammarly')
-vim.lsp.enable('ltex')
+
+local original_notify = vim.notify
+vim.notify = function(msg, level, opts)
+	if level == vim.log.levels.ERROR then
+		original_notify(msg, level, opts)
+	end
+end
+
+vim.api.nvim_create_autocmd("LspAttach", {
+	group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+	callback = function(ev)
+		local opts = { buffer = ev.buf }
+		vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, opts)
+		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+		vim.keymap.set("n", "<leader>fgi", vim.lsp.buf.implementation, opts)
+		vim.keymap.set("n", "<leader>fgr", vim.lsp.buf.references, opts)
+		vim.keymap.set("n", "<leader>frn", vim.lsp.buf.rename, opts)
+		vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+		vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, opts)
+		vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+		vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+	end,
+})
