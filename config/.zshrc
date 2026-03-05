@@ -74,7 +74,7 @@ alias i='paru -S'
 
 alias ff="fastfetch"
 alias pf="pfetch"
-
+alias icat="kitten icat"
 
 alias poff="systemctl poweroff --no-wall"
 alias rbt="systemctl reboot --no-wall"

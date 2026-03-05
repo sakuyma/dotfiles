@@ -1,0 +1,143 @@
+{
+    "security.workspace.trust.untrustedFiles": "open",
+    "python.createEnvironment.trigger": "off",
+
+    // Set font
+    "editor.fontFamily": "'JetBrains Mono', 'bold', bold",
+    "editor.fontSize": 16,
+
+     // Set color theme
+    "workbench.colorTheme": "Everforest Dark",
+   
+    // Set icons
+    "workbench.iconTheme": "material-icon-theme",
+    "material-icon-theme.hidesExplorerArrows": true,
+    "workbench.tree.indent": 14,
+    
+    // Counting a line relative to the cursor
+    "editor.lineNumbers": "relative",
+
+    // Request confirmation for deletion and Drag&Drop
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
+
+    // Setting up excalidraw by default
+    "excalidraw.workspaceLibraryPath": ".",
+    "excalidraw.theme": "dark",
+
+    // Remove the widget on the right for scrolling
+    "editor.scrollbar.horizontal": "hidden",
+    "editor.scrollbar.vertical": "hidden",
+    "editor.minimap.enabled": false,
+    "editor.matchBrackets": "never",
+    "editor.occurrencesHighlight": "off",
+    "editor.overviewRulerBorder": false,
+    "editor.hideCursorInOverviewRuler": true,
+    "editor.stickyScroll.enabled": false,
+
+    "workbench.colorCustomizations": {
+        "editorCursor.background": "#000000",
+        "editorOverviewRuler.wordHighlightStrongForeground": "#0000",
+        "editorOverviewRuler.selectionHighlightForeground": "#0000",
+        "editorOverviewRuler.rangeHighlightForeground": "#0000",
+        "editorOverviewRuler.wordHighlightForeground": "#0000",
+        "editorOverviewRuler.bracketMatchForeground": "#0000",
+        "editorOverviewRuler.findMatchForeground": "#0000",
+        "editorOverviewRuler.modifiedForeground": "#0000",
+        "editorOverviewRuler.deletedForeground": "#0000",
+        "editorOverviewRuler.warningForeground": "#0000",
+        "editorOverviewRuler.addedForeground": "#0000",
+        "editorOverviewRuler.errorForeground": "#0000",
+        "editorOverviewRuler.infoForeground": "#0000",
+        "editorOverviewRuler.border": "#0000",
+        },
+    // Remove status bar from bottom
+    "workbench.statusBar.visible": false,
+
+    // Setting up drawio
+    "hediet.vscode-drawio.resizeImages": null,
+
+    // Don't show all open tabs
+    "workbench.editor.showTabs": "single",
+
+    // Set default size for editor
+    "window.zoomLevel": 2,
+
+    // Cursor Settings
+    "editor.multiCursorModifier": "ctrlCmd",
+
+    // Disable the window control panel
+    "chat.commandCenter.enabled": false,
+    "workbench.layoutControl.enabled": false,
+    "window.customTitleBarVisibility": "never",
+    "window.titleBarStyle": "native",
+    "window.menuBarVisibility": "toggle",
+
+    // Turn off unnecessary decorations and labels
+    "explorer.decorations.badges": false,
+    "git.decorations.enabled": false,
+    "scm.diffDecorations": "none",
+
+    // Setting up the todo plugin
+    "todohighlight.isEnable": true,
+
+    // Open a blank page by default
+    "workbench.startupEditor": "none",
+
+    // Disable function signature output
+    "editor.parameterHints.enabled": false,
+    "editor.hover.enabled": false,
+    "files.trimTrailingWhitespace": false,
+    "editor.links": false,
+
+    // Set the length of one tab
+    "editor.tabSize": 4,
+
+    // Add one blank line to the end of the file to avoid errors
+    "files.insertFinalNewline": true,
+
+    // Disabling the window with help for beginners
+    "workbench.tips.enabled": false,
+
+    // Disable Header Sticking in Trees
+    "workbench.tree.enableStickyScroll": false,
+
+    // Removes vertical indentation lines in the file tree
+    "workbench.tree.renderIndentGuides": "none",
+
+    // Always use the indents that are set manually (tabSize, insertSpaces, etc.), rather than guessing.
+    "editor.detectIndentation": false,
+    
+    // Remove code collapsing icon
+    "editor.showFoldingControls": "never",
+
+    // Disables vertical indentation lines in the editor
+    "editor.guides.indentation": false,
+    
+    // Does not show spaces, tabs, line breaks, etc. symbols in the editor
+    "editor.renderWhitespace": "none",
+
+    // Disables the active line backlight
+    "editor.renderLineHighlight": "none",
+
+    // Autosave files after a short pause after editing
+    "files.autoSave": "afterDelay",
+
+    // Disables VS Code auto-updates
+    "update.mode": "none",
+
+    // Disables pop-up offers to install extensions
+    "extensions.ignoreRecommendations": true,
+
+    // Makes Vscode smoother
+    "editor.cursorBlinking": "smooth",
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.smoothScrolling": true,
+    "workbench.list.smoothScrolling": true,
+    "terminal.integrated.smoothScrolling": true,
+    "git.enableSmartCommit": true,
+    "git.autofetch": true,
+    "git.confirmSync": false,
+    "explorer.confirmPasteNative": false,
+    "workbench.productIconTheme": "material-product-icons",
+}

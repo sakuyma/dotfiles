@@ -1,0 +1,182 @@
+// __        __          _
+// \ \      / /_ _ _   _| |__   __ _ _ __
+//  \ \ /\ / / _` | | | | '_ \ / _` | '__|
+//   \ V  V / (_| | |_| | |_) | (_| | |
+//    \_/\_/ \__,_|\__, |_.__/ \__,_|_|
+//                 |___/
+//
+
+// by sakuyma
+// ========================================================
+
+
+
+// ====================== Main ======================
+
+{ 
+  "layer": "top",
+  "position": "left",
+  "margin-top": 20,
+  "margin-bottom": 20,
+  "margin-left": 2,
+  "margin-right": 0,
+  "exclusive": true,
+  "width": 10,
+  "modules-left": [
+    "clock",
+  ],
+  "modules-center": [
+    "hyprland/workspaces",
+  ],
+  "modules-right": [
+    "tray",
+    "network",
+    "battery",
+    "backlight"
+  ],
+"hyprland/workspaces": {
+    "spacing": 16,
+    
+    "on-scroll-up": "hyprctl dispatch workspace r+1",
+    "on-scroll-down": "hyprctl dispatch workspace r-1",
+    
+    "persistent-workspaces": { "*": 3 },
+    "format-icons": {
+        "1": "",
+        "2": "",
+        "3": "",
+        "4": "",
+        "5": "",
+        "6": "",
+        "7": "",
+        "8": "",
+        "9": "",
+        "10": "",
+        "urgent": "",
+        //"active": "一",
+        //"default": "󰧞"",
+        "sort-by-number": false
+    },
+
+},
+"clock": {
+    "format": "{:%R}",
+    "tooltip-format": "{:%d %B %Y}",
+    "on-click": "eww open calendar --toggle --no-daemonize & eww close actioncenter musiccenter",
+  },
+"custom/power": {
+"on-click": "wlogout",
+"format": "⏻ "
+},
+"backlight": {
+"format": "{icon}",
+"format-icons": [
+  "󰃞",
+  "󰃝",
+  "󰃟",
+  "󰃠"
+],
+"on-click": "~/.config/polybar.old/ws1.sh",
+"on-click-middle": "$HOME/.config/rofi/applets/bin/brightness.sh",
+},
+"battery": {
+"states": {
+  "warning": 30,
+  "critical": 15
+},
+"format": "{icon}",
+"format-charging": "󱐥",
+"format-plugged": "󱐥",
+"format-icons": [
+  "󰂎",
+  "󰁺",
+  "󰁻",
+  "󰁼",
+  "󰁽",
+  "󰁿",
+  "󰂀",
+  "󰂁",
+  "󰂂",
+  "󰁹"
+],
+"on-click": "hyprctl dispatch exec [float] foot battop",
+"on-click-right": "$HOME/.config/rofi/applets/bin/battery.sh",
+},
+"pulseaudio": {
+"format": "{icon}",
+"on-click-right": "pactl set-sink-mute 0 toggle",
+"format-bluetooth": "{icon}",
+"format-bluetooth-muted": "󰝟",
+"format-muted": "󰝟",
+"format-source": "",
+"format-source-muted": "",
+"format-icons": {
+  "headphone": "",
+  "hands-free": "蓼",
+  "headset": "蓼",
+  "phone": "",
+  "portable": "",
+  "car": "",
+  "default": [
+    "󰕿",
+    "󰕾",
+    "󰕾"
+  ],
+},
+"on-click": "pactl set-sink-mute 0 toggle",
+"on-click-right": "pactl set-sink-mute 0 toggle",
+"on-click-middle": "$HOME/.config/rofi/applets/bin/volume.sh",
+},
+"bluetooth": {
+"format": "󰂯",
+"format-disabled": "󰂲",
+"format-connected": "󰂱",
+"tooltip-format": "{controller_alias}\t{controller_address}",
+"tooltip-format-connected": "{num_connections} connected\t{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+"on-click": "killall blueman-manager || hyprctl dispatch exec [float] blueman-manager",
+},
+
+"network": {
+
+    "format-wifi": "{icon}",
+    "format-ethernet": "🖧",
+    "format-disconnected": "󰌙 ",
+    "tooltip-format": "{icon} {essid}",
+    "format-icons": ["󰤯 ", "󰤟 ", "󰤢 ", "󰤢 ", "󰤨 "],
+
+    "on-click": "bash ~/.config/hypr/scripts/rofiwifi.sh",
+    "on-click-right": "bash ~/.config/hypr/scripts/rofiwifi.sh"
+},
+
+"wlr/workspaces": {
+"disable-scroll": false,
+"all-outputs": false,
+"on-click": "activate",
+"persistent_workspaces": {
+  "0": [],
+  "1": [],
+  "2": [],
+  "3": [],
+  "4": [],
+  "5": [],
+  "6": [],
+  "7": [],
+  "8": [],
+  "9": [],
+},
+"format-icons": {
+  "1": "",
+  "2": "",
+  "3": "",
+  "4": "󰏆",
+  "5": "",
+  "6": "",
+  "7": "󰡨",
+  "8": "",
+  "9": "",
+  "10": ""
+},
+"format": "{icon}",
+}
+}

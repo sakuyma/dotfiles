@@ -73,7 +73,7 @@ vim.opt.pumheight = 10
 
 -- Mason setup
 require("mason").setup({
-	automatic_installation = false,
+	automatic_installation = true,
 	ui = {
 		border = "rounded",
 		height = 0.75,
@@ -82,23 +82,22 @@ require("mason").setup({
 	},
 })
 
--- Capabilities для cmp
+-- Capabilities for cmp
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
--- Функция для проверки наличия команды
 local function has_cmd(cmd)
 	return vim.fn.executable(cmd) == 1
 end
 
--- Регистрируем LSP серверы через vim.lsp.config (ПРАВИЛЬНЫЙ СИНТАКСИС)
--- Каждый сервер регистрируется отдельным вызовом, а не одной таблицей
+-- Lsp setup
+local lsp = vim.lsp
 
 -- Pyright
 if has_cmd("pyright-langserver") then
 	vim.lsp.config["pyright"] = {
 		cmd = { "pyright-langserver", "--stdio" },
-		filetypes = { "python" },
+		filetypes = { "python", "py" },
 		root_markers = { "pyproject.toml", "setup.py", "requirements.txt", ".git" },
 		settings = {
 			python = {
@@ -111,6 +110,7 @@ if has_cmd("pyright-langserver") then
 		},
 		capabilities = capabilities,
 	}
+	lsp.enable("pyright")
 end
 
 -- Clangd
@@ -127,6 +127,7 @@ if has_cmd("clangd") then
 		root_markers = { ".clangd", "compile_commands.json", ".git" },
 		capabilities = capabilities,
 	}
+	lsp.enable("clangd")
 end
 
 -- Rust analyzer
@@ -142,6 +143,7 @@ if has_cmd("rust-analyzer") then
 		},
 		capabilities = capabilities,
 	}
+	lsp.enable("rust-analyzer")
 end
 
 -- Lua
@@ -165,6 +167,7 @@ if has_cmd("lua-language-server") then
 		},
 		capabilities = capabilities,
 	}
+    lsp.enable("lua_ls")
 end
 
 -- HTML
@@ -180,6 +183,7 @@ if has_cmd("vscode-html-language-server") then
 		},
 		capabilities = capabilities,
 	}
+    lsp.enable("html")
 end
 
 -- JSON
@@ -191,6 +195,7 @@ if has_cmd("vscode-json-language-server") then
 		init_options = { provideFormatter = true },
 		capabilities = capabilities,
 	}
+    lsp.enable("jsonls")
 end
 
 -- CSS
@@ -207,6 +212,7 @@ if has_cmd("vscode-css-language-server") then
 		init_options = { provideFormatter = true },
 		capabilities = capabilities,
 	}
+    lsp.enable("cssls")
 end
 
 -- Marksman
@@ -217,6 +223,7 @@ if has_cmd("marksman") then
 		root_markers = { ".marksman.toml", ".git" },
 		capabilities = capabilities,
 	}
+    lsp.enable("marksman")
 end
 
 -- Grammarly
@@ -230,6 +237,7 @@ if has_cmd("grammarly-languageserver") then
 		},
 		capabilities = capabilities,
 	}
+    lsp.enable("grammarly")
 end
 
 -- LTeX
@@ -245,6 +253,7 @@ if has_cmd("ltex-ls") then
 		},
 		capabilities = capabilities,
 	}
+    lsp.enable("ltex")
 end
 
 vim.lsp.enable(vim.tbl_keys(vim.lsp.config))
