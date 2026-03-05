@@ -1,0 +1,18 @@
+{
+  "label": "reboot",
+  "action": "systemctl reboot",
+  "text": "",
+  "keybind": "r",
+},
+{
+  "label": "shutdown",
+  "action": "systemctl poweroff",
+  "text": "",
+  "keybind": "q",
+},
+{
+  "label": "suspend",
+  "action": "systemctl suspend",
+  "text": "",
+  "keybind": "s",
+},
