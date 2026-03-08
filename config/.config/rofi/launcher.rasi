@@ -1,7 +1,11 @@
 /**
- * Rofi App Launcher - Minimal Catppuccin
- */
-
+ * ┌─────────────────────────────────────┐
+ * │         DEFAULT MENU THEME FILE     │           
+ * │                                     │
+ * │            By: sakuyma              │
+ * │                                     │
+ * └─────────────────────────────────────┘
+*/
 @import "theme.rasi"
 
 configuration {
@@ -10,10 +14,10 @@ configuration {
     border-radius: 8px;
     disable-history: false;
     drun-display-format: "{name}";
-    display-drun: "Apps: ";
+    display-drun: "";
     lines: 8;
     width: 70ch;
-    font: "Google Sans Text 12";
+    font: "Google Sans Text 16";
 }
 
 window {
@@ -31,19 +35,32 @@ inputbar {
     border-radius: -4px;
     padding: 10px 10px;
     margin: 0px 0px -45px 0px;
+    children: [ "textbox-prompt-colon", "entry", "mode-switcher" ];
 }
 
 prompt {
     background-color: inherit;
     text-color: @fg;
-    font: "JetBrains Mono 16";
+    enabled: true;
+}
+
+
+textbox-prompt-colon {
+    enabled: true;
+    padding: 5px 5px;
+    expand: false;
+    str: "";
+    text-color: inherit;
+    background-color: inherit;
 }
 
 entry {
+    enabled: true;
     background-color: inherit;
     text-color: @fg;
-    font: "JetBrains Mono 14";
+    cursor: text;
 }
+
 
 listview {
     background-color: @bg;
@@ -67,7 +84,6 @@ element selected {
 element-text {
     background-color: transparent;
     text-color: inherit;
-    font: "JetBrains Mono 16";
     padding: 0px 8px;
 }
 
@@ -75,4 +91,16 @@ element-icon {
     background-color: transparent;
     text-color: inherit;
     size: 36px;
+}
+
+mainbox {
+    enabled:                     true;
+    spacing:                     10px;
+    margin:                      0px;
+    padding:                     10px;
+    border:                      0px solid;
+    border-radius:               0px 0px 0px 0px;
+    border-color:                @fg;
+    background-color:            transparent;
+    children:                    [ "inputbar", "message", "listview" ];
 }

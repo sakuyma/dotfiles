@@ -1,0 +1,21 @@
+# Dotfiles Installer Justfile
+# Run commands with: just <command>
+# List all commands: just --list
+
+set shell := ["bash", "-c"]
+set dotenv-load := true
+
+# Default command (show help)
+default:
+    @just --list
+
+count:
+    @echo "Line count: "
+    @find -name "*.sh" -exec wc -l {} + | tail -1
+    @echo ""
+    @echo "By module: "
+    @find -name "*.sh" -exec wc -l {} + | sort -rn
+
+# Show help
+help:
+    @just --list
