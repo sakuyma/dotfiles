@@ -5,261 +5,116 @@
 //    \_/\_/ \__,_|\__, |_.__/ \__,_|_|
 //                 |___/
 //
-
 // by sakuyma
 // ========================================================
-
-
-
 // ====================== Main ======================
-
 {
-    "layer": "top",
+    "reload_style_on_change": true,
     "position": "top",
-    "mod": "dock",
-    "exclusive": true,
-    "gtk-layer-shell": true,
-    "margin-top": 6, 
-    "margin-bottom": 0,
-    "margin-left": 20,
-    "margin-right": 20,
-
-    "passthrough": false,
-    "height": 33,
-
-    "modules-left": ["group/leftSide"],
-    "modules-center": ["niri/workspaces"],
-    "modules-right": ["niri/language", "tray", "group/rightSide"],
-  
-    "niri/language": {
-        "format": "{}",
-        "format-en": "ENG",
-        "format-ru": "RU"
-},
-// ============================================================
-
-
-
-
-// ====================== Media ======================
-
-"mpris": {
-    
-    "format": "{status_icon}",
-    
-    "player-icons": {
-      "default": "▶  Playing"},
-
-    "status-icons": {
-      "paused": "  Paused",
-      "playing": "  Playing",
-      "stopped": " Stopped",
+    "margin-top": 18,
+    "modules-center": [
+        "tray",
+        "clock",
+        "custom/media",
+        "niri/workspaces",
+        "pulseaudio",
+        "network",
+        "battery",
+    ],
+    "niri/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8",
+            "10": "10",
+            "10": "10",
+            "default": " ",
+            "urgent": "",
+        },
+        "persistent-workspaces": {
+            "*": 5
+        },
+        "on-click": "activate",
     },
-
-    "tooltip": false
-},
-
-// ===================================================
-
-
-
-
-// ====================== Wireless ======================
-  
-"network": {
-
-    "format-wifi": "{icon}",
-    "format-ethernet": "🖧",
-    "format-disconnected": "󰌙 ",
-    "tooltip-format": "{icon}",
-    "format-icons": ["󰤯 ", "󰤟 ", "󰤢 ", "󰤢 ", "󰤨 "],
-
-    "on-click": "bash ~/.config/scripts/rofiwifi.sh",
-    "on-click-right": "bash ~/.config/scripts/rofiwifi.sh"
-},
-
-"bluetooth": {
-
-    "format": "",
-    "format-connected": " {device_alias}",
-    "format-connected-battery": " {device_alias} {device_battery_percentage}%",
-
-    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
-    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
-    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
-
-    "on-click": "blueman-manager"
-},
-
-// ======================================================
-
-
-
-
-// ====================== System ======================
-  
-"battery": {
-    "interval": 20,
-    "full-at": 100,
-    "tooltip": true,
-    "format-full": "",
-    "format": "{icon} {capacity}%",
-    "format-time": "{H}:{M:02}",
-    "format-charging": " {capacity}% ({time})",
-    "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂂", "󰁹"],
-    "states": {
-        "warning": 30,
-        "critical": 15
-      },
-    "on-click": "bash ~/.config/scripts/actioncenter.sh",
-},
-    
-
-"pulseaudio": {
-    "max-volume": 150,
-    "scroll-step": 10,
-    
-    "format": "{icon}",
-    "tooltip-format": "{icon}  {volume}%",
-    
-    "format-icons": {
-    "headphone": " ",
-    "format-muted": " ",
-    "default": [" ", " "]
+    "network": {
+        "format-wifi": "{icon}",
+        "format-ethernet": "󰤨 ",
+        "format-disconnected": "󰤨 ",
+        "tooltip-format": "{icon}",
+        "format-icons": [
+            "󰤯 ",
+            "󰤟 ",
+            "󰤢 ",
+            "󰤢 ",
+            "󰤨 "
+        ],
+        "on-click": "bash ~/.config/scripts/rofiwifi.sh",
+        "on-click-right": "bash ~/.config/scripts/rofiwifi.sh"
     },
-
-    "on-click": "eww open volumewidget --toggle",
-    "menu": "on-click-right",
-    "menu-file": "~/.config/waybar/volume_menu.xml",
-	"menu-actions": {
-		"ToggleSound": "pamixer -t",
-		"pavu": "pavucontrol",
-	},
-},
-
-"custom/swaync": {
-    "format": "󰎟",
-    "on-click": "swaync-client -op",
-  },
-
-"backlight": {
-    
-    "device": "intel_backlight",
-
-    "format": "{icon}",
-    "tooltip-format": "{icon} {percent}%",
-    "format-icons": [" ", " ", " ", " ", " ", " ", " ", " ", " "],
-    
-    "on-click": "bash ~/.config/scripts/bOSD.sh",
-},
-
-
-"hyprland/workspaces": {
-    
-    "format":"{icon}",
-    "icon-size": 32,
-    "spacing": 16,
-    
-    "on-scroll-up": "hyprctl dispatch workspace r+1",
-    "on-scroll-down": "hyprctl dispatch workspace r-1",
-    
-    "persistent-workspaces": { "*": 0 },
-    "format-icons": {
-        //"1": "一",
-        //"2": "二",
-        //"3": "三",
-        //"4": "四",
-        //"5": "五",
-        "urgent": "",
-        //"active": "一",
-        //"default": "󰧞"",
-        "sort-by-number": true
+    "bluetooth": {
+        "format": "",
+        "format-connected": " {device_alias}",
+        "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+        "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+        "on-click": "blueman-manager"
     },
-
+    "battery": {
+        "interval": 20,
+        "full-at": 100,
+        "tooltip": true,
+        "format-full": "",
+        "format": "{icon} {capacity}%",
+        "format-time": "{H}:{M:02}",
+        "format-charging": " {capacity}% ({time})",
+        "format-icons": [
+            "󰁺",
+            "󰁻",
+            "󰁼",
+            "󰁽",
+            "󰁾",
+            "󰁿",
+            "󰂀",
+            "󰂂",
+            "󰁹"
+        ],
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+    },
+    "pulseaudio": {
+        "max-volume": 150,
+        "scroll-step": 10,
+        "format": "{icon}",
+        "tooltip-format": "{icon}  {volume}%",
+        "format-icons": {
+            "headphone": " ",
+            "format-muted": " ",
+            "default": [
+                " ",
+                " "
+            ]
+        },
+        "on-click": "pavucontrol",
+        "menu": "on-click-right",
+        "menu-file": "~/.config/waybar/volume_menu.xml",
+        "menu-actions": {
+            "ToggleSound": "pamixer -t",
+            "pavu": "pavucontrol",
+        },
+    },
+    "clock": {
+        "format": "{:%R}",
+        "tooltip-format": "{:%d %B %Y}",
+        "on-click": "eww open calendar --toggle --no-daemonize & eww close actioncenter musiccenter",
+    },
 },
-
-// ========================================================
-
-
-
-
-// ====================== Taskbar ======================
-
-    "wlr/taskbar": {
-    "format": "{icon} {title:.18}",
-    "icon-size": 18,
-    "spacing": 3,
-    "on-click-middle": "close",
-    "tooltip-format": "{title}",
-    "ignore-list": [],
-    "on-click": "activate"
-  },
-
-// =====================================================
-
-
-
-
-// ====================== Utilities ======================
-
-"tray": {
-    "icon-size": 18,
-    "spacing": 8
-},
-
-"clock": {
-    "format": " {:%R}",
-    "tooltip-format": " {:%d %B %Y}",
-    "on-click": "eww open calendar --toggle --no-daemonize & eww close actioncenter musiccenter",
-  },
-
-"memory": {
-    "format": "󰍛 {used}/{total} GiB",
-    "interval": 5
-  },
-
-"cpu": {
-    "format": "󰻠 {usage}%",
-    "format-alt": "󰻠 {avg_frequency} GHz",
-    "interval": 5
-  },
-
-// =======================================================
-
-
-
-
-
-// ====================== Groups ======================
-
-"group/hardware": {
-	"orientation": "horizontal",
-	"modules": ["memory", "cpu"]
-	},
-
-"group/controlCenter": {
-	"orientation": "horizontal",
-	"modules": [
-			"pulseaudio",
-			"network",
-			"battery",
-      "backlight"
-		]
-},
-    
-"group/leftSide": {
-	"orientation": "horizontal",
-	"modules": [
-          "mpris",
-          "group/hardware"
-          ]
-},
-
-"group/rightSide": {
-	"orientation": "horizontal",
-	"modules": ["group/controlCenter", "clock", "custom/swaync"]
-	},
-}
-
-// ====================================================
