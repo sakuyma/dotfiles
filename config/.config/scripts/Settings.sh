@@ -8,13 +8,13 @@ CHOICE=$(echo -e "Night mode Toggle\nTitlebars Toggle\nIdling Toggle" | \
 
 case "$CHOICE" in
     "Night mode Toggle")
-        bash "$HOME/.config/hypr/scripts/Settings/night-mode.sh"
+        bash "$HOME/.config/scripts/Settings/night-mode.sh"
         ;;
     "Titlebars Toggle")
-        bash "$HOME/.config/hypr/scripts/Settings/titlebar_toggle.sh"
+        bash "$HOME/.config/scripts/Settings/titlebar_toggle.sh"
         ;;
     "Idling Toggle")
-        bash "$HOME/.config/hypr/scripts/Settings/idle.sh"
+        bash "$HOME/.config/scripts/Settings/idle.sh"
         ;;
     *)
         exit 0

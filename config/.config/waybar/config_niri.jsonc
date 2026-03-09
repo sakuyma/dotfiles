@@ -28,10 +28,10 @@
     "height": 33,
 
     "modules-left": ["group/leftSide"],
-    "modules-center": ["hyprland/workspaces"],
-    "modules-right": ["hyprland/language", "tray", "group/rightSide"],
+    "modules-center": ["niri/workspaces"],
+    "modules-right": ["niri/language", "tray", "group/rightSide"],
   
-    "hyprland/language": {
+    "niri/language": {
         "format": "{}",
         "format-en": "ENG",
         "format-ru": "RU"

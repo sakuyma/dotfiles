@@ -74,8 +74,8 @@
     "tooltip-format": "{icon}",
     "format-icons": ["󰤯 ", "󰤟 ", "󰤢 ", "󰤢 ", "󰤨 "],
 
-    "on-click": "bash ~/.config/hypr/scripts/rofiwifi.sh",
-    "on-click-right": "bash ~/.config/hypr/scripts/rofiwifi.sh"
+    "on-click": "bash ~/.config/scripts/rofiwifi.sh",
+    "on-click-right": "bash ~/.config/scripts/rofiwifi.sh"
 },
 
 "bluetooth": {
@@ -112,7 +112,7 @@
         "warning": 30,
         "critical": 15
       },
-    "on-click": "bash ~/.config/hypr/scripts/actioncenter.sh",
+    "on-click": "bash ~/.config/scripts/actioncenter.sh",
 },
     
 
@@ -151,7 +151,7 @@
     "tooltip-format": "{icon} {percent}%",
     "format-icons": [" ", " ", " ", " ", " ", " ", " ", " ", " "],
     
-    "on-click": "bash ~/.config/hypr/scripts/bOSD.sh",
+    "on-click": "bash ~/.config/scripts/bOSD.sh",
 },
 
 

@@ -8,23 +8,23 @@ CHOICE=$(echo -e "Wallpapers\nThemes\nBar\nLayouts\nDecorations\nSettings" | \
 
 case "$CHOICE" in
     "Wallpapers")
-        ~/.config/hypr/scripts/wallpaper.sh
+        ~/.config/scripts/wallpaper.sh
         ;;
     "Themes")
-        ~/.config/hypr/scripts/theme-switcher.sh
+        ~/.config/scripts/theme-switcher.sh
         ;;
     "Bar")
-        ~/.config/hypr/scripts/waybar-switcher.sh
+        ~/.config/scripts/waybar-switcher.sh
         ;;
     "Layouts")
-        ~/.config/hypr/scripts/layouts.sh
+        ~/.config/scripts/layouts.sh
         ;;
     "Decorations")
-       ~/.config/hypr/scripts/Decorations.sh 
+       ~/.config/scripts/Decorations.sh 
         ;;
 
     "Settings")
-       ~/.config/hypr/scripts/Settings.sh 
+       ~/.config/scripts/Settings.sh 
         ;;
 
     *)

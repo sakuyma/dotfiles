@@ -30,7 +30,7 @@
     "modules-right": [
         "group/rightSide"
     ],
-    "hyprland/language": {
+    "niri/language": {
         "format": "{}",
         "format-en": "ENG",
         "format-ru": "RU"
@@ -110,10 +110,8 @@
             "pavu": "pavucontrol",
         },
     },
-    "hyprland/workspaces": {
+    "niri/workspaces": {
         "format": "{icon}",
-        "on-scroll-up": "hyprctl dispatch workspace r+1",
-        "on-scroll-down": "hyprctl dispatch workspace r-1",
         "persistent-workspaces": {
             "*": 0
         },
@@ -147,7 +145,7 @@
         "orientation": "horizontal",
         "modules": [
             "mpris",
-            "hyprland/workspaces"
+            "niri/workspaces"
         ]
     },
     "group/rightSide": {

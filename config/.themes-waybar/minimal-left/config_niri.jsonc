@@ -21,7 +21,7 @@
         "clock",
     ],
     "modules-center": [
-        "hyprland/workspaces",
+        "niri/workspaces",
     ],
     "modules-right": [
         "tray",
@@ -29,10 +29,8 @@
         "battery",
         "backlight"
     ],
-    "hyprland/workspaces": {
+    "niri/workspaces": {
         "spacing": 16,
-        "on-scroll-up": "hyprctl dispatch workspace r+1",
-        "on-scroll-down": "hyprctl dispatch workspace r-1",
         "persistent-workspaces": {
             "*": 3
         },
@@ -93,8 +91,6 @@
             "󰂂",
             "󰁹"
         ],
-        "on-click": "hyprctl dispatch exec [float] foot battop",
-        "on-click-right": "$HOME/.config/rofi/applets/bin/battery.sh",
     },
     "pulseaudio": {
         "format": "{icon}",
@@ -128,7 +124,7 @@
         "tooltip-format": "{controller_alias}\t{controller_address}",
         "tooltip-format-connected": "{num_connections} connected\t{controller_alias}\t{controller_address}\n\n{device_enumerate}",
         "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-        "on-click": "killall blueman-manager || hyprctl dispatch exec [float] blueman-manager",
+        "on-click": "killall blueman-manager || blueman-manager ",
     },
     "network": {
         "format-wifi": "{icon}",

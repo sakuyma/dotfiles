@@ -65,8 +65,8 @@
         "tooltip-format": "{icon}",
         "format-icons": ["󰤯 ", "󰤟 ", "󰤢 ", "󰤢 ", "󰤨 "],
 
-        "on-click": "bash ~/.config/hypr/scripts/rofiwifi.sh",
-        "on-click-right": "bash ~/.config/hypr/scripts/rofiwifi.sh"
+        "on-click": "bash ~/.config/scripts/rofiwifi.sh",
+        "on-click-right": "bash ~/.config/scripts/rofiwifi.sh"
     },
 
     "bluetooth": {

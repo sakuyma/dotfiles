@@ -29,7 +29,7 @@ source $ZSH/oh-my-zsh.sh
 paths=(
     "/usr/local/opt/openjdk/bin"
     "/home/user/.spicetify"
-    "$HOME/.bun/bin"
+    "$HOME/.local/bin"
     "/bin"
     "/usr/bin" 
     "/usr/local/bin"

@@ -8,22 +8,22 @@ CHOICE=$(echo -e "Blur Toggle\nGaps Toggle\nOpacity Toggle\nShadow Toggle\nRound
 
 case "$CHOICE" in
     "Blur Toggle")
-        bash "$HOME/.config/hypr/scripts/Decorations/blur_toggle.sh"
+        bash "$HOME/.config/scripts/Decorations/blur_toggle.sh"
         ;;
     "Gaps Toggle")
-        bash ~/.config/hypr/scripts/Decorations/gaps_toggle.sh
+        bash ~/.config/scripts/Decorations/gaps_toggle.sh
         ;;
     "Opacity Toggle")
-        bash "$HOME/.config/hypr/scripts/Decorations/opacity_toggle.sh"
+        bash "$HOME/.config/scripts/Decorations/opacity_toggle.sh"
         ;;
     "Shadow Toggle")
-        bash "$HOME/.config/hypr/scripts/Decorations/shadow_toggle.sh"
+        bash "$HOME/.config/scripts/Decorations/shadow_toggle.sh"
         ;;
     "Rounding Toggle")
-        bash "$HOME/.config/hypr/scripts/Decorations/rounding_toggle.sh"
+        bash "$HOME/.config/scripts/Decorations/rounding_toggle.sh"
         ;;
     "Animations Toggle")
-        bash "$HOME/.config/hypr/scripts/Decorations/animaton_toggle.sh"
+        bash "$HOME/.config/scripts/Decorations/animaton_toggle.sh"
         ;;
 
     *)
