@@ -1,0 +1,12 @@
+hotkey-overlay {
+  skip-at-startup
+}
+
+prefer-no-csd
+screenshot-path "~/screens/screenshot from %y-%m-%d %h-%m-%s.png"
+
+cursor {
+    xcursor-theme "breeze_cursors"
+    xcursor-size 24
+    // hide-when-typing
+}

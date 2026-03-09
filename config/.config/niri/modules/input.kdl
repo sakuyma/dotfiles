@@ -1,0 +1,23 @@
+input {
+  keyboard {
+    xkb {
+      layout "us,ru"
+      options "grp:alt_shift_toggle"
+    }
+    numlock
+  }
+
+  touchpad {
+    tap
+    accel-speed 0.1
+    accel-profile "adaptive"
+    natural-scroll
+}
+
+  // I don't have a thinkpad :/
+  trackpoint {
+    off
+  }
+
+  focus-follows-mouse max-scroll-amount="0%"
+}
