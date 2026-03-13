@@ -1,12 +1,10 @@
-include "modules/theme.kdl"
+include "~/.config/niri/modules/theme.kdl"
 
-include "modules/animations.kdl"
-
-include "modules/autostart.kdl"
+include "animations.kdl"
 
 include "modules/binds.kdl"
 
-include "modules/input.kdl"
+include "~/.config/niri/modules/input.kdl"
 
 include "modules/layout.kdl"
 
@@ -15,3 +13,5 @@ include "modules/misc.kdl"
 include "modules/monitors.kdl"
 
 include "modules/rules.kdl"
+
+include "modules/theme.kdl"

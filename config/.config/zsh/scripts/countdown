@@ -1,0 +1,222 @@
+#!/usr/bin/env zsh
+
+# ------------------------------------------------------------------------------
+# File Purpose
+#   Provides a high-precision, interactive terminal countdown timer.
+#
+# Problems Solved
+#   - Eliminates terminal flickering during rapid UI updates by utilizing
+#     terminal "Home" cursor positioning instead of full screen clears.
+#   - Provides sub-second precision for timing using the zsh/datetime module.
+#   - Handles terminal state management to provide a clean TUI experience.
+#
+# Features / Responsibilities
+#   - Interactive controls (Space: Pause/Resume, Q: Quit).
+#   - Dynamic progress bar using native Zsh string padding (no external forks).
+#   - Desktop notifications for macOS and audible system bells.
+#
+# Usage Notes
+#   - Syntax: countdown 1h 30m 10s
+#   - Requires: zsh/datetime and zsh/mathfunc modules.
+# ------------------------------------------------------------------------------
+
+
+# ------------------------------------------------------------------------------
+# Environment Sandbox
+
+# We use 'emulate -L zsh' to ensure the function runs with standard Zsh behavior.
+emulate -L zsh
+
+# Disable tracing to keep the TUI clean and prevent debug output interference.
+setopt localoptions no_xtrace no_verbose
+
+# Clear any active traps that might interfere with timing logic.
+trap - DEBUG
+trap - ZERR
+
+# Load Zsh modules for high-resolution time ($EPOCHREALTIME)
+# and mathematical functions (int, float).
+zmodload zsh/datetime
+zmodload zsh/mathfunc
+
+
+# ── argument parsing ───────────────────────────────────────────────────────
+
+# Strip the function name if it was passed as the first argument by a wrapper.
+if [[ "$1" == "countdown" ]]; then shift; fi
+
+local target_seconds=0
+
+# ------------------------------------------------------------------------------
+# Complex Logic: Time Parsing
+# This loop processes human-readable strings (e.g., 1h, 5m, 10s) and converts
+# them into a single integer representing the total number of seconds.
+# It uses Zsh's parameter expansion ${arg%h} to strip the suffix before math.
+if [[ $# -eq 0 ]]; then
+    target_seconds=60
+else
+    for arg in "$@"; do
+        case "$arg" in
+            [0-9]*h) target_seconds=$((target_seconds + ${arg%h} * 3600)) ;;
+            [0-9]*m) target_seconds=$((target_seconds + ${arg%m} * 60)) ;;
+            [0-9]*s) target_seconds=$((target_seconds + ${arg%s})) ;;
+            [0-9]##) target_seconds=$((target_seconds + arg)) ;;
+            *)
+                print "${COLOR[RED]}[ERROR]${COLOR[RESET]} Unknown format '${COLOR[BOLD]}$arg${COLOR[RESET]}'. Valid: 1h, 30m, 90."
+                return 1
+                ;;
+        esac
+    done
+fi
+
+if (( target_seconds <= 0 )); then
+    print "${COLOR[RED]}[ERROR]${COLOR[RESET]} Time must be > 0."
+    return 1
+fi
+
+
+# ── terminal setup ─────────────────────────────────────────────────────────
+
+# !!! CRITICAL: UI state management
+# Hide cursor and stop the terminal from echoing user keystrokes (-echo).
+# We use tput civis for broader terminal compatibility.
+print -f "\e[?25l"
+stty -echo
+tput civis 2>/dev/null
+
+# ---- SAFE: Restore terminal state on any exit condition
+trap 'stty echo; print -f "\e[?25h"; tput cnorm 2>/dev/null; return' INT TERM EXIT
+
+# Initialize timing variables using $EPOCHREALTIME (float) for accuracy.
+local start_time=$EPOCHREALTIME
+local pause_time=0
+local accumulated_pause=0
+local is_paused=0
+clear
+
+
+# ── main execution loop ────────────────────────────────────────────────────
+
+local key=""
+while true; do
+    # ------------------------------------------------------------------------------
+    # Complex Logic: Dynamic Elapsed Time
+    # To support pause/resume functionality without time-drift, we track the
+    # 'accumulated_pause'. When paused, we fix the 'pause_time'.
+    # When resumed, we add the duration of the pause to our cumulative offset.
+    local current_time=$EPOCHREALTIME
+    local elapsed=0
+
+    if (( is_paused )); then
+        elapsed=$((pause_time - start_time - accumulated_pause))
+    else
+        elapsed=$((current_time - start_time - accumulated_pause))
+    fi
+
+    local remaining=$((target_seconds - elapsed))
+
+    # Prevent the timer from displaying negative values if the loop overshoots.
+    if (( remaining < 0 )); then remaining=0; fi
+
+    # Breakdown seconds into human-readable components using mathfunc.
+    local h=$((int(remaining / 3600)))
+    local m=$((int((remaining % 3600) / 60)))
+    local s=$((int(remaining % 60)))
+    local ms=$((int((remaining - int(remaining)) * 100)))
+
+
+    # ------------------------------------------------------------------------------
+    # Complex Logic: Progress Bar
+    # We calculate 'pct' as a ratio. To draw the bar, we generate strings of
+    # specific characters using Zsh's unique (l:size::char:) padding expansion.
+    # This is high-performance because it avoids for-loops or external calls.
+    local width=30
+    local pct=$((elapsed * 1.0 / target_seconds))
+    if (( pct > 1 )); then pct=1; fi
+
+    local fill_size=$((int((1.0 - pct) * width)))
+
+    # ---- SAFE: Clamp values to bar bounds to prevent expansion errors
+    if (( fill_size < 0 ));     then fill_size=0; fi
+    if (( fill_size > width )); then fill_size=width; fi
+
+    local empty_size=$((width - fill_size))
+
+    # ${(l:fill_size::█:):-} generates a string of '█' of length 'fill_size'
+    local bar_fill="${(l:fill_size::█:):-}"
+    local bar_empty="${(l:empty_size::░:):-}"
+
+
+    # ------------------------------------------------------------------------------
+    # UI Rendering
+
+    # \e[H moves the cursor to the top-left (Home).
+    # By overwriting the same lines instead of clearing, we eliminate flicker.
+    print -f "\e[H"
+
+    local status_color="${COLOR[GREEN]}"
+    local status_text="RUNNING "
+
+    if (( is_paused )); then
+        status_color="${COLOR[YELLOW]}"
+        status_text="PAUSED  "
+    elif (( remaining < 10 )); then
+        status_color="${COLOR[RED]}"
+        status_text="CRITICAL"
+    fi
+
+    # Draw the TUI Container.
+    print "${COLOR[BLUE]}╭──────────────────────────────────────╮${COLOR[RESET]}"
+    print "${COLOR[BLUE]}│             ${status_color}  $status_text              ${COLOR[BLUE]}│${COLOR[RESET]}"
+
+    # Format the time numbers into fixed-width slots for stability.
+    print -f "${COLOR[BLUE]}│             ${COLOR[B_WHITE]}%02d:%02d:%02d${COLOR[GREY]}.%02d              ${COLOR[BLUE]}│${COLOR[RESET]}\n" $h $m $s $ms
+
+    print "${COLOR[BLUE]}│    ${status_color}${bar_fill}${COLOR[GREY]}${bar_empty}${COLOR[RESET]}    ${COLOR[BLUE]}│${COLOR[RESET]}"
+    print "${COLOR[BLUE]}├──────────────────────────────────────┤${COLOR[RESET]}"
+    print "${COLOR[BLUE]}│       ${COLOR[GREY]}[SPACE] Pause   [Q] Quit       ${COLOR[BLUE]}│${COLOR[RESET]}"
+    print "${COLOR[BLUE]}╰──────────────────────────────────────╯${COLOR[RESET]}"
+
+
+    # ── interaction / feedback ───────────────────────────────────────────
+
+    if (( remaining <= 0 )); then
+        print -f "\a" # System bell
+        break
+    fi
+
+    # ------------------------------------------------------------------------------
+    # Complex Logic: Input Handling
+    # read -sk 1: Reads 1 char silently.
+    # -t 0.05: Blocks for only 50ms, allowing the clock to update 20 times per second.
+    key=""
+    read -sk 1 -t 0.05 key 2>/dev/null
+
+    case "$key" in
+        [qQ])
+            print "\n${COLOR[YELLOW]}:: Timer cancelled.${COLOR[RESET]}"
+            return
+            ;;
+        " ")
+            if (( is_paused )); then
+                is_paused=0
+                accumulated_pause=$((accumulated_pause + (EPOCHREALTIME - pause_time)))
+            else
+                is_paused=1
+                pause_time=$EPOCHREALTIME
+            fi
+            ;;
+    esac
+done
+
+
+# ── finalization ───────────────────────────────────────────────────────────
+
+clear
+print "${COLOR[GREEN]}"
+print "  ╭──────────────────────╮"
+print "  │      TIME IS UP!     │"
+print "  ╰──────────────────────╯"
+print "${COLOR[RESET]}"
+
+notify_user "Countdown" "Timer Finished"

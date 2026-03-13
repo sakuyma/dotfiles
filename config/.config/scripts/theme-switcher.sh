@@ -8,7 +8,12 @@ if [ ! -d "$THEMES_DIR" ]; then
     exit 1
 fi
 
-themes=($(find "$THEMES_DIR" -maxdepth 1 -type d -printf "%f\n" | tail -n +2))
+themes=()
+for theme in "$THEMES_DIR"/*/; do
+    if [ -d "$theme" ]; then
+        themes+=("$(basename "$theme")")
+    fi
+done
 
 if [ ${#themes[@]} -eq 0 ]; then
     echo "No themes found in $THEMES_DIR"

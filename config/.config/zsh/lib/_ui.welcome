@@ -1,0 +1,163 @@
+#!/usr/bin/env zsh
+#    ░█░█░▀█▀░░░░█░█░█▀▀░█░░░█▀▀░█▀█░█▄█░█▀▀
+#    ░█░█░░█░░░░░█▄█░█▀▀░█░░░█░░░█░█░█░█░█▀▀
+#    ░▀▀▀░▀▀▀░▀░░▀░▀░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀▀▀
+
+# ------------------------------------------------------------------------------
+# File Purpose
+#   Welcome message displayed on first shell startup to onboard new users.
+#
+# Problems Solved
+#   - Orients new users with key features and configuration philosophy
+#   - Explains where to make custom changes (User-Overrides.zsh)
+#   - Provides links to documentation and repository
+#   - Cleans up legacy files for a fresh start
+#
+# Features / Responsibilities
+#   - ASCII art header with welcome message
+#   - Feature highlights (benchmarking, minimalist mode, visuals)
+#   - Configuration guide showing what to edit and what not to edit
+#   - Self-destruction: removes itself from zshrc after first run
+#
+# Usage Notes
+#   - This runs automatically on first install
+#   - To test manually: source ~/.config/zsh/lib/_ui.welcome
+#   - After first run, it removes itself from zshrc
+# ------------------------------------------------------------------------------
+
+# Wrap in an anonymous function to prevent variable leakage
+() {
+    # ========== COLOR DEFINITIONS ========== #
+    # Используем переменные из _ui.color если доступны, иначе определяем локально
+    if [[ -z "$CYAN" ]]; then
+        # Локальные цвета если _ui.color не загружен
+        typeset -r RESET="\e[0m"
+        typeset -r DIM="\e[2m"
+        typeset -r BOLD="\e[1m"
+        typeset -r RED="\e[31m"
+        typeset -r GREEN="\e[32m"
+        typeset -r YELLOW="\e[33m"
+        typeset -r BLUE="\e[34m"
+        typeset -r MAGENTA="\e[35m"
+        typeset -r CYAN="\e[36m"
+        typeset -r UNDERLINE="\e[4m"
+    else
+        typeset -r RESET=$RESET
+        typeset -r DIM=$DIM
+        typeset -r BOLD=$BOLD
+        typeset -r RED=$RED
+        typeset -r GREEN=$GREEN
+        typeset -r YELLOW=$YELLOW
+        typeset -r BLUE=$BLUE
+        typeset -r MAGENTA=$MAGENTA
+        typeset -r CYAN=$CYAN
+        typeset -r UNDERLINE=$UNDERLINE
+    fi
+
+    # ========== CLEANUP OPERATIONS ========== #
+    if [[ -f "$HOME/.zsh_history" ]]; then
+        command rm -f "$HOME/.zsh_history" &> /dev/null
+    fi
+
+    if [[ -f "$HOME/.zcompdump" ]]; then
+        command rm -f "$HOME/.zcompdump" &> /dev/null
+    fi
+
+    # ========== WELCOME MESSAGE ========== #
+    clear
+
+    # 1. Header Box
+    print "${DIM}   ╭──────────────────────────────────────────────────────────────╮${RESET}"
+    print "${DIM}   │${RESET}                ${CYAN}👋 HELLO, WELCOME TO ZSH CONF${RESET}                 ${DIM}│${RESET}"
+    print "${DIM}   ╰──────────────────────────────────────────────────────────────╯${RESET}"
+
+    # 2. Introduction
+    print "   Maybe it's your first time using a custom Zsh setup or maybe not."
+    print "   Here are some tips to help you get the most out of your terminal.\n"
+    print "   ${DIM}🔗 Repo:${RESET} https://github.com/sakuyma/dotfiles\n"
+
+    # 3. Philosophy & Features
+    print "   ${MAGENTA}:: PHILOSOPHY & FEATURES${RESET}"
+    print "   I tried to make this shell environment ${BOLD}MINIMALIST${RESET} yet powerful."
+    print "   It is designed to be fast, beautiful, and efficient.\n"
+
+    # · Benchmarking
+    print "   ${DIM}•${RESET} ${BOLD}Startup Benchmarking:${RESET}"
+    print "     Automatically times your shell load. Check your ${YELLOW}ZSH_LOAD_TIME${RESET} variable.\n"
+
+    # · Fast Plugins
+    print "   ${DIM}•${RESET} ${BOLD}Fast Plugin Management:${RESET}"
+    print "     Using Zinit with turbo mode for lightning-fast startup.\n"
+
+    # · Visuals
+    print "   ${DIM}•${RESET} ${BOLD}Visuals:${RESET}"
+    print "     Starship prompt with Catppuccin theme and syntax highlighting."
+    print "     ${CYAN}[NOTE]${RESET} Recommended font: ${BLUE}JetBrains Mono Nerd Font${RESET}\n"
+
+    # 4. Configuration Guide
+    print "   ${MAGENTA}:: CONFIGURATION${RESET}"
+    print "   This configuration is modular and easy to customize:\n"
+
+    # · Directory Structure
+    print "   ${BOLD}Directory Structure:${RESET}"
+    print "   ${DIM}~/.config/zsh/${RESET}"
+    print "   ${DIM}├── conf.d/${RESET}     # Main config files (options, aliases, etc.)"
+    print "   ${DIM}├── lib/${RESET}        # Libraries (core.utils, ui.color, etc.)"
+    print "   ${DIM}├── plugins/${RESET}    # Plugin manager and external plugins"
+    print "   ${DIM}├── scripts/${RESET}    # Standalone scripts (in PATH)"
+    print "   ${DIM}└── zshrc${RESET}        # Main entry point\n"
+
+    # · What to edit
+    print "   ${GREEN}✓  DO EDIT:${RESET}"
+    print "     - ${UNDERLINE}conf.d/aliases.zsh${RESET}     # Your custom aliases"
+    print "     - ${UNDERLINE}conf.d/env.zsh${RESET}        # Environment variables"
+    print "     - ${UNDERLINE}conf.d/functions.zsh${RESET}  # Custom functions"
+    print "     - ${UNDERLINE}conf.d/hooks.zsh${RESET}      # Autostart programs\n"
+
+    # · What NOT to edit
+    print "   ${RED}⚠  DO NOT EDIT:${RESET}"
+    print "     - ${UNDERLINE}lib/${RESET} files           # Core libraries"
+    print "     - ${UNDERLINE}plugins/${RESET} files       # Plugin manager"
+    print "     - ${UNDERLINE}zshrc${RESET}                 # Main loader\n"
+
+    # · Updates
+    print "   ${DIM}•${RESET} ${BOLD}Updates:${RESET}"
+    print "     This config is managed via git. To update:"
+    print "     ${YELLOW}cd ~/.config/zsh && git pull${RESET}\n"
+
+    # 5. Footer & Help
+    print "   ${DIM}────────────────────────────────────────────────────────────────────────────────${RESET}\n"
+    print "   ${BOLD} NEED HELP?${RESET}"
+    print "   If you find a bug or have a suggestion, open an issue at:"
+    print "   ${DIM}https://github.com/sakuyma/dotfiles/issues${RESET}\n"
+
+    print "   ${DIM}> The terminal can be intimidating.${RESET}"
+    print "   ${DIM}> But once you master Zsh, you never go back to Bash.${RESET}\n"
+
+    # # 6. Show system info
+    # if command -v fastfetch &>/dev/null; then
+    #     fastfetch
+    # elif command -v pfetch &>/dev/null; then
+    #     pfetch
+    # fi
+
+    # 7. Exit Interaction
+    print -n "   ${CYAN}Press [ENTER] to start hacking...${RESET}"
+    read -k1 -s
+    print "\n"
+
+    # ========== SELF-DESTRUCTION SEQUENCE ========== #
+    # Удаляем строку с вызовом этого файла из zshrc
+    local zshrc_file="$HOME/.zshrc"
+    
+    if [[ -f "$zshrc_file" ]]; then
+        if [[ "$OSTYPE" == "darwin"* ]]; then
+            sed -i '' '\|source "\$ZSH_CONFIG/lib/_ui\.welcome"|d' "$zshrc_file"
+        else
+            sed -i '\|source "\$ZSH_CONFIG/lib/_ui\.welcome"|d' "$zshrc_file"
+        fi
+    fi
+
+    clear && exec zsh
+
+} # End of anonymous function

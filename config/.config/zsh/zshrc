@@ -1,0 +1,20 @@
+ZSHRC_START_TIME=$(date +%s.%N)
+
+export ZSH_CONFIG="$HOME/.config/zsh"
+export ZSH_CONFD="$ZSH_CONFIG/conf.d"
+
+zsh_modules=(
+    "$ZSH_CONFD/plugins.zsh"
+    "$ZSH_CONFD/options.zsh"
+    "$ZSH_CONFD/prompt.zsh"
+    "$ZSH_CONFD/env.zsh"
+    "$ZSH_CONFD/hooks.zsh"
+    "$ZSH_CONFD/functions.zsh"
+    "$ZSH_CONFD/aliases.zsh"
+    "$ZSH_CONFD/etc.zsh"
+)
+
+# Загрузка
+for module in "${zsh_modules[@]}"; do
+    [[ -f "$module" ]] && source "$module"
+done

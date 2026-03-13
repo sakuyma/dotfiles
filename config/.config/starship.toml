@@ -26,14 +26,14 @@ base = "#1e1e2e"
 mantle = "#181825"
 crust = "#11111b"
 
-add_newline = true 
+add_newline = "true" 
 # A minimal left prompt
 format = """$directory$character"""
 
 palette = "catppuccin_mocha"
 # move the rest of the prompt to the right
 right_format = """$all"""
-command_timeout = 1000
+command_timeout = "0" 
 
 [character]
 vicmd_symbol = "[N] >>>"
