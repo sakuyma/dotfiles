@@ -6,7 +6,7 @@
 | Project | Author | License | Used Parts |
 |---------|--------|---------|------------|
 | [zsh-config](https://github.com/adityastomar67/zsh-conf) | @adityastomar67 | AGPLv3 | Structure, libraries |
-| [nvim-config](https://github.com/whyhilde/dot-files) | @whyhilde | MIT | Scripts, aliases |
+| [nvim-config](https://github.com/whyhilde/dot-files) | @whyhilde | MIT | nvim |
 
 ### Plugin Sources
 | Project | Author | License |
