@@ -16,7 +16,7 @@
     "margin-left": 2,
     "margin-right": 0,
     "exclusive": true,
-    "width": 10,
+    "width": 50,
     "modules-left": [
         "clock",
     ],
@@ -54,7 +54,7 @@
         },
     },
     "clock": {
-        "format": "{:%R}",
+        "format": "{:%H\n%M}",
         "tooltip-format": "{:%d %B %Y}",
         "on-click": "eww open calendar --toggle --no-daemonize & eww close actioncenter musiccenter",
     },

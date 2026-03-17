@@ -1,8 +1,8 @@
 /*
  * ╔══════════════════════════════════════════════════════════╗
- * ║                 WAYBAR VERTICAL CONFIG                   ║
+ * ║                    WAYBAR CONFIG                         ║
  * ║                        by sakuyma                         ║
- * ║              Vertical clock & compact workspaces          ║
+ * ║              Enhanced with your beautiful colors          ║
  * ╚══════════════════════════════════════════════════════════╝
  */
 
@@ -14,55 +14,53 @@
 * {
     border: none;
     border-radius: 0;
-    font-family: "JetBrainsMono Nerd Font", "Fira Mono", sans-serif;
-    font-size: 12px;
+    font-family: "JetBrainsMono Nerd Font", "Fira Mono", "Cartograph CF", sans-serif;
+    font-size: 14px;
     min-height: 0;
-    min-width: 0;
     margin: 0;
     padding: 0;
+    transition: none; /* Waybar doesn't support transitions well */
 }
 
-/* ========== MAIN BAR (VERTICAL) ========== */
+/* ========== MAIN BAR ========== */
 window#waybar {
     background: @bg-main;
     border: 1px solid alpha(@border-main, 0.25);
     border-radius: 20px;
-    margin: 8px 4px;
-    padding: 8px 4px;
+    margin: 12px 12px;
+    padding: 8px 12px;
 }
 
-/* ========== WORKSPACES (КОМПАКТНЫЕ) ========== */
+/* ========== WORKSPACES ========== */
 #workspaces {
     background: alpha(@bg-second, 0.6);
-    border-radius: 16px;
-    margin: 4px 2px 12px 2px;
-    padding: 4px 2px;
+    border-radius: 30px;
+    margin: 4px 8px;
+    padding: 6px;
     border: 1px solid alpha(@border-main, 0.2);
 }
 
 #workspaces button {
     background: transparent;
     color: alpha(@fg-main, 0.6);
-    border-radius: 10px;
-    margin: 1px 0;
-    padding: 4px 0;
+    border-radius: 30px;
+    margin: 0 3px;
+    padding: 0 12px;
     min-width: 32px;
-    min-height: 24px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
-    transition: all 0.3s ease-in-out;
 }
 
 #workspaces button:hover {
     background: alpha(@bg-hover, 0.4);
     color: @content-act;
+    border: 1px solid alpha(@mauve, 0.3);
 }
 
 #workspaces button.active {
     background: linear-gradient(135deg, @mauve, @blue);
     color: @bg-main;
     font-weight: bold;
-    transition: all 0.3s ease-in-out;
 }
 
 #workspaces button.urgent {
@@ -70,30 +68,27 @@ window#waybar {
     color: @bg-main;
 }
 
-/* Более тонкий разделитель */
-#workspaces button:not(:last-child) {
-    border-bottom: 1px solid alpha(@border-main, 0.15);
-}
-
-/* ========== CLOCK (ВЕРТИКАЛЬНЫЙ) ========== */
+/* ========== CLOCK ========== */
 #clock {
     background: alpha(@bg-second, 0.8);
-    border-radius: 16px;
+    border-radius: 30px;
     color: @fg-main;
     font-family: "Cartograph CF", monospace;
-    font-size: 11px;
+    font-size: 14px;
     font-weight: 500;
-    margin: 4px 2px;
-    padding: 12px 4px;  /* Увеличены вертикальные отступы */
+    margin: 4px 8px;
+    padding: 8px 20px;
+    letter-spacing: 0.8px;
     border: 1px solid alpha(@border-main, 0.3);
 }
 
 #clock:hover {
     background: @bg-hover;
     border-color: @mauve;
+    color: @content-act;
 }
 
-/* ========== МОДУЛИ ========== */
+/* ========== MODULES (Right side) ========== */
 #tray,
 #network,
 #battery,
@@ -101,59 +96,31 @@ window#waybar {
 #bluetooth,
 #pulseaudio,
 #custom-power {
-    margin: 2px 2px;
-    padding: 8px 0;
-    border-radius: 16px;
-    min-width: 32px;  /* Уменьшено с 36px */
+    margin: 4px 4px;
+    padding: 8px 14px;
+    border-radius: 30px;
+    min-width: 24px;
     font-size: 16px;
     border: 1px solid transparent;
 }
 
-/* Индивидуальные стили */
+/* Individual module styling with your colors */
 #network {
     background: linear-gradient(135deg, @blue, @mauve);
     color: @bg-main;
     font-weight: 600;
 }
 
+#network.disconnected {
+    background: @bg-third;
+    color: @fg-unactive;
+    opacity: 0.8;
+}
+
 #battery {
     background: linear-gradient(135deg, @green, @teal);
     color: @bg-main;
     font-weight: 600;
-}
-
-#backlight {
-    background: linear-gradient(135deg, @orange, @yellow);
-    color: @bg-main;
-    font-weight: 600;
-}
-
-#bluetooth {
-    background: linear-gradient(135deg, @blue, @teal);
-    color: @bg-main;
-    font-weight: 600;
-}
-
-#pulseaudio {
-    background: linear-gradient(135deg, @pink, @mauve);
-    color: @bg-main;
-    font-weight: 600;
-}
-
-#custom-power {
-    background: linear-gradient(135deg, @red, @pink);
-    color: @bg-main;
-    font-size: 18px;
-    font-weight: 600;
-}
-
-/* Состояния */
-#network.disconnected,
-#bluetooth.disabled,
-#pulseaudio.muted {
-    background: @bg-third;
-    color: @fg-unactive;
-    opacity: 0.7;
 }
 
 #battery.charging {
@@ -168,21 +135,58 @@ window#waybar {
     background: linear-gradient(135deg, @orange, @yellow);
 }
 
+#backlight {
+    background: linear-gradient(135deg, @orange, @yellow);
+    color: @bg-main;
+    font-weight: 600;
+}
+
+#bluetooth {
+    background: linear-gradient(135deg, @blue, @teal);
+    color: @bg-main;
+    font-weight: 600;
+}
+
+#bluetooth.disabled {
+    background: @bg-third;
+    color: @fg-unactive;
+    opacity: 0.7;
+}
+
 #bluetooth.connected {
     background: linear-gradient(135deg, @teal, @green);
+}
+
+#pulseaudio {
+    background: linear-gradient(135deg, @pink, @mauve);
+    color: @bg-main;
+    font-weight: 600;
+}
+
+#pulseaudio.muted {
+    background: @bg-third;
+    color: @fg-unactive;
+    opacity: 0.7;
 }
 
 #pulseaudio.source-muted {
     background: linear-gradient(135deg, @red, @mauve);
 }
 
+#custom-power {
+    background: linear-gradient(135deg, @red, @pink);
+    color: @bg-main;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 8px 18px;
+}
+
 /* ========== TRAY ========== */
 #tray {
     background: alpha(@bg-second, 0.8);
-    padding: 4px 2px;
-    margin: 2px 2px 8px 2px;
+    padding: 4px 12px;
+    margin: 4px 6px;
     border: 1px solid alpha(@border-main, 0.2);
-    min-width: 32px;  /* Уменьшено с 36px */
 }
 
 #tray > .passive {
@@ -197,41 +201,43 @@ window#waybar {
 tooltip {
     background: @bg-main;
     border: 1px solid alpha(@mauve, 0.3);
-    border-radius: 12px;
-    padding: 6px 10px;
+    border-radius: 16px;
+    padding: 10px 16px;
 }
 
 tooltip label {
     color: @fg-main;
-    font-size: 11px;
+    font-size: 13px;
     font-weight: 500;
 }
 
-/* ========== ВЕРТИКАЛЬНЫЕ СЕКЦИИ ========== */
+/* ========== MODULE POSITIONING ========== */
 .modules-left {
-    margin-bottom: 16px;
+    padding: 0 6px;
 }
 
 .modules-center {
-    margin: 16px 0;
+    padding: 0 6px;
 }
 
 .modules-right {
-    margin-top: 16px;
+    padding: 0 6px;
 }
 
-/* ========== HOVER ЭФФЕКТЫ ========== */
+/* ========== HOVER EFFECTS (simplified) ========== */
 #network:hover,
 #battery:hover,
 #backlight:hover,
 #bluetooth:hover,
 #pulseaudio:hover,
 #custom-power:hover,
-#clock:hover {
+#clock:hover,
+#workspaces button:hover {
     opacity: 0.9;
+    border-color: alpha(@fg-main, 0.3);
 }
 
-/* ========== РАЗМЕРЫ ИКОНОК ========== */
+/* ========== CUSTOM ICON SIZES ========== */
 #battery {
     font-size: 18px;
 }
@@ -248,16 +254,45 @@ tooltip label {
     font-size: 17px;
 }
 
-/* ========== ПОГОДА ========== */
+/* ========== BATTERY LEVEL INDICATORS ========== */
+#battery.good {
+    background: linear-gradient(135deg, @green, @teal);
+}
+
+#battery.warning {
+    background: linear-gradient(135deg, @orange, @yellow);
+}
+
+/* ========== ADDITIONAL POLISH ========== */
+/* Subtle separators between module groups */
+.modules-left > widget:not(:first-child) > * {
+    margin-left: 4px;
+}
+
+.modules-right > widget:not(:last-child) > * {
+    margin-right: 4px;
+}
+
+/* Focus state for accessibility */
+button:focus {
+    outline: 2px solid @mauve;
+    outline-offset: 2px;
+}
+
+/* Special styling for when waybar is on the left (as in your config) */
+window#waybar.left {
+    border-radius: 0 20px 20px 0;
+    margin: 12px 0 12px 0;
+}
+
+/* Weather module if you add it later */
 #custom-weather {
     background: alpha(@bg-second, 0.8);
-    border-radius: 16px;
+    border-radius: 30px;
     color: @fg-main;
-    margin: 2px 2px;
-    padding: 8px 0;
-    font-size: 11px;
+    margin: 4px 8px;
+    padding: 8px 16px;
     border: 1px solid alpha(@border-main, 0.3);
-    min-width: 32px;
 }
 
 #custom-weather:hover {

@@ -1,0 +1,132 @@
+{
+    "reload_style_on_change": true,
+    
+    "position": "top",
+    "margin-top": 15,
+    "modules-left": ["custom/os-button","mpris"],
+    "modules-center": ["clock", "hyprland/workspaces", "tray"],
+    "modules-right": ["pulseaudio", "network", "battery", "custom/notification"],
+
+    "clock": {
+        "format": "{:%R}",
+        "tooltip-format": "{:%d %B %Y}",
+        "on-click": "eww open calendar --toggle --no-daemonize & eww close actioncenter musiccenter"
+    },
+    
+    "hyprland/workspaces": {
+        "format":"{icon}",
+        "format-icons": {
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8",
+            "10": "10",
+            "10": "10",
+            "default": " ",
+            "urgent": "",
+        },
+        "persistent-workspaces": {
+            "*": 5
+        },
+        "on-click": "activate",
+        "on-scroll-down": "hyprctl dispatch workspace e+1",
+        "on-scroll-up": "hyprctl dispatch workspace  e-1"
+    },
+   
+    "tray": {
+        "icon-size": 21,
+        "spacing": 10
+    },
+
+    
+    "pulseaudio": {
+        "max-volume": 150,
+        "scroll-step": 10,
+        
+        "format": "{icon}",
+        "tooltip-format": "{icon}  {volume}%",
+        
+        "format-icons": {
+        "headphone": " ",
+        "format-muted": " ",
+        "default": [" ", " "]
+        },
+
+        "on-click": "pavucontrol",
+        "menu": "on-click-right",
+        "menu-file": "~/.config/waybar/volume_menu.xml",
+        "menu-actions": {
+            "ToggleSound": "pamixer -t",
+            "pavu": "pavucontrol",
+        },
+    },
+
+    
+    "network": {
+        "format-wifi": "{essid} {icon}",
+        "format-ethernet": "󰤨 ",
+        "format-disconnected": "󰤨 ",
+        "tooltip-format": "{icon}",
+        "format-icons": ["󰤯 ", "󰤟 ", "󰤢 ", "󰤢 ", "󰤨 "],
+
+        "on-click": "bash ~/.config/scripts/rofiwifi.sh",
+        "on-click-right": "bash ~/.config/scripts/rofiwifi.sh"
+    },
+
+    "battery": {
+        "interval": 20,
+        "full-at": 100,
+        "tooltip": true,
+        "format-full": "",
+        "format": "{icon} {capacity}%",
+        "format-time": "{H}:{M:02}",
+        "format-charging": " {capacity}% ({time})",
+        "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂂", "󰁹"],
+        "states": {
+            "warning": 30,
+            "critical": 15
+          },
+    },
+
+    "custom/notification": {
+        "tooltip": true,
+        "format": "<span size='16pt'>{icon}</span>",
+        "format-icons": {
+              "notification": "󱅫",
+              "none": "󰂜",
+              "dnd-notification": "󰂠",
+              "dnd-none": "󰪓",
+              "inhibited-notification": "󰂛",
+              "inhibited-none": "󰪑",
+              "dnd-inhibited-notification": "󰂛",
+              "dnd-inhibited-none": "󰪑",
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+    },
+    
+    "mpris": {
+
+        "format": "{status_icon} {artist} — {title}",
+
+        "status-icons": {
+            "paused": " ",
+            "playing": " ",
+            "stopped": " ",
+        },
+
+        "tooltip": false
+    },
+    "custom/os-button": {
+        "format": "󰣇 ",
+        "on-click": "~/.config/scripts/launcher.sh"
+    },
+}

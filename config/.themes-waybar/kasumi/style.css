@@ -1,0 +1,94 @@
+@import "theme.css";
+@import "colors.css";
+
+* {
+    border: none;
+    border-radius: 0px;
+
+    font-family: "Google Sans Flex", "JetBrainsMono Nerd Font";
+    font-size: 16px;
+    
+    min-height: 0;
+    padding: 0;
+    margin: 0;
+}
+
+window#waybar {
+    background: transparent;
+}
+
+tooltip {
+    background: @bg-main;
+    border: 1px solid @fg-main;
+    border-radius: 12px;
+}
+
+tooltip label {
+    color: @fg-main;
+    padding: 6px;
+}
+
+#workspaces {
+    background: @bg-main;
+    padding: 5px 3px;
+    margin: 0 0 0 12px;
+    border-radius: 18px;
+    border: 2px solid @bg-main;
+    color: @fg-main;
+}
+
+#workspaces button {
+    padding: 0px 6px;
+    margin: 0 3px;
+    border-radius: 50px;
+    color: @fg;
+    background-color: @bg-main;
+    transition: all 0.3s ease-in-out;
+}
+
+#workspaces button.active {
+    background: @fg-main;
+    color: @bg-main;
+    min-width: 50px;
+    transition: all 0.3s ease-in-out;
+    font-size: 16px;
+}
+
+#battery,
+#pulseaudio,
+#network,
+#clock,
+#mpris,
+#tray,
+#custom-notification, 
+#custom-os-button {
+    background-color: @bg-main;
+    padding: 0 15px 0 15px;
+    margin: 0 0 0 12px;
+    border-radius: 50px;
+    border: 2px solid @bg-main;
+}
+
+#battery {
+    color: @green;
+}
+
+#pulseaudio {
+    color: @yellow;
+}
+
+#tray {
+    color: @fg-main;
+}
+
+#clock {
+    color: @fg-main;
+}
+
+#network {
+    color: @red;
+}
+
+#mpris {
+    color: @teal;
+}

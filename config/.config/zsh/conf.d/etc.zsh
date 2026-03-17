@@ -1,17 +1,4 @@
 #!/usr/bin/env zsh
-#    ░█░█░▀█▀░░░░█░█░█▀▀░█░░░█▀▀░█▀█░█▄█░█▀▀
-#    ░█░█░░█░░░░░█▄█░█▀▀░█░░░█░░░█░█░█░█░█▀▀
-#    ░▀▀▀░▀▀▀░▀░░▀░▀░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀▀▀
-
-# ------------------------------------------------------------------------------
-# File Purpose
-#   Plugin manager initialization and plugin loading
-#
-# Problems Solved
-#   - Installs and configures Zinit plugin manager
-#   - Loads OMZ libraries and plugins
-#   - Loads external plugins with proper timing
-# ------------------------------------------------------------------------------
 
 # ========== PLUGIN MANAGER ========== #
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
@@ -45,32 +32,25 @@ zinit wait"1" lucid for \
     OMZP::systemd
 
 # ========== EXTERNAL PLUGINS ========== #
-# Автодополнение как в рыбе
 zinit wait"1" lucid atload"_zsh_autosuggest_start" for \
     zsh-users/zsh-autosuggestions
 
-# Быстрая подсветка синтаксиса
 zinit wait"1" lucid atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" for \
     zdharma-continuum/fast-syntax-highlighting
 
-# Дополнительные плагины (ОБРАТИТЕ ВНИМАНИЕ на обратные слэши и for)
 zinit wait"0" lucid for \
     zsh-users/zsh-completions \
     zsh-users/zsh-history-substring-search \
     ael-code/zsh-colored-man-pages
 
 # ========== POST-PLUGIN SETUP ========== #
-# Перезагрузка комплишенов
 autoload -Uz compinit
 compinit -C
 
-# Настройка цветов комплишенов (синие директории)
 zstyle ':completion:*' list-colors 'di=34' 'ex=32' 'fi=0' 'ln=36'
 zstyle ':completion:*' format '%B%F{34}%d%f%b'
 zstyle ':completion:*:descriptions' format '%B%F{34}-- %d --%f%b'
 
-# Регистронезависимое дополнение
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
-# Меню выбора
 zstyle ':completion:*' menu select

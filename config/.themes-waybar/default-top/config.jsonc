@@ -25,7 +25,7 @@
     "margin-right": 20,
 
     "passthrough": false,
-    "height": 33,
+    "min-height": 0,
 
     "modules-left": ["group/leftSide"],
     "modules-center": ["hyprland/workspaces"],

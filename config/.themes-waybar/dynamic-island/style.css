@@ -11,6 +11,7 @@
 
 /*Import the theme.css file */
 @import "theme.css";
+@import "colors.css";
 
 * {
   border: none;
@@ -85,6 +86,7 @@ tooltip label {
   background: @bg-main;
   border-radius: 16px;
   margin: 0 3px;
+   color: @green;  
 }
 #clock,
 #bluetooth {
@@ -115,12 +117,20 @@ tooltip label {
   color: @fg-main;
 }
 
-#network, #pulseaudio {
+#network {
   background-color: @bg-main;
   padding: 0px 6px;
   font-size: 15px;
-  color: @bg-hover-alt;
+  color: @red;
 }
+
+#pulseaudio {
+  background-color: @bg-main;
+  padding: 0px 6px;
+  font-size: 15px;
+  color: @yellow;
+}
+
 #tray > .passive {
     border-bottom: none;
 }
@@ -132,11 +142,11 @@ tooltip label {
 
 #tray menu, menu {
     font-family: "JetBrainsMono Nerd Font";
-      border: 2px solid @border-main;
-      border-radius: 10px;
-      transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
-      background-color: @bg-main;
-      padding: 5px 2px;
+    border: 2px solid @border-main;
+    border-radius: 10px;
+    transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+    background-color: @bg-main;
+    padding: 5px 2px;
 }
 
 #tray menu > *, menu > * {

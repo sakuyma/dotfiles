@@ -14,7 +14,7 @@ zsh_modules=(
     "$ZSH_CONFD/etc.zsh"
 )
 
-# Загрузка
+# Loading 
 for module in "${zsh_modules[@]}"; do
     [[ -f "$module" ]] && source "$module"
 done
