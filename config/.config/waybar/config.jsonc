@@ -1,178 +1,132 @@
-// __        __          _
-// \ \      / /_ _ _   _| |__   __ _ _ __
-//  \ \ /\ / / _` | | | | '_ \ / _` | '__|
-//   \ V  V / (_| | |_| | |_) | (_| | |
-//    \_/\_/ \__,_|\__, |_.__/ \__,_|_|
-//                 |___/
-//
-// by sakuyma
-// ========================================================
-// ====================== Main ======================
 {
-    "layer": "top",
-    "position": "left",
-    "margin-top": 20,
-    "margin-bottom": 20,
-    "margin-left": 2,
-    "margin-right": 0,
-    "exclusive": true,
-    "width": 50,
-    "modules-left": [
-        "clock",
-    ],
-    "modules-center": [
-        "hyprland/workspaces",
-    ],
-    "modules-right": [
-        "tray",
-        "network",
-        "battery",
-        "backlight"
-    ],
-    "hyprland/workspaces": {
-        "spacing": 16,
-        "on-scroll-up": "hyprctl dispatch workspace r+1",
-        "on-scroll-down": "hyprctl dispatch workspace r-1",
-        "persistent-workspaces": {
-            "*": 3
-        },
-        "format-icons": {
-            "1": "",
-            "2": "",
-            "3": "",
-            "4": "",
-            "5": "",
-            "6": "",
-            "7": "",
-            "8": "",
-            "9": "",
-            "10": "",
-            "urgent": "",
-            //"active": "一",
-            //"default": "󰧞"",
-            "sort-by-number": false
-        },
-    },
+    "reload_style_on_change": true,
+    
+    "position": "top",
+    "margin-top": 15,
+    "modules-left": ["custom/os-button","mpris"],
+    "modules-center": ["clock", "hyprland/workspaces", "tray"],
+    "modules-right": ["pulseaudio", "network", "battery", "custom/notification"],
+
     "clock": {
-        "format": "{:%H\n%M}",
+        "format": "{:%R}",
         "tooltip-format": "{:%d %B %Y}",
-        "on-click": "eww open calendar --toggle --no-daemonize & eww close actioncenter musiccenter",
+        "on-click": "eww open calendar --toggle --no-daemonize & eww close actioncenter musiccenter"
     },
-    "custom/power": {
-        "on-click": "wlogout",
-        "format": "⏻ "
-    },
-    "backlight": {
-        "format": "{icon}",
-        "format-icons": [
-            "󰃞",
-            "󰃝",
-            "󰃟",
-            "󰃠"
-        ],
-        "on-click": "~/.config/polybar.old/ws1.sh",
-        "on-click-middle": "$HOME/.config/rofi/applets/bin/brightness.sh",
-    },
-    "battery": {
-        "states": {
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{icon}",
-        "format-charging": "󱐥",
-        "format-plugged": "󱐥",
-        "format-icons": [
-            "󰂎",
-            "󰁺",
-            "󰁻",
-            "󰁼",
-            "󰁽",
-            "󰁿",
-            "󰂀",
-            "󰂁",
-            "󰂂",
-            "󰁹"
-        ],
-        "on-click": "hyprctl dispatch exec [float] foot battop",
-        "on-click-right": "$HOME/.config/rofi/applets/bin/battery.sh",
-    },
-    "pulseaudio": {
-        "format": "{icon}",
-        "on-click-right": "pactl set-sink-mute 0 toggle",
-        "format-bluetooth": "{icon}",
-        "format-bluetooth-muted": "󰝟",
-        "format-muted": "󰝟",
-        "format-source": "",
-        "format-source-muted": "",
+    
+    "hyprland/workspaces": {
+        "format":"{icon}",
         "format-icons": {
-            "headphone": "",
-            "hands-free": "蓼",
-            "headset": "蓼",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": [
-                "󰕿",
-                "󰕾",
-                "󰕾"
-            ],
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8",
+            "10": "10",
+            "10": "10",
+            "default": " ",
+            "urgent": "",
         },
-        "on-click": "pactl set-sink-mute 0 toggle",
-        "on-click-right": "pactl set-sink-mute 0 toggle",
-        "on-click-middle": "$HOME/.config/rofi/applets/bin/volume.sh",
+        "persistent-workspaces": {
+            "*": 5
+        },
+        "on-click": "activate",
+        "on-scroll-down": "hyprctl dispatch workspace e+1",
+        "on-scroll-up": "hyprctl dispatch workspace  e-1"
     },
-    "bluetooth": {
-        "format": "󰂯",
-        "format-disabled": "󰂲",
-        "format-connected": "󰂱",
-        "tooltip-format": "{controller_alias}\t{controller_address}",
-        "tooltip-format-connected": "{num_connections} connected\t{controller_alias}\t{controller_address}\n\n{device_enumerate}",
-        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-        "on-click": "killall blueman-manager || hyprctl dispatch exec [float] blueman-manager",
+   
+    "tray": {
+        "icon-size": 21,
+        "spacing": 10
     },
+
+    
+    "pulseaudio": {
+        "max-volume": 150,
+        "scroll-step": 10,
+        
+        "format": "{icon}",
+        "tooltip-format": "{icon}  {volume}%",
+        
+        "format-icons": {
+        "headphone": "",
+        "format-muted": "",
+        "default": ["", ""]
+        },
+
+        "on-click": "pavucontrol",
+        "menu": "on-click-right",
+        "menu-file": "~/.config/waybar/volume_menu.xml",
+        "menu-actions": {
+            "ToggleSound": "pamixer -t",
+            "pavu": "pavucontrol",
+        },
+    },
+
+    
     "network": {
-        "format-wifi": "{icon}",
-        "format-ethernet": "🖧",
-        "format-disconnected": "󰌙 ",
-        "tooltip-format": "{icon} {essid}",
-        "format-icons": [
-            "󰤯 ",
-            "󰤟 ",
-            "󰤢 ",
-            "󰤢 ",
-            "󰤨 "
-        ],
+        "format-wifi": "{essid} {icon}",
+        "format-ethernet": "󰤨",
+        "format-disconnected": "󰤨",
+        "tooltip-format": "{icon}",
+        "format-icons": ["󰤯", "󰤟", "󰤢", "󰤢", "󰤨"],
+
         "on-click": "bash ~/.config/scripts/rofiwifi.sh",
         "on-click-right": "bash ~/.config/scripts/rofiwifi.sh"
     },
-    "wlr/workspaces": {
-        "disable-scroll": false,
-        "all-outputs": false,
-        "on-click": "activate",
-        "persistent_workspaces": {
-            "0": [],
-            "1": [],
-            "2": [],
-            "3": [],
-            "4": [],
-            "5": [],
-            "6": [],
-            "7": [],
-            "8": [],
-            "9": [],
-        },
+
+    "battery": {
+        "interval": 20,
+        "full-at": 100,
+        "tooltip": true,
+        "format-full": "",
+        "format": "{icon} {capacity}%",
+        "format-time": "{H}:{M:02}",
+        "format-charging": " {capacity}% ({time})",
+        "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂂", "󰁹"],
+        "states": {
+            "warning": 30,
+            "critical": 15
+          },
+    },
+
+    "custom/notification": {
+        "tooltip": true,
+        "format": "<span size='16pt'>{icon}</span>",
         "format-icons": {
-            "1": "",
-            "2": "",
-            "3": "",
-            "4": "󰏆",
-            "5": "",
-            "6": "",
-            "7": "󰡨",
-            "8": "",
-            "9": "",
-            "10": ""
+              "notification": "󱅫",
+              "none": "󰂜",
+              "dnd-notification": "󰂠",
+              "dnd-none": "󰪓",
+              "inhibited-notification": "󰂛",
+              "inhibited-none": "󰪑",
+              "dnd-inhibited-notification": "󰂛",
+              "dnd-inhibited-none": "󰪑",
         },
-        "format": "{icon}",
-    }
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+    },
+    
+    "mpris": {
+
+        "format": "  {status_icon} {artist} — {title}",
+
+        "status-icons": {
+            "paused": " ",
+            "playing": " ",
+            "stopped": " ",
+        },
+
+        "tooltip": false
+    },
+    "custom/os-button": {
+        "format": "󰣇",
+        "on-click": "~/.config/scripts/launcher.sh"
+    },
 }

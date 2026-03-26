@@ -85,11 +85,11 @@ require("lazy").setup({
 			},
 		},
 		-- session control
-        {
-            "rmagatti/auto-session",
-            lazy = false,
-        },
-        -- ui-improvement
+		{
+			"rmagatti/auto-session",
+			lazy = false,
+		},
+		-- ui-improvement
 		{
 			"folke/noice.nvim",
 			event = {
@@ -158,14 +158,38 @@ require("lazy").setup({
 			lazy = false,
 			priority = 1000,
 		},
-        -- tabs
+		{
+			"neanias/everforest-nvim",
+			lazy = false,
+			priority = 1000,
+		},
+		{
+			"ellisonleao/gruvbox.nvim",
+			lazy = false,
+			priority = 1000,
+		},
+		{
+			"rebelot/kanagawa.nvim",
+			lazy = false,
+			priority = 1000,
+		},
+		{
+			"rose-pine/neovim",
+			lazy = false,
+			priority = 1000,
+		},
+		{
+			"folke/tokyonight.nvim",
+			lazy = false,
+			priority = 1000,
+		},
+		-- tabs
 		{
 			"akinsho/bufferline.nvim",
 			version = "*",
 			dependencies = {
 				"nvim-tree/nvim-web-devicons",
 			},
-			after = "catppuccin",
 		},
 
 		-- indents

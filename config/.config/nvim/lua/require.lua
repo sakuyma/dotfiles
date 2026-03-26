@@ -1,7 +1,6 @@
 -- plugins --
 require("plugin")
 
-
 -- code --
 require("code.autopairs")
 require("code.debugger")
@@ -30,9 +29,12 @@ require("utils.todocomments")
 require("utils.troubleshoots")
 require("utils.sessions")
 
+
 -- settings --
 require("settings.autocmds")
 require("settings.colors")
 require("settings.keymaps")
 require("settings.options")
 require("settings.plugins-keymaps")
+require("settings.colorsheme")
+

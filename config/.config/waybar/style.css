@@ -1,266 +1,94 @@
-/*
- * ╔══════════════════════════════════════════════════════════╗
- * ║                 WAYBAR VERTICAL CONFIG                   ║
- * ║                        by sakuyma                         ║
- * ║              Vertical clock & compact workspaces          ║
- * ╚══════════════════════════════════════════════════════════╝
- */
-
-/* Imports */
 @import "theme.css";
 @import "colors.css";
 
-/* ========== GLOBAL STYLES ========== */
 * {
     border: none;
-    border-radius: 0;
-    font-family: "JetBrainsMono Nerd Font", "Fira Mono", sans-serif;
-    font-size: 12px;
-    min-height: 0;
-    min-width: 0;
-    margin: 0;
-    padding: 0;
-}
+    border-radius: 0px;
 
-/* ========== MAIN BAR (VERTICAL) ========== */
-window#waybar {
-    background: @bg-main;
-    border: 1px solid alpha(@border-main, 0.25);
-    border-radius: 20px;
-    margin: 8px 4px;
-    padding: 8px 4px;
-}
-
-/* ========== WORKSPACES (КОМПАКТНЫЕ) ========== */
-#workspaces {
-    background: alpha(@bg-second, 0.6);
-    border-radius: 16px;
-    margin: 4px 2px 12px 2px;
-    padding: 4px 2px;
-    border: 1px solid alpha(@border-main, 0.2);
-}
-
-#workspaces button {
-    background: transparent;
-    color: alpha(@fg-main, 0.6);
-    border-radius: 10px;
-    margin: 1px 0;
-    padding: 4px 0;
-    min-width: 32px;
-    min-height: 24px;
-    font-size: 14px;
-    font-weight: 500;
-    transition: all 0.3s ease-in-out;
-}
-
-#workspaces button:hover {
-    background: alpha(@bg-hover, 0.4);
-    color: @content-act;
-}
-
-#workspaces button.active {
-    background: linear-gradient(135deg, @mauve, @blue);
-    color: @bg-main;
-    font-weight: bold;
-    transition: all 0.3s ease-in-out;
-}
-
-#workspaces button.urgent {
-    background: @red;
-    color: @bg-main;
-}
-
-/* Более тонкий разделитель */
-#workspaces button:not(:last-child) {
-    border-bottom: 1px solid alpha(@border-main, 0.15);
-}
-
-/* ========== CLOCK (ВЕРТИКАЛЬНЫЙ) ========== */
-#clock {
-    background: alpha(@bg-second, 0.8);
-    border-radius: 16px;
-    color: @fg-main;
-    font-family: "Cartograph CF", monospace;
-    font-size: 11px;
-    font-weight: 500;
-    margin: 4px 2px;
-    padding: 12px 4px;  /* Увеличены вертикальные отступы */
-    border: 1px solid alpha(@border-main, 0.3);
-}
-
-#clock:hover {
-    background: @bg-hover;
-    border-color: @mauve;
-}
-
-/* ========== МОДУЛИ ========== */
-#tray,
-#network,
-#battery,
-#backlight,
-#bluetooth,
-#pulseaudio,
-#custom-power {
-    margin: 2px 2px;
-    padding: 8px 0;
-    border-radius: 16px;
-    min-width: 32px;  /* Уменьшено с 36px */
+    font-family: "Google Sans Flex", "JetBrainsMono Nerd Font Propo";
     font-size: 16px;
-    border: 1px solid transparent;
+    
+    min-height: 0;
+    padding: 0;
+    margin: 0;
 }
 
-/* Индивидуальные стили */
-#network {
-    background: linear-gradient(135deg, @blue, @mauve);
-    color: @bg-main;
-    font-weight: 600;
+window#waybar {
+    background: transparent;
 }
 
-#battery {
-    background: linear-gradient(135deg, @green, @teal);
-    color: @bg-main;
-    font-weight: 600;
-}
-
-#backlight {
-    background: linear-gradient(135deg, @orange, @yellow);
-    color: @bg-main;
-    font-weight: 600;
-}
-
-#bluetooth {
-    background: linear-gradient(135deg, @blue, @teal);
-    color: @bg-main;
-    font-weight: 600;
-}
-
-#pulseaudio {
-    background: linear-gradient(135deg, @pink, @mauve);
-    color: @bg-main;
-    font-weight: 600;
-}
-
-#custom-power {
-    background: linear-gradient(135deg, @red, @pink);
-    color: @bg-main;
-    font-size: 18px;
-    font-weight: 600;
-}
-
-/* Состояния */
-#network.disconnected,
-#bluetooth.disabled,
-#pulseaudio.muted {
-    background: @bg-third;
-    color: @fg-unactive;
-    opacity: 0.7;
-}
-
-#battery.charging {
-    background: linear-gradient(135deg, @yellow, @orange);
-}
-
-#battery.critical:not(.charging) {
-    background: linear-gradient(135deg, @red, @orange);
-}
-
-#battery.warning:not(.charging) {
-    background: linear-gradient(135deg, @orange, @yellow);
-}
-
-#bluetooth.connected {
-    background: linear-gradient(135deg, @teal, @green);
-}
-
-#pulseaudio.source-muted {
-    background: linear-gradient(135deg, @red, @mauve);
-}
-
-/* ========== TRAY ========== */
-#tray {
-    background: alpha(@bg-second, 0.8);
-    padding: 4px 2px;
-    margin: 2px 2px 8px 2px;
-    border: 1px solid alpha(@border-main, 0.2);
-    min-width: 32px;  /* Уменьшено с 36px */
-}
-
-#tray > .passive {
-    -gtk-icon-effect: dim;
-}
-
-#tray > .needs-attention {
-    -gtk-icon-effect: highlight;
-}
-
-/* ========== TOOLTIP ========== */
 tooltip {
     background: @bg-main;
-    border: 1px solid alpha(@mauve, 0.3);
+    border: 1px solid @fg-main;
     border-radius: 12px;
-    padding: 6px 10px;
 }
 
 tooltip label {
     color: @fg-main;
-    font-size: 11px;
-    font-weight: 500;
+    padding: 6px;
 }
 
-/* ========== ВЕРТИКАЛЬНЫЕ СЕКЦИИ ========== */
-.modules-left {
-    margin-bottom: 16px;
+#workspaces {
+    background: @bg-main;
+    padding: 5px 3px;
+    margin: 0 0 0 12px;
+    border-radius: 18px;
+    border: 2px solid @bg-main;
+    color: @fg-main;
 }
 
-.modules-center {
-    margin: 16px 0;
+#workspaces button {
+    padding: 0px 6px;
+    margin: 0 3px;
+    border-radius: 50px;
+    color: @fg;
+    background-color: @bg-main;
+    transition: all 0.3s ease-in-out;
 }
 
-.modules-right {
-    margin-top: 16px;
+#workspaces button.active {
+    background: @fg-main;
+    color: @bg-main;
+    min-width: 50px;
+    transition: all 0.3s ease-in-out;
+    font-size: 16px;
 }
 
-/* ========== HOVER ЭФФЕКТЫ ========== */
-#network:hover,
-#battery:hover,
-#backlight:hover,
-#bluetooth:hover,
-#pulseaudio:hover,
-#custom-power:hover,
-#clock:hover {
-    opacity: 0.9;
+#battery,
+#pulseaudio,
+#network,
+#clock,
+#mpris,
+#tray,
+#custom-notification, 
+#custom-os-button {
+    background-color: @bg-main;
+    padding: 0 15px 0 15px;
+    margin: 0 0 0 12px;
+    border-radius: 50px;
+    border: 2px solid @bg-main;
 }
 
-/* ========== РАЗМЕРЫ ИКОНОК ========== */
 #battery {
-    font-size: 18px;
-}
-
-#bluetooth {
-    font-size: 18px;
+    color: @green;
 }
 
 #pulseaudio {
-    font-size: 17px;
+    color: @yellow;
+}
+
+#tray {
+    color: @fg-main;
+}
+
+#clock {
+    color: @fg-main;
 }
 
 #network {
-    font-size: 17px;
+    color: @red;
 }
 
-/* ========== ПОГОДА ========== */
-#custom-weather {
-    background: alpha(@bg-second, 0.8);
-    border-radius: 16px;
-    color: @fg-main;
-    margin: 2px 2px;
-    padding: 8px 0;
-    font-size: 11px;
-    border: 1px solid alpha(@border-main, 0.3);
-    min-width: 32px;
-}
-
-#custom-weather:hover {
-    background: @bg-hover;
-    border-color: @blue;
+#mpris {
+    color: @teal;
 }

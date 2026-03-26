@@ -51,9 +51,9 @@
         "tooltip-format": "{icon}  {volume}%",
         
         "format-icons": {
-        "headphone": " ",
-        "format-muted": " ",
-        "default": [" ", " "]
+        "headphone": "",
+        "format-muted": "",
+        "default": ["", ""]
         },
 
         "on-click": "pavucontrol",
@@ -68,10 +68,10 @@
     
     "network": {
         "format-wifi": "{essid} {icon}",
-        "format-ethernet": "󰤨 ",
-        "format-disconnected": "󰤨 ",
+        "format-ethernet": "󰤨",
+        "format-disconnected": "󰤨",
         "tooltip-format": "{icon}",
-        "format-icons": ["󰤯 ", "󰤟 ", "󰤢 ", "󰤢 ", "󰤨 "],
+        "format-icons": ["󰤯", "󰤟", "󰤢", "󰤢", "󰤨"],
 
         "on-click": "bash ~/.config/scripts/rofiwifi.sh",
         "on-click-right": "bash ~/.config/scripts/rofiwifi.sh"
@@ -115,7 +115,7 @@
     
     "mpris": {
 
-        "format": "{status_icon} {artist} — {title}",
+        "format": "  {status_icon} {artist} — {title}",
 
         "status-icons": {
             "paused": " ",
@@ -126,7 +126,7 @@
         "tooltip": false
     },
     "custom/os-button": {
-        "format": "󰣇 ",
+        "format": "󰣇",
         "on-click": "~/.config/scripts/launcher.sh"
     },
 }

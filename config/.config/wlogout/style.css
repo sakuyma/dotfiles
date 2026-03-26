@@ -11,15 +11,18 @@ window {
 
 
 button {
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 20%;
-  background-color: transparent;
-  animation: gradient_f 20s ease-in infinite;
-  transition: all 0.3s ease-in;
-  box-shadow: 0px 0px 0px 0px transparent;
-  border-radius: 10px;
-  margin: 10px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20%;
+    background-color: transparent;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s ease-in;
+    box-shadow: 0px 0px 0px 0px transparent;
+    border-radius: 10px;
+    margin: 10px;
+    min-width: 300px;
+    min-height: 300px;
+    
 }
 
 

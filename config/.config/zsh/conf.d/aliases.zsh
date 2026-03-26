@@ -1,7 +1,9 @@
 alias calc="gcalccmd"
 alias c="clear"
+alias cls="clear"
 alias clock="tty-clock"
-alias ls="lsd"
+alias ls="eza --icons"
+alias tree="ls --tree"
 alias n="nvim"
 
 alias src='source'
@@ -12,9 +14,14 @@ alias i='paru -S'
 
 alias ff="fastfetch"
 alias pf="pfetch"
+alias nf="nitch"
 alias icat="kitten icat"
 
 alias poff="systemctl poweroff --no-wall"
 alias rbt="systemctl reboot --no-wall"
 alias logout="loginctl terminate-session $(loginctl | rg $(whoami) | awk '{print $1}')"
+alias cd="z"
 
+alias note="yazi ~/Obsidian/"
+
+alias daily="nvim ~/Obsidian/Life/game/Quests/Daily/$(date +%Y-%m-%d).md"
