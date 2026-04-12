@@ -14,7 +14,7 @@
 
 * {
     all: unset;
-    font-family: "Google Sans Flex", "JetBrainsMono Nerd Font";
+    font-family: "Google Sans Medium", "JetBrainsMono Nerd Font";
     font-weight: 700;
     font-size: 12.5px;
     transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
