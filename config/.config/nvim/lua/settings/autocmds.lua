@@ -33,3 +33,11 @@ autocmd("TextYankPost", {
     })
   end,
 })
+
+autocmd("BufReadPost", {
+    pattern = "*",
+    once = true,
+    callback = function()
+        pcall(require, "code.syntax")
+    end,
+})

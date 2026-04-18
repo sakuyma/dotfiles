@@ -23,7 +23,7 @@ require("gitsigns").setup {
   diff_opts = {
     algorithm = "histogram",
     ignore_whitespace_change = true,
-  },
+    },
   current_line_blame = false,
   current_line_blame_opts = {
     virt_text = true,

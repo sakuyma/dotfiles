@@ -1,20 +1,24 @@
 -- plugins --
 require("plugin")
 
+-- theme setup (must be before colorscheme) --
+require("ui.theme")
+
+-- settings (early load for colorscheme) --
+require("settings.colors")
+require("settings.options")
+
 -- code --
 require("code.autopairs")
 require("code.debugger")
 require("code.formatter")
-require("code.indents")
 require("code.outline")
-require("code.syntax")
 require("code.vcs")
 require("code.linters")
 require("code.lsp")
 require("code.ai")
 
 -- ui --
-require("ui.theme")
 require("ui.tabs")
 require("ui.statusline")
 require("ui.ui-improvement")
@@ -28,13 +32,9 @@ require("utils.terminal")
 require("utils.todocomments")
 require("utils.troubleshoots")
 require("utils.sessions")
-
+require("utils.surround")
 
 -- settings --
 require("settings.autocmds")
-require("settings.colors")
 require("settings.keymaps")
-require("settings.options")
 require("settings.plugins-keymaps")
-require("settings.colorsheme")
-

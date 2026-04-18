@@ -1,0 +1,40 @@
+[core]
+    editor = nvim
+    autocrlf = input
+    excludesfile = ~/.config/git/ignore
+
+[init]
+defaultBranch = main
+
+[color]
+    ui = auto
+
+[alias]
+co = checkout
+br = branch
+ci = commit -m
+st = status
+unstage = reset HEAD --
+last = log -1 HEAD
+lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+
+[merge]
+conflictstyle = diff3
+tool = nvimdiff
+
+[mergetool]
+keepBackup = false
+
+[pull]
+ff = only
+
+[fetch]
+prune = true
+
+[push]
+default = simple
+autoSetupRemote = true
+
+[credential]
+helper = cache --timeout=3600

@@ -1,3 +1,6 @@
+local mason_path = vim.fn.stdpath("data") .. "/mason/bin"
+vim.env.PATH = mason_path .. ":" .. vim.env.PATH
+
 -- Diagnostic config
 vim.diagnostic.config({
 	virtual_text = false,
@@ -73,7 +76,6 @@ vim.opt.pumheight = 10
 
 -- Mason setup
 require("mason").setup({
-	automatic_installation = true,
 	ui = {
 		border = "rounded",
 		height = 0.75,
@@ -81,7 +83,21 @@ require("mason").setup({
 		icons = require("icons").manager,
 	},
 })
+require("mason-lspconfig").setup({
+    ensure_installed = {
+        "pyright",
+        "rust_analyzer",
+        "lua_ls",
+        "clangd",
+        "marksman",
+        "html",
+        "jsonls",
+        "cssls",
+        "ltex",
+    },
+    automatic_installation = true,
 
+})
 -- Capabilities for cmp
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)

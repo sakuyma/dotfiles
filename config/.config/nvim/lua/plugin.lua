@@ -60,7 +60,7 @@ require("lazy").setup({
 				"saadparwaiz1/cmp_luasnip",
 			},
 		},
-		-- syntax
+        -- syntax
 		{
 			"nvim-treesitter/nvim-treesitter",
 			build = ":TSUpdate",
@@ -79,9 +79,6 @@ require("lazy").setup({
 			event = {
 				"BufReadPost",
 				"BufNewFile",
-			},
-			dependencies = {
-				"nvim-treesitter/nvim-treesitter",
 			},
 		},
 		-- session control
@@ -191,21 +188,12 @@ require("lazy").setup({
 				"nvim-tree/nvim-web-devicons",
 			},
 		},
-
-		-- indents
-		{
-			"lukas-reineke/indent-blankline.nvim",
-			event = {
-				"BufReadPost",
-				"BufNewFile",
-			},
-		},
 		-- dashboard
 		{
 			"nvimdev/dashboard-nvim",
 			lazy = false,
 		},
-		-- explorer + lazygit
+		-- explorer + lazygit + indent
 		{
 			"folke/snacks.nvim",
 			version = "*",
@@ -246,5 +234,8 @@ require("lazy").setup({
 		{
 			"norcalli/nvim-colorizer.lua",
 		},
+        {
+            "nvim-mini/mini.surround",
+        },
 	},
 })

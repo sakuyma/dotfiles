@@ -4,7 +4,6 @@ local cfg = {}
 function cfg.linterConfigs()
 	local lint = require("lint")
 	local linters = require("lint").linters
-
 	lint.linters_by_ft = {
 		lua = { "stylua" },
 		css = { "stylelint" },
@@ -20,7 +19,6 @@ function cfg.linterConfigs()
 		text = {},
     c = { "clang_tidy" },
     cpp = { "clang_tidy" },
-    
     -- Docker
     dockerfile = { "hadolint" },
 	}
