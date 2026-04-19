@@ -60,7 +60,7 @@ require("lazy").setup({
 				"saadparwaiz1/cmp_luasnip",
 			},
 		},
-        -- syntax
+		-- syntax
 		{
 			"nvim-treesitter/nvim-treesitter",
 			build = ":TSUpdate",
@@ -234,8 +234,22 @@ require("lazy").setup({
 		{
 			"norcalli/nvim-colorizer.lua",
 		},
-        {
-            "nvim-mini/mini.surround",
-        },
+		{
+			"nvim-mini/mini.surround",
+		},
+		-- Obsidian in term
+		{
+			"MeanderingProgrammer/render-markdown.nvim",
+			dependences = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
+		},
+		{
+			"epwalsh/obsidian.nvim",
+			version = "*",
+			lazy = true,
+			ft = "markdown",
+			dependencies = {
+				"nvim-lua/plenary.nvim",
+			},
+		},
 	},
 })
