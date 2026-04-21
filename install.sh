@@ -22,7 +22,7 @@ print_header() { echo -e "${MAGENTA}$1${NC}"; }
 
 # 1. Save who launched the script (absolute path)
 LAUNCHED_BY="$(pwd)/$(basename "$0")"
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd/scripts)"
 
 print_header "╔══════════════════════════════════════════════════════════════╗"
 print_header "║                     SYSTEM INSTALLATION SCRIPT               ║"
@@ -172,7 +172,7 @@ run_installation_scripts() {
     
     # 5. Setup bootloader 
     print_header "--- Setting up bootloader---"
-    run_script "grub-setup.sh"
+    run_script "bootloader.sh"
     echo ""
     
     # 5d. Install packages
