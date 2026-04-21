@@ -27,90 +27,6 @@ check_sudo() {
     fi
 }
 
-# Install AUR helper if not present
-install_aur_helper() {
-    print_info "paru not found. Installing AUR helper..."
-    
-    # Check if aur-helper.sh exists
-    if [ -f "${SCRIPT_DIR}/aur-helper.sh" ]; then
-        print_info "Running aur-helper.sh..."
-        chmod +x "${SCRIPT_DIR}/aur-helper.sh"
-        "${SCRIPT_DIR}/aur-helper.sh"
-        
-        # Verify installation
-        if command -v paru &> /dev/null; then
-            print_success "AUR helper installed successfully"
-        else
-            print_error "Failed to install AUR helper"
-            exit 1
-        fi
-    elif [ -f "./aur-helper.sh" ]; then
-        print_info "Running ./aur-helper.sh..."
-        chmod +x ./aur-helper.sh
-        ./aur-helper.sh
-        
-        if command -v paru &> /dev/null; then
-            print_success "AUR helper installed successfully"
-        else
-            print_error "Failed to install AUR helper"
-            exit 1
-        fi
-    else
-        print_error "aur-helper.sh not found in ${SCRIPT_DIR} or current directory"
-        print_info "Installing paru manually..."
-        
-        # Manual paru installation
-        install_dependencies() {
-            pacman -S --noconfirm --needed base-devel git
-        }
-        
-        build_paru() {
-            local temp_dir=$(mktemp -d)
-            cd "$temp_dir"
-            git clone https://aur.archlinux.org/paru.git
-            cd paru
-            makepkg -si --noconfirm
-            cd /
-            rm -rf "$temp_dir"
-        }
-        
-        install_dependencies
-        build_paru
-        
-        if command -v paru &> /dev/null; then
-            print_success "paru installed manually"
-        else
-            print_error "Manual paru installation failed"
-            exit 1
-        fi
-    fi
-}
-
-# Check if paru is installed, install if not
-check_paru() {
-    if ! command -v paru &> /dev/null; then
-        print_warning "paru is not installed"
-        install_aur_helper
-    else
-        print_info "paru is already installed"
-    fi
-}
-
-# Check if a package is already installed
-pkg_installed() {
-    pacman -Qi "$1" &> /dev/null
-}
-
-# Check if package is available in official repositories
-pkg_available() {
-    pacman -Si "$1" &> /dev/null || return 1
-}
-
-# Check if package is available in AUR
-aur_available() {
-    paru -Si "$1" &> /dev/null || return 1
-}
-
 # Get packages list from file
 get_packages_from_file() {
     local file="$1"
@@ -143,7 +59,7 @@ install_packages() {
     fi
     
     print_info "Installing ${#packages[@]} packages..."
-    paru -S --noconfirm --needed "${packages[@]}"
+    paru -S --noconfirm --needed "${packages[@]} 1>/dev/null 2>/dev/null"
     
     if [ $? -eq 0 ]; then
         print_success "Packages installed successfully"
@@ -172,15 +88,6 @@ main() {
     
     print_info "Found ${#ALL_PKGS[@]} packages in $PKG_FILE"
     
-    # Filter out already installed packages
-    for pkg in "${ALL_PKGS[@]}"; do
-        if pkg_installed "$pkg"; then
-            print_info "Already installed: $pkg"
-        else
-            TO_INSTALL+=("$pkg")
-        fi
-    done
-    
     # Install packages
     if [ ${#TO_INSTALL[@]} -gt 0 ]; then
         print_info "Packages to install: ${TO_INSTALL[*]}"
@@ -200,5 +107,4 @@ main() {
 
 # Checks and execution
 check_sudo
-check_paru
 main "$@"

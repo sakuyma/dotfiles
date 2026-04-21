@@ -40,8 +40,8 @@ if [[ -n "$selected_name" ]]; then
     ln -sf "$FULL_PATH" "$PERSISTENT_WALL"
 
     # Apply wallpaper (Sway preferred)
-    if pgrep -x swww-daemon> /dev/null; then
-        swww img "$FULL_PATH" --transition-type any --transition-fps 180
+    if pgrep -x awww-daemon> /dev/null; then
+        awww img "$FULL_PATH" --transition-type any --transition-fps 180
     fi
 fi
 

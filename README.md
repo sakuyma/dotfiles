@@ -32,7 +32,7 @@
 
 ### :bulb: STEPS
 
-**1. install python3 and git:**
+**1. install git:**
 
 ```bash
 sudo pacman -S git

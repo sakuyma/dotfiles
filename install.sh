@@ -25,7 +25,7 @@ LAUNCHED_BY="$(pwd)/$(basename "$0")"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 print_header "╔══════════════════════════════════════════════════════════════╗"
-print_header "║                    SYSTEM INSTALLATION SCRIPT               ║"
+print_header "║                     SYSTEM INSTALLATION SCRIPT               ║"
 print_header "╚══════════════════════════════════════════════════════════════╝"
 echo ""
 print_info "Script launched from: $LAUNCHED_BY"
@@ -91,21 +91,8 @@ check_nvidia_gpu() {
 clone_dotfiles() {
     print_step "Step 3: Cloning dotfiles repository"
     
-    local repo_url=""
-    local repo_dir="/tmp/dotfiles"
-    
-    # Ask for repository URL
-    echo ""
-    print_info "Please enter the dotfiles repository URL (GitHub, GitLab, etc.)"
-    print_info "Example: https://github.com/username/dotfiles.git"
-    print_info "Leave empty to skip dotfiles installation"
-    echo -n "Repository URL: "
-    read -r repo_url
-    
-    if [ -z "$repo_url" ]; then
-        print_warning "No repository URL provided. Skipping dotfiles installation."
-        return 1
-    fi
+    local repo_url="https://github.com/sakuyma/dotfiles.git"
+    local repo_dir="~/.dotfiles"
     
     # Remove existing directory if it exists
     if [ -d "$repo_dir" ]; then
@@ -183,8 +170,8 @@ run_installation_scripts() {
     fi
     echo ""
     
-    # 5c. Setup GRUB
-    print_header "--- Setting up GRUB ---"
+    # 5. Setup bootloader 
+    print_header "--- Setting up bootloader---"
     run_script "grub-setup.sh"
     echo ""
     
@@ -208,33 +195,15 @@ setup_user_environment() {
     print_step "Step 5: Setting up user environment"
     echo ""
     
-    local dotfiles_dir="/tmp/dotfiles"
+    local dotfiles_dir="~/.dotfiles"
     
     # 6. Copy configs
     print_header "--- Copying Configuration Files ---"
     
-    if [ -d "$dotfiles_dir/config" ]; then
-        print_info "Copying configs from $dotfiles_dir/config to $USER_HOME"
-        
-        # Create backup of existing configs
-        local backup_dir="/tmp/dotfiles_backup_$(date +%Y%m%d_%H%M%S)"
-        mkdir -p "$backup_dir"
-        
-        # Copy with backup
-        if cp -r "$dotfiles_dir/config/." "$USER_HOME/" 2>/dev/null; then
-            # Fix permissions
-            chown -R "$CURRENT_USER:$CURRENT_USER" "$USER_HOME" 2>/dev/null || true
-            
-            print_success "Configs copied successfully"
-            print_info "Backup of existing files saved to: $backup_dir"
-        else
-            print_error "Failed to copy some configs"
-        fi
-    else
-        print_warning "No configs directory found at $dotfiles_dir/config"
-    fi
-    echo ""
-    
+    cd $dotfiles_dir ; cd config
+
+    stow . -t ~ --restow
+
     # 7. Set shell to zsh
     print_header "--- Setting Default Shell ---"
     
