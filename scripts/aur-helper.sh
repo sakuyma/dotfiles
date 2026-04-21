@@ -35,6 +35,36 @@ check_sudo() {
     fi
 }
 
+install_paru() {
+    print_info "Installing build dependencies..."
+    pacman -S --needed --noconfirm base-devel git
+    
+    print_info "Cloning paru from AUR..."
+    cd /tmp
+    rm -rf paru 2>/dev/null || true
+    git clone https://aur.archlinux.org/paru.git
+    
+    print_info "Building and installing paru..."
+    cd paru
+    
+    # Build as normal user, not root
+    # Switch to the user who ran sudo
+    ORIGINAL_USER=${SUDO_USER:-$USER}
+    
+    if [ "$ORIGINAL_USER" = "root" ]; then
+        print_error "Cannot build AUR package as root. Please run as normal user with sudo."
+        exit 1
+    fi
+    
+    # Run makepkg as normal user
+    sudo -u "$ORIGINAL_USER" makepkg -si --noconfirm
+    
+    cd /tmp
+    rm -rf paru
+    
+    print_success "Paru installed successfully"
+}
+
 main() {
     if command -v paru &> /dev/null; then
         print_success "AUR helper already installed"
@@ -42,15 +72,21 @@ main() {
     fi
 
     print_info "paru not found. Installing AUR helper..."
-    print_info "Starting installation..."
-
-    (pacman -S --noconfirm paru 2> /dev/null 1>/dev/null) &
-    pid=$!
-
-    dots_animation $pid
-
-    wait $pid
-
+    
+    # Try to install from community repo first (just in case)
+    if pacman -Si paru &>/dev/null; then
+        print_info "Installing paru from official repositories..."
+        (pacman -S --noconfirm paru 2> /dev/null) &
+        pid=$!
+        dots_animation $pid
+        wait $pid
+    fi
+    
+    # If still not installed, build from AUR
+    if ! command -v paru &> /dev/null; then
+        install_paru
+    fi
+    
     if command -v paru &> /dev/null; then
         printf "\r\033[K"
         print_success "AUR helper installed successfully"
