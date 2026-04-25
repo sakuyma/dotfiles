@@ -57,17 +57,24 @@ check_sudo() {
 
 # Get current user
 get_current_user() {
-    if [ -n "$SUDO_USER" ]; then
+    # Priority: SUDO_USER > USER > whoami
+    if [ -n "$SUDO_USER" ] && [ "$SUDO_USER" != "root" ]; then
+        echo "$SUDO_USER"
+    elif [ -n "$USER" ] && [ "$USER" != "root" ]; then
+        echo "$USER"
+    elif [ -n "$SUDO_USER" ]; then
         echo "$SUDO_USER"
     else
-        echo "$(logname 2>/dev/null || echo "$(who am i | awk '{print $1}')")"
+        whoami 2>/dev/null || echo "root"
     fi
 }
 
 CURRENT_USER=$(get_current_user)
-USER_HOME="/home/$CURRENT_USER"
-if [ "$CURRENT_USER" = "root" ]; then
+if [ "$CURRENT_USER" = "root" ] || [ -z "$CURRENT_USER" ]; then
     USER_HOME="/root"
+    CURRENT_USER="root"
+else
+    USER_HOME="/home/$CURRENT_USER"
 fi
 
 print_info "Current user: $CURRENT_USER"

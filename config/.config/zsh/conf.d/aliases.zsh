@@ -21,6 +21,8 @@ alias poff="systemctl poweroff --no-wall"
 alias rbt="systemctl reboot --no-wall"
 alias logout="loginctl terminate-session $(loginctl | rg $(whoami) | awk '{print $1}')"
 alias cd="z"
+alias sudo="sudo-rs"
+alias su="su-rs"
 
 alias note="yazi ~/Obsidian/"
 

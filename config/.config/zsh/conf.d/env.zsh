@@ -1,6 +1,6 @@
 paths=(
     "/usr/local/opt/openjdk/bin"
-    "/home/user/.spicetify"
+    "$HOME/.spicetify"
     "$HOME/.local/bin"
     "/bin"
     "/usr/bin" 
