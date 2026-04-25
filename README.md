@@ -51,11 +51,7 @@ cd dotfiles
 bash install.sh
 ```
 
-<<<<<<< Updated upstream
 ## HotKeys
-=======
-## 💻 HotKeys
->>>>>>> Stashed changes
 * **Open the terminal** - `super + q`
 * **Open the application menu** - `super + r`
 * **Launch Telegram** - `super + t`
