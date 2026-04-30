@@ -18,6 +18,7 @@
 @define-color fg-unactive @bg-hover;
 @define-color content-act #CDD4FF;
 
+@define-color warned_color #f38ba8;  /* или любой цвет для urgent */
 
 /* Player colors */
 @define-color ply-main #25253B;

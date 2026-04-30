@@ -40,7 +40,6 @@ install_paru() {
     pacman -S --needed --noconfirm base-devel git
     
     print_info "Cloning paru from AUR..."
-    cd /tmp
     rm -rf paru 2>/dev/null || true
     git clone https://aur.archlinux.org/paru.git
     

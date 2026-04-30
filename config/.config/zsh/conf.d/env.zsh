@@ -1,5 +1,6 @@
 paths=(
     "/usr/local/opt/openjdk/bin"
+    # "$HOME/.cargo/bin"
     "$HOME/.spicetify"
     "$HOME/.local/bin"
     "/bin"
