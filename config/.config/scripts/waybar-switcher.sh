@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Используем абсолютные пути
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 THEMES_DIR="$HOME/.themes-waybar"
 WAYBAR_DIR="$HOME/.config/waybar"
@@ -73,8 +72,7 @@ if [ ${#themes[@]} -eq 0 ]; then
     exit 1
 fi
 
-# Запускаем rofi
-selected_theme=$(printf "%s\n" "${themes[@]}" | rofi -dmenu -p "Waybar Theme:" -theme "~/.config/rofi/launcher.rasi")
+selected_theme=$(printf "%s\n" "${themes[@]}" | fuzzel --dmenu )
 
 if [ -z "$selected_theme" ]; then
     echo "No theme selected"

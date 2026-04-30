@@ -1,14 +1,11 @@
 #!/usr/bin/env bash
 
-dir="$HOME/.config/rofi"
-theme='launcher'
-
 CHOICE=$(echo -e "Wallpapers\nThemes\nBar\nLayouts\nDecorations\nSettings" | \
-    rofi -dmenu -theme "${dir}/${theme}.rasi" -p "Quick Launch")
+    fuzzel --dmenu )
 
 case "$CHOICE" in
     "Wallpapers")
-        ~/.config/scripts/wallpaper.sh
+            wallpaper-rs
         ;;
     "Themes")
         ~/.config/scripts/theme-switcher.sh

@@ -1,27 +1,23 @@
 #!/usr/bin/env bash
 
-dir="$HOME/.config/rofi"
-theme='launcher'
 
-# Три основные опции
-CHOICE=$(echo -e "󰀻  Dwindle\n󰉋  Master\n󰕷  Scrolling\n󰉋  Monocle" | \
-    rofi -dmenu -theme ${dir}/${theme}.rasi -p "Quick Launch")
+CHOICE=$(echo -e "Dwindle\nMaster\nScrolling\nMonocle" | \
+    fuzzel --dmenu )
 
 case "$CHOICE" in
-    "󰀻  Dwindle")
+    "Dwindle")
         hyprctl keyword general:layout dwindle &
-      ;;
-    "󰉋  Master")
+        ;;
+    "Master")
         hyprctl keyword general:layout master &  
-      ;;
-    "󰕷  Scrolling")
+        ;;
+    "Scrolling")
         hyprctl keyword general:layout scrolling &
-      ;;
-
-    "󰉋  Monocle")
-        hyprctl keyword general:layout monocle&
-      ;;
+        ;;
+    "Monocle")
+        hyprctl keyword general:layout monocle &
+        ;;
     *)
         exit 0
-      ;;
+        ;;
 esac

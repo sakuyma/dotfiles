@@ -20,7 +20,7 @@ if [ ${#themes[@]} -eq 0 ]; then
     exit 1
 fi
 
-selected_theme=$(printf "%s\n" "${themes[@]}" | rofi -dmenu -p "Select theme:" -theme ~/.config/rofi/launcher.rasi)
+selected_theme=$(printf "%s\n" "${themes[@]}" | fuzzel --dmenu )
 
 if [ -z "$selected_theme" ]; then
     echo "  No theme selected"

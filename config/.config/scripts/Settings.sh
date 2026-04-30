@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 
-dir="$HOME/.config/rofi"
-theme='launcher'
-
 CHOICE=$(echo -e "Night mode Toggle\nTitlebars Toggle\nIdling Toggle" | \
-    rofi -dmenu -theme "${dir}/${theme}.rasi" -p "Quick Launch")
+    fuzzel --dmenu )
 
 case "$CHOICE" in
     "Night mode Toggle")

@@ -1,17 +1,14 @@
 #!/usr/bin/env bash
 
-dir="$HOME/.config/rofi"
-theme='launcher'
-
 CHOICE=$(echo -e "Blur Toggle\nGaps Toggle\nOpacity Toggle\nShadow Toggle\nRounding Toggle\nAnimations Toggle" | \
-    rofi -dmenu -theme "${dir}/${theme}.rasi" -p "Quick Launch")
+    fuzzel --dmenu )
 
 case "$CHOICE" in
     "Blur Toggle")
         bash "$HOME/.config/scripts/Decorations/blur_toggle.sh"
         ;;
     "Gaps Toggle")
-        bash ~/.config/scripts/Decorations/gaps_toggle.sh
+        bash ~/.config/scripts/Decorations/gaps_toggle.sh"
         ;;
     "Opacity Toggle")
         bash "$HOME/.config/scripts/Decorations/opacity_toggle.sh"
