@@ -15,3 +15,5 @@ export BUN_INSTALL="$HOME/.bun"
 export EDITOR="nvim"
 export FETCH="fastfetch"
 
+export LANG=en_US.utf8
+export LC_ALL=en_US.utf8

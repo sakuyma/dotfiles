@@ -5,7 +5,7 @@ CHOICE=$(echo -e "Wallpapers\nThemes\nBar\nLayouts\nDecorations\nSettings" | \
 
 case "$CHOICE" in
     "Wallpapers")
-            wallpaper-rs
+        wallpapers-rs
         ;;
     "Themes")
         ~/.config/scripts/theme-switcher.sh
