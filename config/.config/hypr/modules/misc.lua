@@ -1,0 +1,17 @@
+return function()
+    hl.config({
+        misc = {
+            animate_mouse_windowdragging = true,
+            disable_hyprland_logo = true,
+            disable_splash_rendering = true,
+            mouse_move_enables_dpms = true,
+            key_press_enables_dpms = true
+        },
+        debug = {
+            vfr = true
+        },
+        ecosystem = {
+            no_update_news = true
+        }
+    })
+end
