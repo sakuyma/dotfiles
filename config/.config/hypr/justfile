@@ -11,10 +11,10 @@ default:
 
 count:
     @echo "Line count: "
-    @find -name "*.conf" -exec wc -l {} + | tail -1
+    @find -name "*.lua" -exec wc -l {} + | tail -1
     @echo ""
     @echo "By module: "
-    @find -name "*.conf" -exec wc -l {} + | sort -rn
+    @find -name "*.lua" -exec wc -l {} + | sort -rn
 
 # Show help
 help:
