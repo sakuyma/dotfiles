@@ -1,13 +1,16 @@
+#!/usr/bin/env zsh
 paths=(
     "/usr/local/opt/openjdk/bin"
     # "$HOME/.cargo/bin"
     "$HOME/.spicetify"
     "$HOME/.local/bin"
+    "$HOME/.config/zsh/scripts"
     "/bin"
     "/usr/bin" 
     "/usr/local/bin"
     "/sbin"
     "$PATH"
+
 )
 export PATH="${(j[:])paths}"
 

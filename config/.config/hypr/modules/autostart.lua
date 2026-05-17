@@ -1,12 +1,14 @@
+local exec = hl.exec_cmd
+
 return function()
     hl.on("hyprland.start", function()
-        hl.exec_cmd("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
-        hl.exec_cmd("waybar & awww-daemon & swaync")
-        hl.exec_cmd("wl-clipboard-history -t ; wl-paste --type text --watch cliphist store ; wl-paste --type image --watch cliphist store ; wl-clip-persist --clipboard regular --display wayland")
-        hl.exec_cmd("hyprctl plugin load ~/.config/hypr/modules/plugins/hyprselect.so")
-        hl.exec_cmd("foot --server")
-        hl.exec_cmd("ollama serve")
-        hl.exec_cmd("hyprpm reload")
-        hl.exec_cmd("hyprsunset")
+        exec("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
+        exec("waybar & awww-daemon & swaync")
+        exec("wl-clipboard-history -t ; wl-paste --type text --watch cliphist store ; wl-paste --type image --watch cliphist store ; wl-clip-persist --clipboard regular --display wayland")
+        exec("hyprctl plugin load ~/.config/hypr/modules/plugins/hyprselect.so")
+        exec("foot --server")
+        exec("ollama serve")
+        exec("hyprpm reload")
+        exec("hyprsunset")
     end)
 end

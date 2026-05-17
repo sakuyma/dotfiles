@@ -2,14 +2,15 @@ local progs = require("modules.programs")
 
 local bind = hl.bind
 local exec = hl.dsp.exec_cmd
+local hypr = hl.dsp
 
 return function()
     local mainMod = "SUPER"
     local secMod = "SUPER+SHIFT"
     local thirdMod = "SUPER+ALT"
 
-    bind(mainMod .. "+Q", hl.dsp.window.close())
-    bind(mainMod .. "+V", hl.dsp.window.float({ action = "toggle" }))
+    bind(mainMod .. "+Q", hypr.window.close())
+    bind(mainMod .. "+V", hypr.window.float({ action = "toggle" }))
 
     bind(mainMod .. "+RETURN", exec(progs.terminal))
     bind(mainMod .. "+SHIFT+RETURN", exec(progs.terminal_alt))
@@ -24,68 +25,66 @@ return function()
     bind(mainMod .. "+D", exec("killall fuzzel || fuzzel"))
     bind(mainMod .. "+Y", exec("killall fuzzel || ~/.config/scripts/clipboard-manager.sh"))
 
-    bind("ALT+F11", exec("gnome-calculator"))
     bind("ALT+F10", exec("killall wlogout || wlogout"))
 
     bind("ALT+G", exec("~/.config/scripts/picker"))
-    bind("F11", hl.dsp.window.fullscreen())
+    bind(mainMod .. "+F", hypr.window.fullscreen())
     bind("Print", exec("~/.config/scipts/fullscreen_screenshot.sh"))
     bind("SHIFT+Print",
         exec(
-        "grim -g \"$(slurp -o -r -c '##000000')\" -t ppm - | satty --filename - --fullscreen --output-filename ~/Pictures/Screenshots/satty-$(date '+%Y%m%d-%H:%M:%S').png"))
+            "grim -g \"$(slurp -o -r -c '##000000')\" -t ppm - | satty --filename - --fullscreen --output-filename ~/Pictures/Screenshots/satty-$(date '+%Y%m%d-%H:%M:%S').png"))
     bind("CTRL+Print",
         exec(
-        "grim -g \"$(slurp -o)\" -t ppm - | satty --filename - --output-filename ~/Pictures/Screenshots/$(date '+%Y%m%d-%H:%M:%S').png"))
+            "grim -g \"$(slurp -o)\" -t ppm - | satty --filename - --output-filename ~/Pictures/Screenshots/$(date '+%Y%m%d-%H:%M:%S').png"))
     bind(mainMod .. "+mouse:274", exec("~/.config/scripts/hyprzoom z 2"))
     bind(mainMod .. "+N", exec("swaync-client -t"))
 
-    bind(mainMod .. "+left", hl.dsp.focus({ direction = "l" }))
-    bind(mainMod .. "+right", hl.dsp.focus({ direction = "r" }))
-    bind(mainMod .. "+up", hl.dsp.focus({ direction = "u" }))
-    bind(mainMod .. "+down", hl.dsp.focus({ direction = "d" }))
+    bind(mainMod .. "+left", hypr.focus({ direction = "l" }))
+    bind(mainMod .. "+right", hypr.focus({ direction = "r" }))
+    bind(mainMod .. "+up", hypr.focus({ direction = "u" }))
+    bind(mainMod .. "+down", hypr.focus({ direction = "d" }))
 
-    bind(mainMod .. "+ALT+right", hl.dsp.window.move({ x = 50, y = 0, relative = true }))
-    bind(mainMod .. "+ALT+left", hl.dsp.window.move({ x = -50, y = 0, relative = true }))
-    bind(mainMod .. "+ALT+up", hl.dsp.window.move({ x = 0, y = -50, relative = true }))
-    bind(mainMod .. "+ALT+down", hl.dsp.window.move({ x = 0, y = 50, relative = true }))
+    bind(mainMod .. "+ALT+right", hypr.window.move({ x = 50, y = 0, relative = true }))
+    bind(mainMod .. "+ALT+left", hypr.window.move({ x = -50, y = 0, relative = true }))
+    bind(mainMod .. "+ALT+up", hypr.window.move({ x = 0, y = -50, relative = true }))
+    bind(mainMod .. "+ALT+down", hypr.window.move({ x = 0, y = 50, relative = true }))
 
-    bind(mainMod .. "+H", hl.dsp.focus({ direction = "l" }))
-    bind(mainMod .. "+L", hl.dsp.focus({ direction = "r" }))
-    bind(mainMod .. "+K", hl.dsp.focus({ direction = "u" }))
-    bind(mainMod .. "+J", hl.dsp.focus({ direction = "d" }))
+    bind(mainMod .. "+H", hypr.focus({ direction = "l" }))
+    bind(mainMod .. "+L", hypr.focus({ direction = "r" }))
+    bind(mainMod .. "+K", hypr.focus({ direction = "u" }))
+    bind(mainMod .. "+J", hypr.focus({ direction = "d" }))
 
-    bind(mainMod .. "+ALT+L", hl.dsp.window.move({ x = 50, y = 0, relative = true }))
-    bind(mainMod .. "+ALT+H", hl.dsp.window.move({ x = -50, y = 0, relative = true }))
-    bind(mainMod .. "+ALT+K", hl.dsp.window.move({ x = 0, y = -50, relative = true }))
-    bind(mainMod .. "+ALT+J", hl.dsp.window.move({ x = 0, y = 50, relative = true }))
+    bind(mainMod .. "+ALT+L", hypr.window.move({ x = 50, y = 0, relative = true }))
+    bind(mainMod .. "+ALT+H", hypr.window.move({ x = -50, y = 0, relative = true }))
+    bind(mainMod .. "+ALT+K", hypr.window.move({ x = 0, y = -50, relative = true }))
+    bind(mainMod .. "+ALT+J", hypr.window.move({ x = 0, y = 50, relative = true }))
 
     for i = 1, 9 do
-        bind(mainMod .. "+" .. i, hl.dsp.focus({ workspace = tostring(i) }))
-        bind(secMod .. "+" .. i, hl.dsp.window.move({ workspace = tostring(i) }))
+        bind(mainMod .. "+" .. i, hypr.focus({ workspace = tostring(i) }))
+        bind(secMod .. "+" .. i, hypr.window.move({ workspace = tostring(i) }))
     end
-    bind(mainMod .. "+0", hl.dsp.focus({ workspace = "10" }))
-    bind(secMod .. "+0", hl.dsp.window.move({ workspace = "10" }))
+    bind(mainMod .. "+0", hypr.focus({ workspace = "10" }))
+    bind(secMod .. "+0", hypr.window.move({ workspace = "10" }))
 
-    bind(mainMod .. "+ALT+left", hl.dsp.window.swap({ direction = "l" }))
-    bind(mainMod .. "+ALT+right", hl.dsp.window.swap({ direction = "r" }))
-    bind(mainMod .. "+ALT+up", hl.dsp.window.swap({ direction = "u" }))
-    bind(mainMod .. "+ALT+down", hl.dsp.window.swap({ direction = "d" }))
-    bind(mainMod .. "+ALT+H", hl.dsp.window.swap({ direction = "l" }))
-    bind(mainMod .. "+ALT+L", hl.dsp.window.swap({ direction = "r" }))
-    bind(mainMod .. "+ALT+K", hl.dsp.window.swap({ direction = "u" }))
-    bind(mainMod .. "+ALT+J", hl.dsp.window.swap({ direction = "d" }))
+    bind(mainMod .. "+ALT+left", hypr.window.swap({ direction = "l" }))
+    bind(mainMod .. "+ALT+right", hypr.window.swap({ direction = "r" }))
+    bind(mainMod .. "+ALT+up", hypr.window.swap({ direction = "u" }))
+    bind(mainMod .. "+ALT+down", hypr.window.swap({ direction = "d" }))
+    bind(mainMod .. "+ALT+H", hypr.window.swap({ direction = "l" }))
+    bind(mainMod .. "+ALT+L", hypr.window.swap({ direction = "r" }))
+    bind(mainMod .. "+ALT+K", hypr.window.swap({ direction = "u" }))
+    bind(mainMod .. "+ALT+J", hypr.window.swap({ direction = "d" }))
 
-    bind(mainMod .. "+SHIFT+right", hl.dsp.window.resize({ x = 50, y = 0, relative = true }))
-    bind(mainMod .. "+SHIFT+left", hl.dsp.window.resize({ x = -50, y = 0, relative = true }))
-    bind(mainMod .. "+SHIFT+up", hl.dsp.window.resize({ x = 0, y = -50, relative = true }))
-    bind(mainMod .. "+SHIFT+down", hl.dsp.window.resize({ x = 0, y = 50, relative = true }))
-    bind(mainMod .. "+SHIFT+L", hl.dsp.window.resize({ x = 50, y = 0, relative = true }))
-    bind(mainMod .. "+SHIFT+H", hl.dsp.window.resize({ x = -50, y = 0, relative = true }))
-    bind(mainMod .. "+SHIFT+J", hl.dsp.window.resize({ x = 0, y = 50, relative = true }))
-    bind(mainMod .. "+SHIFT+K", hl.dsp.window.resize({ x = 0, y = -50, relative = true }))
+    bind(mainMod .. "+SHIFT+right", hypr.window.resize({ x = 50, y = 0, relative = true }))
+    bind(mainMod .. "+SHIFT+left", hypr.window.resize({ x = 0, y = -50, relative = true }))
+    bind(mainMod .. "+SHIFT+down", hypr.window.resize({ x = 0, y = 50, relative = true }))
+    bind(mainMod .. "+SHIFT+L", hypr.window.resize({ x = 50, y = 0, relative = true }))
+    bind(mainMod .. "+SHIFT+H", hypr.window.resize({ x = -50, y = 0, relative = true }))
+    bind(mainMod .. "+SHIFT+J", hypr.window.resize({ x = 0, y = 50, relative = true }))
+    bind(mainMod .. "+SHIFT+K", hypr.window.resize({ x = 0, y = -50, relative = true }))
 
-    bind(mainMod .. "+mouse:272", hl.dsp.window.drag(), { mouse = true })
-    bind(mainMod .. "+mouse:273", hl.dsp.window.resize(), { mouse = true })
+    bind(mainMod .. "+mouse:272", hypr.window.drag(), { mouse = true })
+    bind(mainMod .. "+mouse:273", hypr.window.resize(), { mouse = true })
 
     bind("XF86AudioRaiseVolume", exec("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { repeating = true })
     bind("XF86AudioLowerVolume", exec("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"), { repeating = true })

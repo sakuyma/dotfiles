@@ -1,0 +1,5 @@
+# /etc/booster.yaml
+modules_force_load: nvme,nvidia,nvidia_modeset,nvidia_uvm,nvidia_drm
+modules: -*,btrfs,nvme
+strip: true
+compression: zstd
