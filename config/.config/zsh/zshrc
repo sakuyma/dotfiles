@@ -4,6 +4,7 @@ export ZSH_CONFIG="$HOME/.config/zsh"
 export ZSH_CONFD="$ZSH_CONFIG/conf.d"
 
 zsh_modules=(
+    "$ZSH_CONFD/syntax.zsh"
     "$ZSH_CONFD/plugins.zsh"
     "$ZSH_CONFD/options.zsh"
     "$ZSH_CONFD/env.zsh"

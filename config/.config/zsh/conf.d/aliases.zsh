@@ -4,7 +4,7 @@ alias cls="clear"
 alias clock="tty-clock"
 alias ls="eza --icons"
 alias tree="ls --tree"
-alias n="nvim"
+alias v="nvim"
 
 alias src='source'
 alias inv='nvim $(fzf --tmux top,60%  -m --preview="bat --color=always {}")'
@@ -14,8 +14,7 @@ alias i='paru -S'
 
 alias ff="fastfetch"
 alias pf="pfetch"
-alias nf="nitch"
-alias icat="kitten icat"
+alias nf="nitch"  
 
 alias poff="systemctl poweroff --no-wall"
 alias rbt="systemctl reboot --no-wall"
@@ -23,6 +22,7 @@ alias logout="loginctl terminate-session $(loginctl | rg $(whoami) | awk '{print
 alias cd="z"
 alias sudo="sudo-rs"
 alias su="su-rs"
+alias new="touch"
 
 alias note="yazi ~/Obsidian/"
 
