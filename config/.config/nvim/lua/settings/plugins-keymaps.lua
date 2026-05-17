@@ -1,39 +1,39 @@
 --  general options --
 local key = vim.keymap.set -- set local variable
-vim.g.mapleader = " " -- set <leader> key
+vim.g.mapleader = " "      -- set <leader> key
 
 -- debugger --
 local dap = require("dap")
 local dapui = require("dapui")
 key("n", "<F5>", function()
-	dap.continue()
+    dap.continue()
 end)
 key("n", "<F10>", function()
-	dap.step_over()
+    dap.step_over()
 end)
 key("n", "<F11>", function()
-	dap.step_into()
+    dap.step_into()
 end)
 key("n", "<F12>", function()
-	dap.step_out()
+    dap.step_out()
 end)
 key("n", "<leader>b", function()
-	dfunction()require("conform").format({ async = true, lsp_fallback = true })endap.toggle_breakpoint()
+    dap.toggle_breakpoint()
 end)
 key("n", "<leader>B", function()
-	dap.set_breakpoint(vim.fn.input("breakpoint condition: "))
+    dap.set_breakpoint(vim.fn.input("breakpoint condition: "))
 end)
 key("n", "<leader>lp", function()
-	dap.set_breakpoint(nil, nil, vim.fn.input("log point message: "))
+    dap.set_breakpoint(nil, nil, vim.fn.input("log point message: "))
 end)
 key("n", "<leader>dr", function()
-	dap.repl.open()
+    dap.repl.open()
 end)
 key("n", "<leader>dl", function()
-	dap.run_last()
+    dap.run_last()
 end)
 key("n", "<leader>du", function()
-	dapui.toggle()
+    dapui.toggle()
 end)
 
 -- formatter --
@@ -101,13 +101,13 @@ key("n", "<leader>sc", "<cmd>Sidekick cli toggle<cr>", { silent = true, desc = "
 -- mini.surround --
 local surround = require("mini.surround")
 surround.setup({
-	mappings = {
-		add = "sa",
-		delete = "",
-		replace = "",
-		find = "",
-		find_left = "",
-		highlight = "sh",
-		update_n_lines = "",
-	},
+    mappings = {
+        add = "sa",
+        delete = "",
+        replace = "",
+        find = "",
+        find_left = "",
+        highlight = "sh",
+        update_n_lines = "",
+    },
 })

@@ -17,7 +17,6 @@ require("code.vcs")
 require("code.linters")
 require("code.lsp")
 require("code.ai")
-
 -- ui --
 require("ui.tabs")
 require("ui.statusline")
@@ -31,7 +30,6 @@ require("utils.finder")
 require("utils.terminal")
 require("utils.todocomments")
 require("utils.troubleshoots")
-require("utils.sessions")
 require("utils.surround")
 
 -- settings --
