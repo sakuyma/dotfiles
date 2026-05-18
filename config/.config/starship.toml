@@ -1,3 +1,19 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+# Pipes ╰─ ╭─
+# Powerline symbols                                     
+# Wedges 🭧🭒 🭣🭧🭓
+# Random noise 🬖🬥🬔🬗
+# Cool stuff 󰜥   
+
+
+add_newline = false
+command_timeout = 0
+palette = "catppuccin_mocha"
+
+format = """
+$username$hostname $directory$git_branch 
+  $character"""
+
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"
 flamingo = "#f2cdcd"
@@ -26,20 +42,84 @@ base = "#1e1e2e"
 mantle = "#181825"
 crust = "#11111b"
 
-add_newline = "true" 
-# A minimal left prompt
-format = """$directory$character"""
-
-palette = "catppuccin_mocha"
-# move the rest of the prompt to the right
-right_format = """$all"""
-command_timeout = "0" 
-
 [character]
+success_symbol = "[ ](bold green)"
+error_symbol = "[ ](bold red)"
 vicmd_symbol = "[N] >>>"
-#success_symbol = '[❯](bold green)'
-success_symbol = '[➜](bold green)'
+
+[directory]
+home_symbol = " "
+read_only = "  "
+style = "bg:surface1 fg:lavender"
+format = '[](bold surface1)[󰉋  $path]($style)[](bold surface1)'
+
+[directory.substitutions]
+"Desktop" = "  "
+"Documents" = "  "
+"Downloads" = "  "
+"Music" = " 󰎈 "
+"Pictures" = "  "
+"Videos" = "  "
+"GitHub" = " 󰊤 "
 
 [git_branch]
-format =  '[$symbol$branch(:$remote_branch)]($style)'
+style = "bg:surface1 fg:lavender"
+symbol = "󰘬"
+truncation_length = 12
+truncation_symbol = ""
+format = " 󰜥 [](bold surface1)[$symbol $branch(:$remote_branch)]($style)[ ](bold surface1)"
 
+[git_commit]
+commit_hash_length = 4
+tag_symbol = " "
+
+[git_state]
+format = '[\($state( $progress_current of $progress_total)\)]($style) '
+cherry_pick = "[🍒 PICKING](bold red)"
+
+[git_status]
+conflicted = " 🏳 "
+ahead = " 🏎💨 "
+behind = " 😰 "
+diverged = " 😵 "
+untracked = " 🤷 ‍"
+stashed = " 📦 "
+modified = " 📝 "
+staged = '[++\($count\)](green)'
+renamed = " ✍️ "
+deleted = " 🗑 "
+
+[cmd_duration]
+min_time = 1
+format = '[](bold surface1)[󰪢 $duration](bold bg:surface1 fg:peach)[](bold surface1)'
+
+[username]
+style_user = "bold bg:surface1 fg:sky"
+style_root = "red bold"
+format = "[](bold surface1)[$user]($style)"
+disabled = false
+show_always = true
+
+[hostname]
+ssh_only = false
+format =  "[•$hostname](bg:surface1 bold fg:sky)[](bold surface1)"
+trim_at = ".companyname.com"
+disabled = false
+# •
+[fill]
+symbol = '-'
+style = 'fg:surface2'
+
+[package]
+disabled = true
+
+[line_break]
+disabled = false
+
+[memory_usage]
+disabled = true
+
+[time]
+disabled = true
+format = '🕙[\[ $time \]]($style) '
+time_format = "%T"

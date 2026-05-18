@@ -1,8 +1,6 @@
 local env = hl.env
 
 return function()
-    env("HYPRCURSOR_SIZE", "22")
-    env("HYPRCURSOR_THEME", "Bibata-Modern-Classic")
     env("WAYLAND_DISPLAY", "wayland-1")
     env("GDK_BACKEND", "wayland,x11,*")
     env("QT_QPA_PLATFORM", "wayland;xcb")

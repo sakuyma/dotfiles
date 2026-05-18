@@ -44,3 +44,4 @@ Thumbs.db
 **/*.p12
 **/*.cert
 **/config/credentials.yml.enc
+summary.md
