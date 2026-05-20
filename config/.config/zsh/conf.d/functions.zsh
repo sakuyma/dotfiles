@@ -50,3 +50,11 @@ function blame() {
 
     echo "$system" | eval "$grepl" | $print
 }
+
+function fv() {
+  local file
+  file=$(fzf)
+  if [[ -n "$file" ]]; then
+    nvim "$file"
+  fi
+} 

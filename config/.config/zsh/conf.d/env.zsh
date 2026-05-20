@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 paths=(
     "/usr/local/opt/openjdk/bin"
-    # "$HOME/.cargo/bin"
+    "$HOME/.cargo/bin"
     "$HOME/.spicetify"
     "$HOME/.local/bin"
     "$HOME/.config/zsh/scripts"

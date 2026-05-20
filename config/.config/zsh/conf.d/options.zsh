@@ -1,10 +1,27 @@
-
 export FZF_DEFAULT_OPTS=" \
 --color=bg+:#313244,bg:#1E1E2E,spinner:#B4BEFE,hl:#F38BA8 \
 --color=fg:#CDD6F4,header:#F38BA8,info:#B4BEFE,pointer:#F5E0DC \
 --color=marker:#B4BEFE,fg+:#CDD6F4,prompt:#B4BEFE,hl+:#F38BA8 \
 --color=selected-bg:#45475A \
---color=border:#6C7086,label:#CDD6F4"
+--color=border:#6C7086,label:#CDD6F4 \
+--border=rounded \
+--margin=3% \
+--padding=1 \
+--height=60% \
+--min-height=15 \
+--layout=reverse \
+--info=inline-right \
+--separator='┄' \
+--scrollbar='▌' \
+--prompt='❯ ' \
+--marker='✓' \
+--pointer='▶' \
+--preview-window='right:60%:rounded' \
+--preview='bat --color=always --style=full --line-range=:500 {} 2>/dev/null || \
+           exa --color=always --icons --tree --level=2 {} 2>/dev/null || \
+           head -n 500 {} 2>/dev/null || \
+           echo \"Cannot preview: {} is binary or unsupported\"' \
+"
 
 zstyle ':completion:*' special-dirs true
 zstyle ':completion:*' list-colors ''
