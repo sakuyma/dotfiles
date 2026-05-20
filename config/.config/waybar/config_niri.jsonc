@@ -9,128 +9,44 @@
 // ========================================================
 // ====================== Main ======================
 {
-    "layer": "top",
-    "position": "left",
-    "margin-top": 20,
-    "margin-bottom": 20,
-    "margin-left": 2,
-    "margin-right": 0,
-    "exclusive": true,
-    "width": 10,
-    "modules-left": [
-        "clock",
-    ],
+    "reload_style_on_change": true,
+    "position": "top",
+    "margin-top": 18,
     "modules-center": [
-        "niri/workspaces",
-    ],
-    "modules-right": [
         "tray",
+        "clock",
+        "custom/media",
+        "niri/workspaces",
+        "pulseaudio",
         "network",
         "battery",
-        "backlight"
     ],
     "niri/workspaces": {
-        "spacing": 16,
-        "persistent-workspaces": {
-            "*": 3
-        },
+        "format": "{icon}",
         "format-icons": {
-            "1": "",
-            "2": "",
-            "3": "",
-            "4": "",
-            "5": "",
-            "6": "",
-            "7": "",
-            "8": "",
-            "9": "",
-            "10": "",
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8",
+            "10": "10",
+            "10": "10",
+            "default": " ",
             "urgent": "",
-            //"active": "一",
-            //"default": "󰧞"",
-            "sort-by-number": false
         },
-    },
-    "clock": {
-        "format": "{:%R}",
-        "tooltip-format": "{:%d %B %Y}",
-        "on-click": "eww open calendar --toggle --no-daemonize & eww close actioncenter musiccenter",
-    },
-    "custom/power": {
-        "on-click": "wlogout",
-        "format": "⏻ "
-    },
-    "backlight": {
-        "format": "{icon}",
-        "format-icons": [
-            "󰃞",
-            "󰃝",
-            "󰃟",
-            "󰃠"
-        ],
-        "on-click": "~/.config/polybar.old/ws1.sh",
-        "on-click-middle": "$HOME/.config/rofi/applets/bin/brightness.sh",
-    },
-    "battery": {
-        "states": {
-            "warning": 30,
-            "critical": 15
+        "persistent-workspaces": {
+            "*": 5
         },
-        "format": "{icon}",
-        "format-charging": "󱐥",
-        "format-plugged": "󱐥",
-        "format-icons": [
-            "󰂎",
-            "󰁺",
-            "󰁻",
-            "󰁼",
-            "󰁽",
-            "󰁿",
-            "󰂀",
-            "󰂁",
-            "󰂂",
-            "󰁹"
-        ],
-    },
-    "pulseaudio": {
-        "format": "{icon}",
-        "on-click-right": "pactl set-sink-mute 0 toggle",
-        "format-bluetooth": "{icon}",
-        "format-bluetooth-muted": "󰝟",
-        "format-muted": "󰝟",
-        "format-source": "",
-        "format-source-muted": "",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "蓼",
-            "headset": "蓼",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": [
-                "󰕿",
-                "󰕾",
-                "󰕾"
-            ],
-        },
-        "on-click": "pactl set-sink-mute 0 toggle",
-        "on-click-right": "pactl set-sink-mute 0 toggle",
-        "on-click-middle": "$HOME/.config/rofi/applets/bin/volume.sh",
-    },
-    "bluetooth": {
-        "format": "󰂯",
-        "format-disabled": "󰂲",
-        "format-connected": "󰂱",
-        "tooltip-format": "{controller_alias}\t{controller_address}",
-        "tooltip-format-connected": "{num_connections} connected\t{controller_alias}\t{controller_address}\n\n{device_enumerate}",
-        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-        "on-click": "killall blueman-manager || blueman-manager ",
+        "on-click": "activate",
     },
     "network": {
         "format-wifi": "{icon}",
-        "format-ethernet": "🖧",
-        "format-disconnected": "󰌙 ",
-        "tooltip-format": "{icon} {essid}",
+        "format-ethernet": "󰤨 ",
+        "format-disconnected": "󰤨 ",
+        "tooltip-format": "{icon}",
         "format-icons": [
             "󰤯 ",
             "󰤟 ",
@@ -141,34 +57,64 @@
         "on-click": "bash ~/.config/scripts/rofiwifi.sh",
         "on-click-right": "bash ~/.config/scripts/rofiwifi.sh"
     },
-    "wlr/workspaces": {
-        "disable-scroll": false,
-        "all-outputs": false,
-        "on-click": "activate",
-        "persistent_workspaces": {
-            "0": [],
-            "1": [],
-            "2": [],
-            "3": [],
-            "4": [],
-            "5": [],
-            "6": [],
-            "7": [],
-            "8": [],
-            "9": [],
+    "bluetooth": {
+        "format": "",
+        "format-connected": " {device_alias}",
+        "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+        "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+        "on-click": "blueman-manager"
+    },
+    "battery": {
+        "interval": 20,
+        "full-at": 100,
+        "tooltip": true,
+        "format-full": "",
+        "format": "{icon} {capacity}%",
+        "format-time": "{H}:{M:02}",
+        "format-charging": " {capacity}% ({time})",
+        "format-icons": [
+            "󰁺",
+            "󰁻",
+            "󰁼",
+            "󰁽",
+            "󰁾",
+            "󰁿",
+            "󰂀",
+            "󰂂",
+            "󰁹"
+        ],
+        "states": {
+            "warning": 30,
+            "critical": 15
         },
-        "format-icons": {
-            "1": "",
-            "2": "",
-            "3": "",
-            "4": "󰏆",
-            "5": "",
-            "6": "",
-            "7": "󰡨",
-            "8": "",
-            "9": "",
-            "10": ""
-        },
+    },
+    "pulseaudio": {
+        "max-volume": 150,
+        "scroll-step": 10,
         "format": "{icon}",
-    }
-}
+        "tooltip-format": "{icon}  {volume}%",
+        "format-icons": {
+            "headphone": " ",
+            "format-muted": " ",
+            "default": [
+                " ",
+                " "
+            ]
+        },
+        "on-click": "pavucontrol",
+        "menu": "on-click-right",
+        "menu-file": "~/.config/waybar/volume_menu.xml",
+        "menu-actions": {
+            "ToggleSound": "pamixer -t",
+            "pavu": "pavucontrol",
+        },
+    },
+    "clock": {
+        "format": "{:%R}",
+        "tooltip-format": "{:%d %B %Y}",
+        "on-click": "eww open calendar --toggle --no-daemonize & eww close actioncenter musiccenter",
+    },
+},
