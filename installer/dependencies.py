@@ -2,7 +2,7 @@ import shutil
 import subprocess
 from typing import List
 
-dependencies: List[str] = ["git", "rustup", "python"]
+dependencies: List[str] = ["git", "rustup", "python", "stow"]
 
 
 def _install_aur_helper() -> bool:
