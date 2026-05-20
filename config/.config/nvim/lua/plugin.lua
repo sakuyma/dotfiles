@@ -75,12 +75,6 @@ require("lazy").setup({
                     event = "InsertEnter",
                 },
                 {
-                    "L3MON4Dl3/LuaSnip",
-                    lazy = true,
-                    event = "InsertEnter",
-                    build = "make install_jsregexp",
-                },
-                {
                     "saadparwaiz1/cmp_luasnip",
                     lazy = true,
                     event = "InsertEnter"

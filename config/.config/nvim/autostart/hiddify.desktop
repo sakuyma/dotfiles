@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=hiddify
+Comment=hiddify startup script
+Exec=/opt/hiddify-next/hiddify
+StartupNotify=false
+Terminal=false

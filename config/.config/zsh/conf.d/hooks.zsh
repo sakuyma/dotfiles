@@ -1,5 +1,5 @@
 eval "$(fzf --zsh)"
-eval "$(zoxide init zsh)"
+eval "$(zoxide init --cmd cd zsh)"
 eval "$(starship init zsh)"
 
 if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
