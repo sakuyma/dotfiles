@@ -59,5 +59,5 @@ def setup_dotfiles() -> bool:
     if not _symlink_dotfiles():
         return False
     
-    print("✓ Dotfiles setup complete")
+    print("Dotfiles setup complete")
     return True
