@@ -52,10 +52,9 @@ bash install.sh
 ```
 
 ## HotKeys
-* **Open the terminal** - `super + q`
-* **Open the application menu** - `super + r`
-* **Launch Telegram** - `super + t`
-* **Close the window that is in focus** - `super + c`
+* **Open the terminal** - `super + enter`
+* **Open the application menu** - `super + d`
+* **Close the window that is in focus** - `super + q`
 * **Take a screenshot** - `print`
 * **Take a screenshot of region** - `ctrl + print`
 * **Switch to another desktop** - `super + 1/10`

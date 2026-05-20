@@ -1,169 +1,266 @@
-/* __        __          _                  ____  _         _       
- * \ \      / /_ _ _   _| |__   __ _ _ __  / ___|| |_ _   _| | ___  
- *  \ \ /\ / / _` | | | | '_ \ / _` | '__| \___ \| __| | | | |/ _ \ 
- *   \ V  V / (_| | |_| | |_) | (_| | |     ___) | |_| |_| | |  __/ 
- *    \_/\_/ \__,_|\__, |_.__/ \__,_|_|    |____/ \__|\__, |_|\___| 
- *                 |___/                              |___/         
- *  
- * by sakuyma
- * ----------------------------------------------------- 
-*/
+/*
+ * ╔══════════════════════════════════════════════════════════╗
+ * ║                 WAYBAR VERTICAL CONFIG                   ║
+ * ║                        by sakuyma                         ║
+ * ║              Vertical clock & compact workspaces          ║
+ * ╚══════════════════════════════════════════════════════════╝
+ */
 
-/*Import the theme.css file */
+/* Imports */
 @import "theme.css";
 @import "colors.css";
 
+/* ========== GLOBAL STYLES ========== */
 * {
-  border: none;
-  border-radius: 0px;
-  font-family: "Google Sans Flex", "JetBrainsMono Nerd Font Propo";
-  font-size: 16px;
-  min-height: 0;
-  padding: 0;
-  margin: 0;
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font", "Fira Mono", sans-serif;
+    font-size: 12px;
+    min-height: 0;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
 }
 
-.modules-center {
-  background: @bg-main;
-  padding: 6px 12px;
-  border-radius: 28px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}
-
+/* ========== MAIN BAR (VERTICAL) ========== */
 window#waybar {
-  background: transparent;
+    background: @bg-main;
+    border: 1px solid alpha(@border-main, 0.25);
+    border-radius: 20px;
+    margin: 8px 4px;
+    padding: 8px 4px;
 }
 
-tooltip {
-  background: @bg-main;
-  border: 1px solid @bg-third;
-  border-radius: 12px;
-}
-
-tooltip label {
-  color: @fg-main;
-  padding: 6px;
-}
-
+/* ========== WORKSPACES (КОМПАКТНЫЕ) ========== */
 #workspaces {
-  background: transparent;
-  padding: 0;
-  margin: 0 10px 0 10px;
-  border: none;
-  box-shadow: none;
+    background: alpha(@bg-second, 0.6);
+    border-radius: 16px;
+    margin: 4px 2px 12px 2px;
+    padding: 4px 2px;
+    border: 1px solid alpha(@border-main, 0.2);
 }
 
 #workspaces button {
-  color: @bg-second;
-  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-  padding: 0px 6px;
-  margin: 0px 2px;
-  border-radius: 16px;
+    background: transparent;
+    color: alpha(@fg-main, 0.6);
+    border-radius: 10px;
+    margin: 1px 0;
+    padding: 4px 0;
+    min-width: 32px;
+    min-height: 24px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease-in-out;
+}
+
+#workspaces button:hover {
+    background: alpha(@bg-hover, 0.4);
+    color: @content-act;
 }
 
 #workspaces button.active {
-  background: @fg-main;
-  border-radius: 16px;
-  padding: 0px 20px;
-  color: @bg-second;
-}
-
-#workspaces button.focused {
-  color: @fg-main;
+    background: linear-gradient(135deg, @mauve, @blue);
+    color: @bg-main;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
 }
 
 #workspaces button.urgent {
-  background: @bg-main;
-  color: @warned_color;
+    background: @red;
+    color: @bg-main;
 }
-#workspaces button:hover {
-  background: @ply-main;
-  color: @fg;
+
+/* Более тонкий разделитель */
+#workspaces button:not(:last-child) {
+    border-bottom: 1px solid alpha(@border-main, 0.15);
+}
+
+/* ========== CLOCK (ВЕРТИКАЛЬНЫЙ) ========== */
+#clock {
+    background: alpha(@bg-second, 0.8);
+    border-radius: 16px;
+    color: @fg-main;
+    font-family: "Cartograph CF", monospace;
+    font-size: 11px;
+    font-weight: 500;
+    margin: 4px 2px;
+    padding: 12px 4px;  /* Увеличены вертикальные отступы */
+    border: 1px solid alpha(@border-main, 0.3);
+}
+
+#clock:hover {
+    background: @bg-hover;
+    border-color: @mauve;
+}
+
+/* ========== МОДУЛИ ========== */
+#tray,
+#network,
+#battery,
+#backlight,
+#bluetooth,
+#pulseaudio,
+#custom-power {
+    margin: 2px 2px;
+    padding: 8px 0;
+    border-radius: 16px;
+    min-width: 32px;  /* Уменьшено с 36px */
+    font-size: 16px;
+    border: 1px solid transparent;
+}
+
+/* Индивидуальные стили */
+#network {
+    background: linear-gradient(135deg, @blue, @mauve);
+    color: @bg-main;
+    font-weight: 600;
 }
 
 #battery {
-  padding: 2px 7px;
-  background: @bg-main;
-  border-radius: 16px;
-  margin: 0 3px;
-   color: @green;  
+    background: linear-gradient(135deg, @green, @teal);
+    color: @bg-main;
+    font-weight: 600;
 }
-#clock,
+
+#backlight {
+    background: linear-gradient(135deg, @orange, @yellow);
+    color: @bg-main;
+    font-weight: 600;
+}
+
 #bluetooth {
-  font-family: "Symbols Nerd Font", "JetbrainsMono Nerd Font";
-  background-color: @bg-main;
-  font-weight: bold;
-  border-radius: 8px;
-  padding: 0px 10px;
-  margin: 2px 1px;
-  transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
-  color: @bg-hover-alt;
-}
-
-/* Hover effect for bar elements */
-#clock:hover,
-#power-profiles-daemon:hover {
-  background-color: @bg-hover;
-}
-
-
-#tooltip {
-  background: @bg-tooltip;
-  border-radius: 5px;
-  border: 1px solid @border-main;
-}
-
-#tooltip label {
-  color: @fg-main;
-}
-
-#network {
-  background-color: @bg-main;
-  padding: 0px 6px;
-  font-size: 15px;
-  color: @red;
+    background: linear-gradient(135deg, @blue, @teal);
+    color: @bg-main;
+    font-weight: 600;
 }
 
 #pulseaudio {
-  background-color: @bg-main;
-  padding: 0px 6px;
-  font-size: 15px;
-  color: @yellow;
+    background: linear-gradient(135deg, @pink, @mauve);
+    color: @bg-main;
+    font-weight: 600;
+}
+
+#custom-power {
+    background: linear-gradient(135deg, @red, @pink);
+    color: @bg-main;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* Состояния */
+#network.disconnected,
+#bluetooth.disabled,
+#pulseaudio.muted {
+    background: @bg-third;
+    color: @fg-unactive;
+    opacity: 0.7;
+}
+
+#battery.charging {
+    background: linear-gradient(135deg, @yellow, @orange);
+}
+
+#battery.critical:not(.charging) {
+    background: linear-gradient(135deg, @red, @orange);
+}
+
+#battery.warning:not(.charging) {
+    background: linear-gradient(135deg, @orange, @yellow);
+}
+
+#bluetooth.connected {
+    background: linear-gradient(135deg, @teal, @green);
+}
+
+#pulseaudio.source-muted {
+    background: linear-gradient(135deg, @red, @mauve);
+}
+
+/* ========== TRAY ========== */
+#tray {
+    background: alpha(@bg-second, 0.8);
+    padding: 4px 2px;
+    margin: 2px 2px 8px 2px;
+    border: 1px solid alpha(@border-main, 0.2);
+    min-width: 32px;  /* Уменьшено с 36px */
 }
 
 #tray > .passive {
-    border-bottom: none;
-}
-#tray > widget {
-    transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
-    border-radius: 8px;
-    padding: 0px 3px;
+    -gtk-icon-effect: dim;
 }
 
-#tray menu, menu {
-    font-family: "JetBrainsMono Nerd Font";
-    border: 2px solid @border-main;
-    border-radius: 10px;
-    transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
-    background-color: @bg-main;
-    padding: 5px 2px;
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
 }
 
-#tray menu > *, menu > * {
-  color: @fg-main;
-  border: 2px solid transparent;
-  border-radius: 10px;
-  transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
-  padding: 0px 8px; 
+/* ========== TOOLTIP ========== */
+tooltip {
+    background: @bg-main;
+    border: 1px solid alpha(@mauve, 0.3);
+    border-radius: 12px;
+    padding: 6px 10px;
 }
-#tray menu > *:hover, menu > *:hover {
-  border: 2px solid @border-main;
-    background-color: @bg-main;
-    border: 2px solid transparent;
-    transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
-    border-bottom: 2px solid @fg-main;
+
+tooltip label {
+    color: @fg-main;
+    font-size: 11px;
+    font-weight: 500;
 }
-#tray menu > *:active, menu > *:active {
-    background-color: @bg-main;
-	transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+
+/* ========== ВЕРТИКАЛЬНЫЕ СЕКЦИИ ========== */
+.modules-left {
+    margin-bottom: 16px;
+}
+
+.modules-center {
+    margin: 16px 0;
+}
+
+.modules-right {
+    margin-top: 16px;
+}
+
+/* ========== HOVER ЭФФЕКТЫ ========== */
+#network:hover,
+#battery:hover,
+#backlight:hover,
+#bluetooth:hover,
+#pulseaudio:hover,
+#custom-power:hover,
+#clock:hover {
+    opacity: 0.9;
+}
+
+/* ========== РАЗМЕРЫ ИКОНОК ========== */
+#battery {
+    font-size: 18px;
+}
+
+#bluetooth {
+    font-size: 18px;
+}
+
+#pulseaudio {
+    font-size: 17px;
+}
+
+#network {
+    font-size: 17px;
+}
+
+/* ========== ПОГОДА ========== */
+#custom-weather {
+    background: alpha(@bg-second, 0.8);
+    border-radius: 16px;
+    color: @fg-main;
+    margin: 2px 2px;
+    padding: 8px 0;
+    font-size: 11px;
+    border: 1px solid alpha(@border-main, 0.3);
+    min-width: 32px;
+}
+
+#custom-weather:hover {
+    background: @bg-hover;
+    border-color: @blue;
 }

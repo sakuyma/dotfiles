@@ -4,9 +4,6 @@ CHOICE=$(echo -e "Wallpapers\nThemes\nBar\nLayouts\nDecorations\nSettings" | \
     fuzzel --dmenu )
 
 case "$CHOICE" in
-    "Wallpapers")
-        wallpapers-rs
-        ;;
     "Themes")
         ~/.config/scripts/theme-switcher.sh
         ;;

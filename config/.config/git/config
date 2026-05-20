@@ -38,3 +38,9 @@ autoSetupRemote = true
 
 [credential]
 helper = cache --timeout=3600
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
