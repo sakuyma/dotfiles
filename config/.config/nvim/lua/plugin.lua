@@ -263,7 +263,7 @@ require("lazy").setup({
             ft = "markdown",
             lazy = true,
             config = function()
-                require("render").setup({})
+                require("render-markdown").setup({})
             end,
         },
         {
