@@ -4,11 +4,12 @@ from typing import List, Final
 HOME: Final[Path] = Path.home()
 DOTFILES_DIR: Final[Path] = Path.home() / ".dotfiles"
 DOTFILES_CONFIG: Final[Path] = DOTFILES_DIR / "config"
+DOTFILES_ETC: Final[Path] = DOTFILES_DIR / "etc"
 CONFIG_DIR: Final[Path] = Path.home() / ".config"
 CACHE_DIR: Final[Path] = Path.home() / ".cache" / "dotfiles"
 LOG_DIR: Final[Path] = Path.home() / ".local" / "share" / "dotfiles" / "logs"
 
-SYSTEM_PACKAGES: Final[List[str]] = ["git", "rustup", "python", "go", "npmcurl", "wget"]
+SYSTEM_PACKAGES: Final[List[str]] = ["git", "rustup", "python", "go", "npm", "curl", "wget"]
 
 AUR_PACKAGES: Final[List[str]] = [
     "paru",

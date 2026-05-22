@@ -1,6 +1,5 @@
 import subprocess
-from typing import List
-from env import DISABLED_SERVICES, ENABLED_SERVICES
+from installer.env import DISABLED_SERVICES, ENABLED_SERVICES
 
 
 def _enable_services() -> bool:
@@ -32,9 +31,10 @@ def _disable_services() -> bool:
 
     return True
 
+
 def configure_services() -> bool:
     print("Configuring services")
-    
+
     if not _disable_services():
         return False
 

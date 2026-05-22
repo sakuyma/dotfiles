@@ -1,6 +1,6 @@
 import subprocess
 from pathlib import Path
-from env import DOTFILES_DIR, DOTFILES_CONFIG, DOTFILES_REPO, HOME
+from installer.env import DOTFILES_DIR, DOTFILES_CONFIG, DOTFILES_REPO, HOME
 
 def _download_dotfiles() -> bool:
     if DOTFILES_DIR.exists():
