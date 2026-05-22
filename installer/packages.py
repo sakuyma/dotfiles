@@ -1,16 +1,4 @@
 PACKAGES = [
-    "booster", # initcpio generator (faster than mkinitcpio)
-    "pipewire", # audio server
-    # audio things
-    "pipewire-alsa", 
-    "pipewire-audio",
-    "pipewire-jack",
-    "pipewire-pulse",
-    "gst-plugin-pipewire",
-    "wireplumber",
-    "pamixer",
-    # gui for pipewire
-    "pavucontrol",
     # network manager 
     "networkmanager",
     "network-manager-applet",

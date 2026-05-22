@@ -9,22 +9,95 @@ CONFIG_DIR: Final[Path] = Path.home() / ".config"
 CACHE_DIR: Final[Path] = Path.home() / ".cache" / "dotfiles"
 LOG_DIR: Final[Path] = Path.home() / ".local" / "share" / "dotfiles" / "logs"
 
-SYSTEM_PACKAGES: Final[List[str]] = ["git", "rustup", "python", "go", "npm", "curl", "wget"]
+SYSTEM_PACKAGES: Final[List[str]] = [
+    "git",
+    "rustup",
+    "python",
+    "go",
+    "npm",
+    "curl",
+    "wget",
+    "booster",
+    "booster-um",
+]
+
+USER_PACKAGES: Final[List[str]] = [
+    # Audio things
+    "pipewire",
+    "pipewire-alsa",
+    "pipewire-audio",
+    "pipewire-jack",
+    "gst-plugin-pipewire",
+    "wireplumber",
+    # gui for audio
+    "pavucontrol",
+    # bluetooth things
+    "bluez",
+    "bluez-utils",
+    "blueman",
+    # Other system things like brightness, etc
+    "brightnessctl",
+    "playerctl",
+    "pamixer",
+    "udiskie",
+    # Network Things
+    "network-manager",
+    "iwd",
+    "network-manager-applet",
+]
+
+DE_PACKAGES: Final[List[str]] = [
+    "ly",
+    "hyprland",
+    "fuzzel",
+    "waybar",
+    "awww",
+    "eww",
+    "wlogout",
+    "grim",
+    "slurp",
+    "cliphist",
+    # hypr * things
+    "hyprlock",
+    "hyprsunset",
+    "hypridle",
+    "xdg-desktop-portal-hyprland",
+    "polkit-gnome",
+]
+
+TERMINAL_PACKAGES: Final[List[str]] = [
+    "zsh",
+    "nvim",
+    "eza",
+    "ripgrep",
+    "tty-clock",
+    "fzf",
+    "tmux",
+    "loginctl",
+    "sudo-rs",
+    "yazi",
+    "fastfetch",
+    "pfetch",
+    "nitch",
+]
+
 
 AUR_PACKAGES: Final[List[str]] = [
     "paru",
     "bibata-cursor-theme-bin",
-    "booster-um",
     "pyprland",
     "hyprrecord",
-    "eww",
     "ttf-google-fonts-git",
-    "tty-clock",
-    "waybar-git",
-    "wlogout",
     "zen-browser-bin",
 ]
-ALL_PACKAGES: Final[List[str]] = [*SYSTEM_PACKAGES, *AUR_PACKAGES]
+ALL_PACKAGES: Final[List[str]] = [
+    *SYSTEM_PACKAGES,
+    *AUR_PACKAGES,
+    *SYSTEM_PACKAGES,
+    *DE_PACKAGES,
+    *TERMINAL_PACKAGES,
+    *USER_PACKAGES,
+]
 
 ENABLED_SERVICES: Final[List[str]] = [
     "sshd",
@@ -51,4 +124,4 @@ class Colors:
     GREEN: str = "\033[92m"
     YELLOW: str = "\033[93m"
     BLUE: str = "\033[94m"
-    RESET: str = ":\033[0m"
+    RESET: str = "\033[0m"

@@ -21,6 +21,7 @@ alias rbt="systemctl reboot --no-wall"
 alias logout="loginctl terminate-session $(loginctl | rg $(whoami) | awk '{print $1}')"
 alias sudo="sudo-rs"
 alias su="su-rs"
+alias visudo="visudo-rs"
 alias new="touch"
 
 alias note="yazi ~/Obsidian/"
