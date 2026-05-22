@@ -86,8 +86,10 @@ return function()
     bind(mainMod .. "+mouse:272", hypr.window.drag(), { mouse = true })
     bind(mainMod .. "+mouse:273", hypr.window.resize(), { mouse = true })
 
-    bind("XF86AudioRaiseVolume", exec("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { repeating = true })
-    bind("XF86AudioLowerVolume", exec("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"), { repeating = true })
+    bind("XF86AudioRaiseVolume", exec("pamixer --increase 5 ; ~/.config/scripts/OSD.sh"),
+        { repeating = true })
+    bind("XF86AudioLowerVolume", exec("pamixer --decrease 5 ; ~/.config/scripts/OSD.sh"),
+        { repeating = true })
     bind("XF86AudioMute", exec("pamixer -t"), { locked = true })
     bind("ALT+XF86AudioRaiseVolume", exec("brightnessctl -e4 -n2 set 5%+"), { repeating = true })
     bind("ALT+XF86AudioLowerVolume", exec("brightnessctl -e4 -n2 set 5%-"), { repeating = true })

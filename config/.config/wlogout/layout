@@ -16,3 +16,23 @@
   "text": "",
   "keybind": "s",
 },
+{
+  "label": "lock",
+  "action": "hyprlock",
+  "text": "",
+  "keybind": "l",
+},
+
+{
+  "label": "logout",
+  "action": "loginctl terminate-user $USER",
+  "text": "",
+  "keybind": "e"
+},
+
+{
+  "label": "hibernate",
+  "action": "systemctl hibernate",
+  "text": "",
+  "keybind": "h"
+}

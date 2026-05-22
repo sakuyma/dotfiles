@@ -2,15 +2,15 @@
 # zshrc
 
 ```
-ZSHRC_START_TIME=$(date +%s.%N)
+export ZSHRC_START_TIME=$EPOCHREALTIME
 
 export ZSH_CONFIG="$HOME/.config/zsh"
 export ZSH_CONFD="$ZSH_CONFIG/conf.d"
 
 zsh_modules=(
+    "$ZSH_CONFD/syntax.zsh"
     "$ZSH_CONFD/plugins.zsh"
     "$ZSH_CONFD/options.zsh"
-    "$ZSH_CONFD/prompt.zsh"
     "$ZSH_CONFD/env.zsh"
     "$ZSH_CONFD/hooks.zsh"
     "$ZSH_CONFD/functions.zsh"
@@ -22,6 +22,9 @@ zsh_modules=(
 for module in "${zsh_modules[@]}"; do
     [[ -f "$module" ]] && source "$module"
 done
+
+# export ZSH_LOAD_TIME=$(printf "%.3f" $(($EPOCHREALTIME - $ZSHRC_START_TIME)))
+# echo "DEBUG: ZSH_LOAD_TIME = $ZSH_LOAD_TIME"
 
 ```
 
@@ -792,12 +795,146 @@ notify_user "Countdown" "Timer Finished"
 
 ```
 
+# conf.d/hooks.zsh
+
+```
+eval "$(fzf --zsh)"
+eval "$(zoxide init --cmd cd zsh)"
+eval "$(starship init zsh)"
+eval "$(atuin init zsh)"
+
+if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+  tmux attach-session -t default || tmux new-session -s default
+fi
+
+```
+
+# conf.d/aliases.zsh
+
+```
+alias calc="gcalccmd"
+alias c="clear"
+alias cls="clear"
+alias clock="tty-clock"
+alias ls="eza --icons"
+alias tree="ls --tree"
+alias v="nvim"
+
+alias src='source'
+alias inv='nvim $(fzf --tmux top,60%  -m --preview="bat --color=always {}")'
+alias killfzf='kill -9 $(ps aux | fzf-tmux --height 60% --multi | awk "{print \$2}")'
+alias tmux-del='tmux list-sessions -F "#{session_name}" | grep -v "^default$"| xargs -I {} tmux kill-session -t {}'
+alias i='paru -S'
+
+alias ff="fastfetch"
+alias pf="pfetch"
+alias nf="nitch"  
+
+alias poff="systemctl poweroff --no-wall"
+alias rbt="systemctl reboot --no-wall"
+alias logout="loginctl terminate-session $(loginctl | rg $(whoami) | awk '{print $1}')"
+alias sudo="sudo-rs"
+alias su="su-rs"
+alias visudo="visudo-rs"
+alias new="touch"
+
+alias note="yazi ~/Obsidian/"
+
+alias daily="nvim ~/Obsidian/Life/game/Quests/Daily/$(date +%Y-%m-%d).md"
+
+```
+
+# conf.d/syntax.zsh
+
+```
+if [[ ! -f "$HOME/.config/fsh/catppuccin-mocha.ini "]]; then
+    fast-theme XDG:catppuccin-mocha
+fi
+
+# Catppuccin Mocha Theme (for zsh-syntax-highlighting)
+#
+# Paste this files contents inside your ~/.zshrc before you activate zsh-syntax-highlighting
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main cursor)
+typeset -gA ZSH_HIGHLIGHT_STYLES
+
+# Main highlighter styling: https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters/main.md
+#
+## General
+### Diffs
+### Markup
+## Classes
+## Comments
+ZSH_HIGHLIGHT_STYLES[comment]='fg=#585b70'
+## Constants
+## Entitites
+## Functions/methods
+ZSH_HIGHLIGHT_STYLES[alias]='fg=#a6e3a1'
+ZSH_HIGHLIGHT_STYLES[suffix-alias]='fg=#a6e3a1'
+ZSH_HIGHLIGHT_STYLES[global-alias]='fg=#a6e3a1'
+ZSH_HIGHLIGHT_STYLES[function]='fg=#a6e3a1'
+ZSH_HIGHLIGHT_STYLES[command]='fg=#a6e3a1'
+ZSH_HIGHLIGHT_STYLES[precommand]='fg=#a6e3a1,italic'
+ZSH_HIGHLIGHT_STYLES[autodirectory]='fg=#fab387,italic'
+ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=#fab387'
+ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=#fab387'
+ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=#cba6f7'
+## Keywords
+## Built ins
+ZSH_HIGHLIGHT_STYLES[builtin]='fg=#a6e3a1'
+ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=#a6e3a1'
+ZSH_HIGHLIGHT_STYLES[hashed-command]='fg=#a6e3a1'
+## Punctuation
+ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=#f38ba8'
+ZSH_HIGHLIGHT_STYLES[command-substitution-delimiter]='fg=#cdd6f4'
+ZSH_HIGHLIGHT_STYLES[command-substitution-delimiter-unquoted]='fg=#cdd6f4'
+ZSH_HIGHLIGHT_STYLES[process-substitution-delimiter]='fg=#cdd6f4'
+ZSH_HIGHLIGHT_STYLES[back-quoted-argument-delimiter]='fg=#f38ba8'
+ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]='fg=#f38ba8'
+ZSH_HIGHLIGHT_STYLES[back-dollar-quoted-argument]='fg=#f38ba8'
+## Serializable / Configuration Languages
+## Storage
+## Strings
+ZSH_HIGHLIGHT_STYLES[command-substitution-quoted]='fg=#f9e2af'
+ZSH_HIGHLIGHT_STYLES[command-substitution-delimiter-quoted]='fg=#f9e2af'
+ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=#f9e2af'
+ZSH_HIGHLIGHT_STYLES[single-quoted-argument-unclosed]='fg=#eba0ac'
+ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=#f9e2af'
+ZSH_HIGHLIGHT_STYLES[double-quoted-argument-unclosed]='fg=#eba0ac'
+ZSH_HIGHLIGHT_STYLES[rc-quote]='fg=#f9e2af'
+## Variables
+ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument]='fg=#cdd6f4'
+ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument-unclosed]='fg=#eba0ac'
+ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]='fg=#cdd6f4'
+ZSH_HIGHLIGHT_STYLES[assign]='fg=#cdd6f4'
+ZSH_HIGHLIGHT_STYLES[named-fd]='fg=#cdd6f4'
+ZSH_HIGHLIGHT_STYLES[numeric-fd]='fg=#cdd6f4'
+## No category relevant in spec
+ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=#eba0ac'
+ZSH_HIGHLIGHT_STYLES[path]='fg=#cdd6f4,underline'
+ZSH_HIGHLIGHT_STYLES[path_pathseparator]='fg=#f38ba8,underline'
+ZSH_HIGHLIGHT_STYLES[path_prefix]='fg=#cdd6f4,underline'
+ZSH_HIGHLIGHT_STYLES[path_prefix_pathseparator]='fg=#f38ba8,underline'
+ZSH_HIGHLIGHT_STYLES[globbing]='fg=#cdd6f4'
+ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=#cba6f7'
+#ZSH_HIGHLIGHT_STYLES[command-substitution]='fg=?'
+#ZSH_HIGHLIGHT_STYLES[command-substitution-unquoted]='fg=?'
+#ZSH_HIGHLIGHT_STYLES[process-substitution]='fg=?'
+#ZSH_HIGHLIGHT_STYLES[arithmetic-expansion]='fg=?'
+ZSH_HIGHLIGHT_STYLES[back-quoted-argument-unclosed]='fg=#eba0ac'
+ZSH_HIGHLIGHT_STYLES[redirection]='fg=#cdd6f4'
+ZSH_HIGHLIGHT_STYLES[arg0]='fg=#cdd6f4'
+ZSH_HIGHLIGHT_STYLES[default]='fg=#cdd6f4'
+ZSH_HIGHLIGHT_STYLES[cursor]='fg=#cdd6f4'
+
+```
+
 # conf.d/env.zsh
 
 ```
+#!/usr/bin/env zsh
 paths=(
     "/usr/local/opt/openjdk/bin"
-    # "$HOME/.cargo/bin"
+    "$HOME/.cargo/bin"
     "$HOME/.spicetify"
     "$HOME/.local/bin"
     "$HOME/.config/zsh/scripts"
@@ -816,13 +953,6 @@ export FETCH="fastfetch"
 
 export LANG=en_US.utf8
 export LC_ALL=en_US.utf8
-
-```
-
-# conf.d/prompt.zsh
-
-```
-eval "$(starship init zsh)"
 
 ```
 
@@ -879,13 +1009,30 @@ zinit wait"0" lucid for \
 # conf.d/options.zsh
 
 ```
-
 export FZF_DEFAULT_OPTS=" \
 --color=bg+:#313244,bg:#1E1E2E,spinner:#B4BEFE,hl:#F38BA8 \
 --color=fg:#CDD6F4,header:#F38BA8,info:#B4BEFE,pointer:#F5E0DC \
 --color=marker:#B4BEFE,fg+:#CDD6F4,prompt:#B4BEFE,hl+:#F38BA8 \
 --color=selected-bg:#45475A \
---color=border:#6C7086,label:#CDD6F4"
+--color=border:#6C7086,label:#CDD6F4 \
+--border=rounded \
+--margin=3% \
+--padding=1 \
+--height=60% \
+--min-height=15 \
+--layout=reverse \
+--info=inline-right \
+--separator='┄' \
+--scrollbar='▌' \
+--prompt='❯ ' \
+--marker='✓' \
+--pointer='▶' \
+--preview-window='right:60%:rounded' \
+--preview='bat --color=always --style=full --line-range=:500 {} 2>/dev/null || \
+           exa --color=always --icons --tree --level=2 {} 2>/dev/null || \
+           head -n 500 {} 2>/dev/null || \
+           echo \"Cannot preview: {} is binary or unsupported\"' \
+"
 
 zstyle ':completion:*' special-dirs true
 zstyle ':completion:*' list-colors ''
@@ -916,24 +1063,13 @@ bindkey '^[d' kill-word
 
 ```
 
-# conf.d/hooks.zsh
-
-```
-eval "$(fzf --zsh)"
-eval "$(zoxide init zsh)"
-eval "$(starship init zsh)"
-
-if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-  tmux attach-session -t default || tmux new-session -s default
-fi
-
-```
-
 # conf.d/functions.zsh
 
 ```
 function starttime() {
-  echo "zsh loaded in ${ZSHRC_DURATION}s"
+    local end_time=$EPOCHREALTIME
+    local duration=$((end_time - ZSHRC_START_TIME))
+    print -P "%F{green}✓ zsh loaded in ${(f)duration} seconds%f"
 }
 
 function y() {
@@ -983,6 +1119,14 @@ function blame() {
     echo "$system" | eval "$grepl" | $print
 }
 
+function fv() {
+  local file
+  file=$(fzf)
+  if [[ -n "$file" ]]; then
+    nvim "$file"
+  fi
+} 
+
 ```
 
 # conf.d/etc.zsh
@@ -1007,40 +1151,5 @@ bindkey -M vicmd 'h' vi-backward-char
 bindkey -M vicmd 'l' vi-forward-char
 bindkey -M vicmd 'j' vi-down-line-or-history
 bindkey -M vicmd 'k' vi-up-line-or-history
-
-```
-
-# conf.d/aliases.zsh
-
-```
-alias calc="gcalccmd"
-alias c="clear"
-alias cls="clear"
-alias clock="tty-clock"
-alias ls="eza --icons"
-alias tree="ls --tree"
-alias n="nvim"
-
-alias src='source'
-alias inv='nvim $(fzf --tmux top,60%  -m --preview="bat --color=always {}")'
-alias killfzf='kill -9 $(ps aux | fzf-tmux --height 60% --multi | awk "{print \$2}")'
-alias tmux-del='tmux list-sessions -F "#{session_name}" | grep -v "^default$"| xargs -I {} tmux kill-session -t {}'
-alias i='paru -S'
-
-alias ff="fastfetch"
-alias pf="pfetch"
-alias nf="nitch"
-alias icat="kitten icat"
-
-alias poff="systemctl poweroff --no-wall"
-alias rbt="systemctl reboot --no-wall"
-alias logout="loginctl terminate-session $(loginctl | rg $(whoami) | awk '{print $1}')"
-alias cd="z"
-alias sudo="sudo-rs"
-alias su="su-rs"
-
-alias note="yazi ~/Obsidian/"
-
-alias daily="nvim ~/Obsidian/Life/game/Quests/Daily/$(date +%Y-%m-%d).md"
 
 ```
