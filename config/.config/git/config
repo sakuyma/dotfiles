@@ -2,6 +2,9 @@
     editor = nvim
     autocrlf = input
     excludesfile = ~/.config/git/ignore
+    fsmonitor = true
+    untrackedCache = true
+    preloadIndex = true
 
 [init]
 defaultBranch = main
@@ -20,33 +23,46 @@ lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen
 hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
 
 [merge]
-conflictstyle = diff3
+conflictstyle = zdiff3 
 tool = nvimdiff
 
+[mergetool "nvimdiff"]
+    cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c 'wincmd J' -c 'set diffopt+=vertical'
+
 [mergetool]
-keepBackup = false
+    keepBackup = false
+
+[mergetool "nvimdiff"]
+    cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c 'wincmd J' -c 'set diffopt+=vertical'
+
+[rebase]
+    autoStash = true
+    updateRefs = true
+
+[diff]
+    algorithm = histogram
+    colorMoved = default
+
+[commit]
+    verbose = true
 
 [pull]
-ff = only
+    ff = only
 
 [fetch]
-prune = true
+    prune = true
 
 [push]
-default = simple
-autoSetupRemote = true
+    default = simple
+    autoSetupRemote = true
 
-[credential]
-helper = cache --timeout=3600
 [credential "https://github.com"]
-	helper = 
 	helper = !/usr/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-	helper = 
     helper = !/usr/bin/gh auth git-credential
 
 [interactive]
-    diffFilter = delta --color-only
+    diffFilter = delta --color-only --keep-plus-minus-markers
 
 [pager]
     diff = delta

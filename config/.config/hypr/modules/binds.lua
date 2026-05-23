@@ -3,6 +3,7 @@ local progs = require("modules.programs")
 local bind = hl.bind
 local exec = hl.dsp.exec_cmd
 local hypr = hl.dsp
+local plugin = hl.plugin
 
 return function()
     local mainMod = "SUPER"
@@ -93,4 +94,22 @@ return function()
     bind("XF86AudioMute", exec("pamixer -t"), { locked = true })
     bind("ALT+XF86AudioRaiseVolume", exec("brightnessctl -e4 -n2 set 5%+"), { repeating = true })
     bind("ALT+XF86AudioLowerVolume", exec("brightnessctl -e4 -n2 set 5%-"), { repeating = true })
+
+    bind("ALT+TAB", function() plugin.hyprexpo.expo() end)
+
+    hl.define_submap("hyprexpo", function()
+        hl.bind("left", function() hl.plugin.hyprexpo.kb_focus("left") end)
+        hl.bind("right", function() hl.plugin.hyprexpo.kb_focus("right") end)
+        hl.bind("up", function() hl.plugin.hyprexpo.kb_focus("up") end)
+        hl.bind("down", function() hl.plugin.hyprexpo.kb_focus("down") end)
+        -- vim like:
+        hl.bind("h", function() hl.plugin.hyprexpo.kb_focus("left") end)
+        hl.bind("l", function() hl.plugin.hyprexpo.kb_focus("right") end)
+        hl.bind("k", function() hl.plugin.hyprexpo.kb_focus("up") end)
+        hl.bind("j", function() hl.plugin.hyprexpo.kb_focus("down") end)
+
+
+        hl.bind("return", function() hl.plugin.hyprexpo.kb_confirm() end)
+        hl.bind("escape", function() hl.plugin.hyprexpo.expo("cancel") end)
+    end)
 end

@@ -1,7 +1,7 @@
 require("modules.env")()
 require("modules/monitors")()
 require("modules/theme")
--- require("modules/plugins")()
+require("modules/plugins")()
 require("modules/general")()
 require("modules/decorations")()
 require("modules/animations")()
