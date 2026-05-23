@@ -1,0 +1,9 @@
+@media (prefers-color-scheme: dark) {
+  @-moz-document url-prefix("about:") {
+    :root {
+      --in-content-page-color: #a9b1d6 !important;
+      --color-accent-primary: #7aa2f7 !important;
+      background-color: #1a1b26 !important;
+    }
+  }
+}

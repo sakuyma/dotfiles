@@ -1,0 +1,16 @@
+.visual-refresh.theme-dark,.visual-refresh .theme-dark {
+  --brand-experiment: #7aa2f7;
+  --bg-brand: #7aa2f7;
+  --brand-500: #7aa2f7 !important;
+  --header-primary: #a9b1d6 !important;
+  --header-secondary: #787c99 !important;
+  --__header-bar-background: #16161e !important;
+  --text-normal: #a9b1d6 !important;
+  --text-muted: #787c99 !important;
+  --text-link: #7aa2f7 !important;
+  --background-primary: #1a1b26 !important;
+  --background-secondary: #16161e !important;
+  --background-tertiary: #101014 !important;
+  --background-accent: #2f3549 !important;
+  --scrollbar-thin-thumb: #7aa2f7;
+}

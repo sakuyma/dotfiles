@@ -1,0 +1,9 @@
+// Tokio night Niri configuration
+layout {
+    focus-ring {
+        color "#7aa2f7"
+    }
+    border {
+        off-color "#16161e"
+    }
+}

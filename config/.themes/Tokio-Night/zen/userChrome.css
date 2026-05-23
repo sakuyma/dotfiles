@@ -1,0 +1,15 @@
+@media (prefers-color-scheme: dark) {
+  :root {
+    --zen-colors-primary: #24283b !important;
+    --zen-primary-color: #7aa2f7 !important;
+    --zen-colors-secondary: #24283b !important;
+    --zen-colors-tertiary: #16161e !important;
+    --zen-colors-border: #7aa2f7 !important;
+    --toolbarbutton-icon-fill: #7aa2f7 !important;
+    --lwt-text-color: #a9b1d6 !important;
+    --sidebar-text-color: #a9b1d6 !important;
+    --lwt-sidebar-background-color: #101014 !important;
+    --toolbar-bgcolor: #24283b !important;
+    --newtab-background-color: #1a1b26 !important;
+  }
+}

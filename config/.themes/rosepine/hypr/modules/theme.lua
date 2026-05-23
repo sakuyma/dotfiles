@@ -1,4 +1,4 @@
-local Background = "rgba(1C1C2Aff)"
+local Background = "rgba(1c1c2aff)"
 local Accent = "rgba(b4befeff)"
 local Foreground = "rgba(181825ff)"
 local Red = "rgb(f38ba8)"
@@ -17,3 +17,4 @@ return {
     Orange = Orange,
     Blue = Blue
 }
+
