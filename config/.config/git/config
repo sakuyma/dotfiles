@@ -1,30 +1,32 @@
 [core]
     editor = nvim
-    autocrlf = input
     excludesfile = ~/.config/git/ignore
+    autocrlf = input
+# Performance
     fsmonitor = true
     untrackedCache = true
     preloadIndex = true
 
 [init]
-defaultBranch = main
+    defaultBranch = main
 
 [color]
     ui = auto
 
 [alias]
-co = checkout
-br = branch
-ci = commit -m
-st = status
-unstage = reset HEAD --
-last = log -1 HEAD
-lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+    co = checkout
+    br = branch
+    ci = commit -m
+    st = status
+    unstage = reset HEAD --
+    last = log -1 HEAD
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date = short
+    commit = commit --signoff
 
 [merge]
-conflictstyle = zdiff3 
-tool = nvimdiff
+    conflictstyle = zdiff3 
+    tool = nvimdiff
 
 [mergetool "nvimdiff"]
     cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c 'wincmd J' -c 'set diffopt+=vertical'
@@ -32,8 +34,9 @@ tool = nvimdiff
 [mergetool]
     keepBackup = false
 
-[mergetool "nvimdiff"]
-    cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c 'wincmd J' -c 'set diffopt+=vertical'
+[rerere]
+    enabled = true
+    autoupdate = true
 
 [rebase]
     autoStash = true
@@ -55,6 +58,16 @@ tool = nvimdiff
 [push]
     default = simple
     autoSetupRemote = true
+
+[maintenance]
+    auto = true
+
+[submodule]
+    fetchJobs = 8
+    active = ./
+
+[receive]
+    denyDeletes = true
 
 [credential "https://github.com"]
 	helper = !/usr/bin/gh auth git-credential
