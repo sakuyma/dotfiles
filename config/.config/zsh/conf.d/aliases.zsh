@@ -5,6 +5,7 @@ alias clock="tty-clock"
 alias ls="eza --icons"
 alias tree="ls --tree"
 alias v="nvim"
+alias cat="bat"
 
 alias src='source'
 alias inv='nvim $(fzf --tmux top,60%  -m --preview="bat --color=always {}")'

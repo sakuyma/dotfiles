@@ -8,7 +8,7 @@ return function()
                 gaps_in = 5,
                 gaps_out = 0,
                 bg_col = colors.Background,
-                workspace_method = "center current",
+                workspace_method = "first 1",
                 tile_rounding = 3,
                 border_color = colors.Background,
                 border_color_current = colors.Green,

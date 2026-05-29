@@ -1,6 +1,0 @@
-layout {
-    border {
-        active-color "#b4befe"
-        inactive-color "#1c1c2a"
-    }
-}
