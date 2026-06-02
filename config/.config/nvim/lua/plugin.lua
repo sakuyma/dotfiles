@@ -46,11 +46,12 @@ require("lazy").setup({
             lazy = true,
             event = "InsertEnter",
             dependencies = {
-                { "onsails/lspkind.nvim", lazy = true, event = "InsertEnter" },
-                { "hrsh7th/cmp-nvim-lsp", lazy = true, event = "InsertEnter" },
-                { "hrsh7th/cmp-buffer", lazy = true, event = "InsertEnter" },
-                { "hrsh7th/cmp-path", lazy = true, event = "InsertEnter" },
-                { "hrsh7th/cmp-cmdline", lazy = true, event = "InsertEnter" },
+                "L3MON4D3/LuaSnip",
+                { "onsails/lspkind.nvim",     lazy = true, event = "InsertEnter" },
+                { "hrsh7th/cmp-nvim-lsp",     lazy = true, event = "InsertEnter" },
+                { "hrsh7th/cmp-buffer",       lazy = true, event = "InsertEnter" },
+                { "hrsh7th/cmp-path",         lazy = true, event = "InsertEnter" },
+                { "hrsh7th/cmp-cmdline",      lazy = true, event = "InsertEnter" },
                 { "saadparwaiz1/cmp_luasnip", lazy = true, event = "InsertEnter" },
             },
         },
@@ -79,7 +80,6 @@ require("lazy").setup({
             event = "VeryLazy",
             dependencies = {
                 "MunifTanjim/nui.nvim",
-                "rcarriga/nvim-notify",
             },
         },
         {
@@ -111,18 +111,8 @@ require("lazy").setup({
             cmd = "Trouble",
             keys = { "<leader>xx" },
         },
-        -- autopairs
-        {
-            "windwp/nvim-autopairs",
-            event = "InsertEnter",
-        },
-        -- terminal
-        {
-            "akinsho/toggleterm.nvim",
-            cmd = "ToggleTerm",
-            keys = { "<leader>tt" },
-        },
-        -- theme (catppuccin основная, остальные ленивые)
+        
+        -- theme
         {
             "catppuccin/nvim",
             lazy = false,
@@ -154,19 +144,17 @@ require("lazy").setup({
             event = "BufAdd",
             dependencies = { "nvim-tree/nvim-web-devicons" },
         },
-        -- dashboard
         {
-            "nvimdev/dashboard-nvim",
-            event = "VimEnter",
+            "echasnovski/mini.pairs",
+            event = "VeryLazy",
+            config = function()
+                require("mini.pairs").setup()
+            end,
         },
-        -- explorer + lazygit + indent
+        -- explorer + lazygit + indent + picker + terminal + dashboard
         {
             "folke/snacks.nvim",
             lazy = true,
-            keys = {
-                { "<leader>e", function() require("snacks").explorer() end },
-                { "<leader>gg", function() require("snacks").lazygit() end },
-            },
         },
         -- statusline
         {
@@ -179,24 +167,6 @@ require("lazy").setup({
             event = { "BufReadPre", "BufNewFile" },
             dependencies = { "nvim-lua/plenary.nvim" },
         },
-        -- finder
-        {
-            "nvim-telescope/telescope.nvim",
-            branch = "0.1.x",
-            cmd = "Telescope",
-            keys = {
-                { "<leader>ff", "<cmd>Telescope find_files<cr>" },
-                { "<leader>fg", "<cmd>Telescope live_grep<cr>" },
-            },
-            dependencies = {
-                "nvim-lua/plenary.nvim",
-                "folke/todo-comments.nvim",
-            },
-        },
-        {
-            "mfussenegger/nvim-lint",
-            event = { "BufReadPost", "BufNewFile" },
-        },
         -- AI
         {
             "folke/sidekick.nvim",
@@ -208,11 +178,7 @@ require("lazy").setup({
             "norcalli/nvim-colorizer.lua",
             event = { "BufReadPost", "BufNewFile" },
         },
-        {
-            "nvim-mini/mini.surround",
-            event = "VeryLazy",
-        },
-        -- Obsidian in term
+        -- Obsidian in terminal
         {
             "MeanderingProgrammer/render-markdown.nvim",
             ft = "markdown",

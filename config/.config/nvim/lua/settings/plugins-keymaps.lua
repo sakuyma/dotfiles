@@ -58,18 +58,22 @@ key("n", "<leader>hd", "<cmd>Gitsigns diffthis<cr>")
 key("v", "<leader>hs", "<cmd>Gitsigns stage_hunk<cr>")
 key("v", "<leader>hr", "<cmd>Gitsigns reset_hunk<cr>")
 
+local snacks = require("snacks")
+-- terminal 
+key("n", "<leader>t", function() snacks.terminal.toggle() end)
+key("t", "<leader>t", function() snacks.terminal.toggle() end)
+
 -- explorer --
-key("n", "<leader>n", "<cmd>lua Snacks.explorer()<cr>", { silent = true })
+key("n", "<leader>n", function() snacks.explorer() end, { silent = true })
 
 -- finder --
-local builtin = require("telescope.builtin")
-key("n", "<leader>ff", builtin.find_files)
-key("n", "<leader>fo", builtin.oldfiles)
-key("n", "<leader>fg", builtin.live_grep)
-key("n", "<leader>tt", "<cmd>TodoTelescope<cr>")
-key("n", "<leader>gb", builtin.git_branches)
-key("n", "<leader>gc", builtin.git_commits)
-key("n", "<leader>gs", builtin.git_status)
+key("n", "<leader>ff", function() snacks.picker.files() end, { desc = "Find Files" })
+key("n", "<leader>fo", function() snacks.picker.recent() end, { desc = "Recent Files" })
+key("n", "<leader>fg", function() snacks.picker.grep() end, { desc = "Live Grep" })
+key("n", "<leader>tt", function() snacks.picker.todo_comments() end, { desc = "Todo Comments" })
+key("n", "<leader>gb", function() snacks.picker.git_branches() end, { desc = "Git Branches" })
+key("n", "<leader>gc", function() snacks.picker.git_log() end, { desc = "Git Commits" })
+key("n", "<leader>gs", function() snacks.picker.git_status() end, { desc = "Git Status" })
 
 -- troubleshoots --
 key("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>")
@@ -78,7 +82,7 @@ key("n", "<leader>xb", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>")
 
 -- tabs --
 key("n", "<Tab>", "<Cmd>BufferLineCycleNext<CR>", { noremap = true, silent = true })
-key("n", "<S-Tab>", "<Cmd>BufferLineCycleNext<CR>", { noremap = true, silent = true })
+key("n", "<S-Tab>", "<Cmd>BufferLineCyclePrev<CR>", { noremap = true, silent = true })
 key("n", "tt", "<Cmd>BufferLineCycleNext<CR>", { noremap = true, silent = true })
 
 key("n", "<leader>rn", ":file ", { noremap = true, desc = "Rename buffer (display name)" })
@@ -99,15 +103,15 @@ key("n", "<bs>", ":edit #<cr>", { silent = true })
 key("n", "<leader>sc", "<cmd>Sidekick cli toggle<cr>", { silent = true, desc = "Toggle Sidekick CLI" })
 
 -- mini.surround --
-local surround = require("mini.surround")
-surround.setup({
-    mappings = {
-        add = "sa",
-        delete = "",
-        replace = "",
-        find = "",
-        find_left = "",
-        highlight = "sh",
-        update_n_lines = "",
-    },
-})
+-- local surround = require("mini.surround")
+-- surround.setup({
+--     mappings = {
+--         add = "sa",
+--         delete = "",
+--         replace = "",
+--         find = "",
+--         find_left = "",
+--         highlight = "sh",
+--         update_n_lines = "",
+--     },
+-- })

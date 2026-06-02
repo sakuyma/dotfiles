@@ -45,3 +45,7 @@ Thumbs.db
 **/*.cert
 **/config/credentials.yml.enc
 summary.md
+config/.config/VSCodium/*
+!config/.config/VSCodium/User/
+config/.config/VSCodium/User/*
+!config/.config/VSCodium/User/settings.json

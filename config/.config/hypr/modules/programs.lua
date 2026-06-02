@@ -8,6 +8,7 @@ local discord = "discord --enable-features=UseOzonePlatform --ozone-platform=way
 local music = "LD_PRELOAD=/usr/local/lib/spotify-adblock.so spotify --enable-features=UseOzonePlatform --ozone-platform=wayland"
 local obsidian = "obsidian --enable-features=UseOzonePlatform --ozone-platform=wayland"
 local ide = "vscodium --disable-gpu-sandbox --enable-features=UseOzonePlatform --ozone-platform=wayland"
+local lockscreen = "hyprlock"
 
 return {
     terminal = terminal,
@@ -19,5 +20,6 @@ return {
     discord = discord,
     music = music,
     obsidian = obsidian,
-    ide = ide
+    ide = ide,
+    lockscreen = lockscreen
 }

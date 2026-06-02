@@ -5,7 +5,7 @@ return function()
         general = {
             gaps_in = 5,
             gaps_out = 20,
-            border_size = 3,
+            border_size = 2,
             col = {
                 active_border = colors.Accent,
                 inactive_border = colors.Background

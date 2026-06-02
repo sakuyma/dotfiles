@@ -1,33 +1,33 @@
 require("aerial").setup {
-  backends = {
-    "lsp",
-    "treesitter",
-  },
-  filter_kind = {
-    "Class",
-    "Function",
-    "Method",
-    "Interface",
-    "Struct",
-    "Array",
-    "Constructor",
-    "Enum",
-    "Module",
-  },
-  close_behavior = "global",
-  show_guides = false,
-  layout = {
-    default_direction = "left",
-    max_width = {
-      40,
-      0.3
+    backends = {
+        "lsp",
+        "treesitter",
     },
-    min_width = 25,
-  },
-  ignore = {
-    filetypes = {},
-  },
-  icons = require("icons").outline,
+    filter_kind = {
+        "Class",
+        "Function",
+        "Method",
+        "Interface",
+        "Struct",
+        "Array",
+        "Constructor",
+        "Enum",
+        "Module",
+    },
+    close_behavior = "global",
+    show_guides = false,
+    layout = {
+        default_direction = "left",
+        max_width = {
+            40,
+            0.3
+        },
+        min_width = 25,
+    },
+    ignore = {
+        filetypes = {},
+    },
+    icons = require("icons").outline,
 }
 
 

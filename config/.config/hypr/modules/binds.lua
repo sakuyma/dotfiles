@@ -21,6 +21,8 @@ return function()
     bind(mainMod .. "+B", exec(progs.browser_main))
     bind(secMod .. "+B", exec(progs.browser_second))
     bind(mainMod .. "+E", exec(progs.file_manager))
+    bind(secMod .. "+M", exec(progs.lockscreen))
+    bind(mainMod .. "+M", exec(progs.music))
 
     bind("CTRL+ALT+Delete", exec("killall wlogout || wlogout"))
     bind(mainMod .. "+D", exec("killall fuzzel || fuzzel"))
@@ -85,6 +87,7 @@ return function()
     bind(mainMod .. "+SHIFT+K", hypr.window.resize({ x = 0, y = -50, relative = true }))
 
     bind(mainMod .. "+mouse:272", hypr.window.drag(), { mouse = true })
+    -- bind("z", exec("python3 ~/stun-slam.py"))
     bind(mainMod .. "+mouse:273", hypr.window.resize(), { mouse = true })
 
     bind("XF86AudioRaiseVolume", exec("pamixer --increase 5 ; ~/.config/scripts/OSD.sh"),
@@ -112,4 +115,5 @@ return function()
         hl.bind("return", function() hl.plugin.hyprexpo.kb_confirm() end)
         hl.bind("escape", function() hl.plugin.hyprexpo.expo("cancel") end)
     end)
+
 end

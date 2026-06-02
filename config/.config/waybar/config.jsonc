@@ -1,18 +1,39 @@
-{
-    "reload_style_on_change": true,
-    
-    "position": "top",
-    "margin-top": 15,
-    "modules-left": ["custom/os-button","mpris"],
-    "modules-center": ["clock", "hyprland/workspaces", "tray"],
-    "modules-right": ["pulseaudio", "network", "battery", "custom/notification"],
+// __        __          _
+// \ \      / /_ _ _   _| |__   __ _ _ __
+//  \ \ /\ / / _` | | | | '_ \ / _` | '__|
+//   \ V  V / (_| | |_| | |_) | (_| | |
+//    \_/\_/ \__,_|\__, |_.__/ \__,_|_|
+//                 |___/
+//
 
-    "clock": {
-        "format": "{:%R}",
-        "tooltip-format": "{:%d %B %Y}",
-        "on-click": "eww open calendar --toggle --no-daemonize & eww close actioncenter musiccenter"
-    },
+// by sakuyma
+// ========================================================
+
+
+
+// ====================== Main ======================
+
+{
+	"reload_style_on_change": true,
+    "position": "top",
+    "margin-top": 18, 
+
+    "modules-center": [
+        "tray",
+        "clock",
+        "custom/media",
+        "hyprland/workspaces",
+        "pulseaudio",
+        "network",
+        "battery",
+    ],
     
+
+    "hyprland/submap": {
+        "format": "{}",
+        "tooltip": false
+    },
+
     "hyprland/workspaces": {
         "format":"{icon}",
         "format-icons": {
@@ -36,47 +57,31 @@
         "on-scroll-down": "hyprctl dispatch workspace e+1",
         "on-scroll-up": "hyprctl dispatch workspace  e-1"
     },
-   
-    "tray": {
-        "icon-size": 21,
-        "spacing": 10
-    },
 
-    
-    "pulseaudio": {
-        "max-volume": 150,
-        "scroll-step": 10,
-        
-        "format": "{icon}",
-        "tooltip-format": "{icon}  {volume}%",
-        
-        "format-icons": {
-        "headphone": "",
-        "format-muted": "",
-        "default": ["", ""]
-        },
-
-        "on-click": "pavucontrol",
-        "menu": "on-click-right",
-        "menu-file": "~/.config/waybar/volume_menu.xml",
-        "menu-actions": {
-            "ToggleSound": "pamixer -t",
-            "pavu": "pavucontrol",
-        },
-    },
-
-    
     "network": {
-        "format-wifi": "{essid} {icon}",
-        "format-ethernet": "󰤨",
-        "format-disconnected": "󰤨",
+        "format-wifi": "{icon}",
+        "format-ethernet": "󰤨 ",
+        "format-disconnected": "󰤨 ",
         "tooltip-format": "{icon}",
-        "format-icons": ["󰤯", "󰤟", "󰤢", "󰤢", "󰤨"],
+        "format-icons": ["󰤯 ", "󰤟 ", "󰤢 ", "󰤢 ", "󰤨 "],
 
         "on-click": "bash ~/.config/scripts/rofiwifi.sh",
         "on-click-right": "bash ~/.config/scripts/rofiwifi.sh"
     },
 
+    "bluetooth": {
+
+        "format": "",
+        "format-connected": " {device_alias}",
+        "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+
+        "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+
+        "on-click": "blueman-manager"
+    },
     "battery": {
         "interval": 20,
         "full-at": 100,
@@ -91,42 +96,30 @@
             "critical": 15
           },
     },
-
-    "custom/notification": {
-        "tooltip": true,
-        "format": "<span size='16pt'>{icon}</span>",
+    "pulseaudio": {
+        "max-volume": 150,
+        "scroll-step": 10,
+        
+        "format": "{icon}",
+        "tooltip-format": "{icon}  {volume}%",
+        
         "format-icons": {
-              "notification": "󱅫",
-              "none": "󰂜",
-              "dnd-notification": "󰂠",
-              "dnd-none": "󰪓",
-              "inhibited-notification": "󰂛",
-              "inhibited-none": "󰪑",
-              "dnd-inhibited-notification": "󰂛",
-              "dnd-inhibited-none": "󰪑",
-        },
-        "return-type": "json",
-        "exec-if": "which swaync-client",
-        "exec": "swaync-client -swb",
-        "on-click": "swaync-client -t -sw",
-        "on-click-right": "swaync-client -d -sw",
-        "escape": true
-    },
-    
-    "mpris": {
-
-        "format": "  {status_icon} {artist} — {title}",
-
-        "status-icons": {
-            "paused": " ",
-            "playing": " ",
-            "stopped": " ",
+        "headphone": " ",
+        "format-muted": " ",
+        "default": [" ", " "]
         },
 
-        "tooltip": false
+        "on-click": "pavucontrol",
+        "menu": "on-click-right",
+        "menu-file": "~/.config/waybar/volume_menu.xml",
+        "menu-actions": {
+            "ToggleSound": "pamixer -t",
+            "pavu": "pavucontrol",
+        },
     },
-    "custom/os-button": {
-        "format": "󰣇",
-        "on-click": "~/.config/scripts/launcher.sh"
-    },
-}
+    "clock": {
+        "format": "{:%R}",
+        "tooltip-format": "{:%d %B %Y}",
+        "on-click": "eww open calendar --toggle --no-daemonize & eww close actioncenter musiccenter",
+      },
+},
