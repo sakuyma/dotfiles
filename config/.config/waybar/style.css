@@ -14,133 +14,137 @@
 @import "colors.css";
 
 * {
-  border: none;
-  border-radius: 0px;
-  font-family: "Google Sans Flex", "JetBrainsMono Nerd Font Propo";
-  font-size: 16px;
-  min-height: 0;
-  padding: 0;
-  margin: 0;
+    border: none;
+    border-radius: 0px;
+    font-family: "Google Sans Flex", "JetBrainsMono Nerd Font Propo";
+    font-size: 16px;
+    min-height: 0;
+    padding: 0;
+    margin: 0;
 }
 
 .modules-center {
-  background: @bg-main;
-  padding: 6px 12px;
-  border-radius: 28px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    background: @bg-main;
+    padding: 6px 12px;
+    border-radius: 28px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 window#waybar {
-  background: transparent;
+    background: transparent;
 }
 
 tooltip {
-  background: @bg-main;
-  border: 1px solid @bg-third;
-  border-radius: 12px;
+    background: @bg-main;
+    border: 1px solid @bg-third;
+    border-radius: 12px;
 }
 
 tooltip label {
-  color: @fg-main;
-  padding: 6px;
+    color: @fg-main;
+    padding: 6px;
 }
 
 #workspaces {
-  background: transparent;
-  padding: 0;
-  margin: 0 10px 0 10px;
-  border: none;
-  box-shadow: none;
+    background: transparent;
+    padding: 0;
+    margin: 0 10px 0 10px;
+    border: none;
+    box-shadow: none;
 }
 
 #workspaces button {
-  color: @bg-second;
-  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-  padding: 0px 6px;
-  margin: 0px 2px;
-  border-radius: 16px;
+    color: @bg-second;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    padding: 0px 6px;
+    margin: 0px 2px;
+    border-radius: 16px;
 }
 
 #workspaces button.active {
-  background: @fg-main;
-  border-radius: 16px;
-  padding: 0px 20px;
-  color: @bg-second;
+    background: @fg-main;
+    border-radius: 16px;
+    padding: 0px 20px;
+    color: @bg-second;
 }
 
 #workspaces button.focused {
-  color: @fg-main;
+    color: @fg-main;
 }
 
 #workspaces button.urgent {
-  background: @bg-main;
-  color: @warned_color;
+    background: @bg-main;
+    color: @warned_color;
 }
+
 #workspaces button:hover {
-  background: @ply-main;
-  color: @fg;
+    background: @ply-main;
+    color: @fg;
 }
 
 #battery {
-  padding: 2px 7px;
-  background: @bg-main;
-  border-radius: 16px;
-  margin: 0 3px;
-   color: @green;  
+    padding: 2px 7px;
+    background: @bg-main;
+    border-radius: 16px;
+    margin: 0 3px;
+    color: @green;
 }
+
 #clock,
 #bluetooth {
-  font-family: "Symbols Nerd Font", "JetbrainsMono Nerd Font";
-  background-color: @bg-main;
-  font-weight: bold;
-  border-radius: 8px;
-  padding: 0px 10px;
-  margin: 2px 1px;
-  transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
-  color: @bg-hover-alt;
+    font-family: "Symbols Nerd Font", "JetbrainsMono Nerd Font";
+    background-color: @bg-main;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 0px 10px;
+    margin: 2px 1px;
+    transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+    color: @bg-hover-alt;
 }
 
 /* Hover effect for bar elements */
 #clock:hover,
 #power-profiles-daemon:hover {
-  background-color: @bg-hover;
+    background-color: @bg-hover;
 }
 
 
 #tooltip {
-  background: @bg-tooltip;
-  border-radius: 5px;
-  border: 1px solid @border-main;
+    background: @bg-tooltip;
+    border-radius: 5px;
+    border: 1px solid @border-main;
 }
 
 #tooltip label {
-  color: @fg-main;
+    color: @fg-main;
 }
 
 #network {
-  background-color: @bg-main;
-  padding: 0px 6px;
-  font-size: 15px;
-  color: @red;
+    background-color: @bg-main;
+    padding: 0px 6px;
+    font-size: 15px;
+    color: @red;
 }
 
 #pulseaudio {
-  background-color: @bg-main;
-  padding: 0px 6px;
-  font-size: 15px;
-  color: @yellow;
+    background-color: @bg-main;
+    padding: 0px 6px;
+    font-size: 15px;
+    color: @yellow;
 }
 
-#tray > .passive {
+#tray>.passive {
     border-bottom: none;
 }
-#tray > widget {
+
+#tray>widget {
     transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
     border-radius: 8px;
     padding: 0px 3px;
 }
 
-#tray menu, menu {
+#tray menu,
+menu {
     font-family: "JetBrainsMono Nerd Font";
     border: 2px solid @border-main;
     border-radius: 10px;
@@ -149,21 +153,26 @@ tooltip label {
     padding: 5px 2px;
 }
 
-#tray menu > *, menu > * {
-  color: @fg-main;
-  border: 2px solid transparent;
-  border-radius: 10px;
-  transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
-  padding: 0px 8px; 
+#tray menu>*,
+menu>* {
+    color: @fg-main;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+    padding: 0px 8px;
 }
-#tray menu > *:hover, menu > *:hover {
-  border: 2px solid @border-main;
+
+#tray menu>*:hover,
+menu>*:hover {
+    border: 2px solid @border-main;
     background-color: @bg-main;
     border: 2px solid transparent;
     transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
     border-bottom: 2px solid @fg-main;
 }
-#tray menu > *:active, menu > *:active {
+
+#tray menu>*:active,
+menu>*:active {
     background-color: @bg-main;
-	transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
