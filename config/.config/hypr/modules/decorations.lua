@@ -5,11 +5,11 @@ return function()
         decoration = {
             rounding = 12,      -- 12
             rounding_power = 3, --3
-            active_opacity = 1,
-            inactive_opacity = 1,
+            active_opacity = 0.85,
+            inactive_opacity = 0.85,
             fullscreen_opacity = 1,
             blur = {
-                enabled = true,
+                enabled = false,
                 size = 1,
                 passes = 5,
                 new_optimizations = true,

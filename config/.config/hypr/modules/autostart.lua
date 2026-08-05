@@ -6,11 +6,11 @@ return function()
         exec("awww-daemon")
         exec("swaync")
         exec("hyprctl setcursor Bibata-Modern-Classic 22")
+        exec("qs")
         exec(
             "wl-clipboard-history -t ; wl-paste --type text --watch cliphist store ; wl-paste --type image --watch cliphist store ; wl-clip-persist --clipboard regular --display wayland")
         exec("foot --server")
         exec("hyprpm reload")
         exec("hyprsunset")
-        exec("waybar")
     end)
 end
