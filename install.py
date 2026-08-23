@@ -50,21 +50,6 @@ def ask_password() -> Optional[str]:
             f"{Colors.BLUE}║  🔐 SUDO NEEDED                                            ║{Colors.RESET}"
         )
         print(
-            f"{Colors.BLUE}║                                                            ║{Colors.RESET}"
-        )
-        print(
-            f"{Colors.BLUE}║  I promise this is not a virus (tm)                        ║{Colors.RESET}"
-        )
-        print(
-            f"{Colors.BLUE}║  I just need to touch some system files                    ║{Colors.RESET}"
-        )
-        print(
-            f"{Colors.BLUE}║  Your files are fine, probably                             ║{Colors.RESET}"
-        )
-        print(
-            f"{Colors.BLUE}║                                                            ║{Colors.RESET}"
-        )
-        print(
             f"{Colors.BLUE}╚════════════════════════════════════════════════════════════╝{Colors.RESET}"
         )
 
@@ -73,7 +58,7 @@ def ask_password() -> Optional[str]:
         )
         return password
     except KeyboardInterrupt:
-        print(f"\n{Colors.RED}✗ Nope, I'm out{Colors.RESET}")
+        print(f"\n{Colors.RED}✗ Failed grant access{Colors.RESET}")
         return None
 
 

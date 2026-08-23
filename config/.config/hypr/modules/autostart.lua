@@ -5,7 +5,7 @@ return function()
         exec("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
         exec("awww-daemon")
         exec("swaync")
-        exec("hyprctl setcursor Bibata-Modern-Classic 22")
+        exec("hyprctl setcursor Bibata-Modern-Classic 24")
         exec("qs")
         exec(
             "wl-clipboard-history -t ; wl-paste --type text --watch cliphist store ; wl-paste --type image --watch cliphist store ; wl-clip-persist --clipboard regular --display wayland")
