@@ -57,4 +57,9 @@ function fv() {
   if [[ -n "$file" ]]; then
     nvim "$file"
   fi
-} 
+}
+
+function compress() { 
+    tar -czf "${1%/}.tar.gz" "${1%/}"; 
+}
+alias decompress="tar -xzf"

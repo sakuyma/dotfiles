@@ -28,3 +28,6 @@ alias new="touch"
 alias note="yazi ~/Obsidian/"
 
 alias daily="nvim ~/Obsidian/Life/game/Quests/Daily/$(date +%Y-%m-%d).md"
+
+alias stresstest="stress-ng --cpu $(nproc) --cache $(nproc) --timeout 300s --metrics --times"
+alias stresstestlong="stress-ng --cpu $(nproc) --cpu-method fft --cache $(nproc) --vm 2 --vm-bytes 80% --timeout 3600s --metrics --times"

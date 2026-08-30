@@ -18,7 +18,7 @@ return function()
     })
 
     hl.device({
-        name = "epic-mouse-v1",
-        sensitivity = -0.5
+        name = "attack-shark-r5-ultra-mouse-2.4g",
+        sensitivity = -0.75
     })
 end
