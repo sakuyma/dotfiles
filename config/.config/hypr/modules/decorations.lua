@@ -3,10 +3,10 @@ local colors = require("modules.theme")
 return function()
     hl.config({
         decoration = {
-            rounding = 12,      -- 12
-            rounding_power = 3, --3
-            active_opacity = 0.85,
-            inactive_opacity = 0.85,
+            rounding = 0,      -- 12
+            rounding_power = 0, --3
+            active_opacity = 1, --  0.85
+            inactive_opacity = 1, -- 0.85
             fullscreen_opacity = 1,
             blur = {
                 enabled = false,

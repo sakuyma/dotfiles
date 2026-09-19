@@ -35,10 +35,10 @@ return function()
     bind("Print", exec("~/.config/scipts/fullscreen_screenshot.sh"))
     bind("SHIFT+Print",
         exec(
-            "grim -g \"$(slurp -o -r -c '##000000')\" -t ppm - | satty --filename - --fullscreen --output-filename ~/Pictures/Screenshots/satty-$(date '+%Y%m%d-%H:%M:%S').png"))
+            "grim -g \"$(slurp -o -r -c '##000000')\" -t ppm - | wl-copy"))
     bind("CTRL+Print",
         exec(
-            "grim -g \"$(slurp -o)\" -t ppm - | satty --filename - --output-filename ~/Pictures/Screenshots/$(date '+%Y%m%d-%H:%M:%S').png"))
+            "grim -g \"$(slurp -o)\" - | tee ~/Pictures/Screenshots/$(date '+%Y%m%d-%H:%M:%S').png | wl-copy"))
     bind(mainMod .. "+mouse:274", exec("~/.config/scripts/hyprzoom z 2"))
     bind(mainMod .. "+N", exec("swaync-client -t"))
 
@@ -115,5 +115,4 @@ return function()
         hl.bind("return", function() hl.plugin.hyprexpo.kb_confirm() end)
         hl.bind("escape", function() hl.plugin.hyprexpo.expo("cancel") end)
     end)
-
 end
