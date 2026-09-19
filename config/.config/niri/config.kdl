@@ -48,7 +48,9 @@ layout {
 }
 
 spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
-spawn-at-startup "waybar -c ~/.config/waybar/config_niri.jsonc & awww-daemon & mako & eww daemon"
+spawn-at-startup "waybar -c ~/.config/waybar/config_niri.jsonc & awww-daemon & swaync"
+spawn-at-startup "awww-daemon"
+spawn-at-startup "swaync"
 spawn-at-startup "hyprctl setcursor Bibata-Moder-Classic 22"
 spawn-at-startup "wl-clipboard-history -t ; wl-paste --type text --watch cliphist store ; wl-paste --type image --watch cliphist store ; wl-clip-persist --clipboard regular --display wayland"
 spawn-at-startup "foot --server"
@@ -115,11 +117,6 @@ workspace "7"
 workspace "8"
 workspace "9"
 workspace "10"
-
-window-rule {
-    match app-id=r#"zen-browser$"# title="^Picture-in-Picture$"
-    open-floating true
-}
 
 window-rule {
     geometry-corner-radius 5

@@ -47,16 +47,6 @@
             "keyColor": "1", 
         },
         {
-            "type": "cursor",
-            "key": " ",
-            "keyColor": "1", 
-        },
-        {
-            "type": "terminalfont",
-            "key": " ",
-            "keyColor": "1", 
-        },
-        {
             "type": "uptime",
             "key": " ",
             "keyColor": "1", 

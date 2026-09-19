@@ -5,7 +5,9 @@ LOCK_FILE="/tmp/titlebars.lock"
 if [ -f "$LOCK_FILE" ]; then
     hyprctl plugin unload /var/cache/hyprpm/$USER/hyprland-plugins/hyprbars.so  
     rm -f "$LOCK_FILE"
+    notify-send -u low -t 1500 "Titlebars" "Disabled"
 else
     hyprctl plugin load /var/cache/hyprpm/$USER/hyprland-plugins/hyprbars.so 
     touch "$LOCK_FILE"
+    notify-send -u low -t 1500 "Titlebars" "Enabled"
 fi

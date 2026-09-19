@@ -10,8 +10,8 @@ zsh_modules=(
     "$ZSH_CONFD/env.zsh"
     "$ZSH_CONFD/hooks.zsh"
     "$ZSH_CONFD/functions.zsh"
-    "$ZSH_CONFD/aliases.zsh"
     "$ZSH_CONFD/etc.zsh"
+    "$ZSH_CONFD/aliases.zsh"
 )
 
 # Loading 
@@ -20,4 +20,6 @@ for module in "${zsh_modules[@]}"; do
 done
 
 # export ZSH_LOAD_TIME=$(printf "%.3f" $(($EPOCHREALTIME - $ZSHRC_START_TIME)))
-# echo "DEBUG: ZSH_LOAD_TIME = $ZSH_LOAD_TIME"
+# echo "DEBUG: ZSH_LOAD_TIME = $ZSH_LOAD_TIME."
+#
+unalias dcr

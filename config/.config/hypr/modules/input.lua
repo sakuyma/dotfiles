@@ -4,7 +4,7 @@ return function()
             kb_layout = "us, ru",
             kb_variant = "",
             kb_model = "",
-            kb_options = "grp:caps_toggle",
+            kb_options = "caps:shiftlock,grp:caps_toggle, compose:menu",
             kb_rules = "",
             follow_mouse = 1,
             sensitivity = 0,
@@ -18,7 +18,7 @@ return function()
     })
 
     hl.device({
-        name = "epic-mouse-v1",
-        sensitivity = -0.5
+        name = "attack-shark-r5-ultra-mouse-2.4g",
+        sensitivity = -0.75
     })
 end

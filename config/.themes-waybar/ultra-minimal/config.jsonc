@@ -65,7 +65,7 @@
     // ======================================================
     // ====================== System ======================
     "battery": {
-        "interval": 20,
+        "interval": 60,
         "full-at": 100,
         "tooltip": true,
         "format-full": "",
@@ -115,7 +115,7 @@
         "on-scroll-up": "hyprctl dispatch workspace r+1",
         "on-scroll-down": "hyprctl dispatch workspace r-1",
         "persistent-workspaces": {
-            "*": 0
+            "*": 1
         },
         "format-icons": {
             //"1": "一",

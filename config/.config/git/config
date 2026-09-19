@@ -2,7 +2,7 @@
     editor = nvim
     excludesfile = ~/.config/git/ignore
     autocrlf = input
-# Performance
+    # Performance
     fsmonitor = true
     untrackedCache = true
     preloadIndex = true
@@ -23,6 +23,15 @@
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date = short
     commit = commit --signoff
+
+[user]
+    name = sakuyma
+    email = 201369162+sakuyma@users.noreply.github.com
+    signingkey = ~/.ssh/id_ed25519.pub
+
+[gpg]
+    format = ssh 
+
 
 [merge]
     conflictstyle = zdiff3 
@@ -48,7 +57,7 @@
 
 [commit]
     verbose = true
-
+    gpgsign = true
 [pull]
     ff = only
 
@@ -120,4 +129,5 @@
 		bold cyan => syntax "#446170", \
 		bold yellow => syntax "#6b635b"
 	# Should match the name of the bat theme
-	syntax-theme = Catppuccin Mocha
+    syntax-theme = Catppuccin Mocha
+

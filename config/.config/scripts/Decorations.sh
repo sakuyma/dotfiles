@@ -8,7 +8,7 @@ case "$CHOICE" in
         bash "$HOME/.config/scripts/Decorations/blur_toggle.sh"
         ;;
     "Gaps Toggle")
-        bash ~/.config/scripts/Decorations/gaps_toggle.sh"
+        bash ~/.config/scripts/Decorations/gaps_toggle.sh
         ;;
     "Opacity Toggle")
         bash "$HOME/.config/scripts/Decorations/opacity_toggle.sh"
@@ -20,7 +20,7 @@ case "$CHOICE" in
         bash "$HOME/.config/scripts/Decorations/rounding_toggle.sh"
         ;;
     "Animations Toggle")
-        bash "$HOME/.config/scripts/Decorations/animaton_toggle.sh"
+        bash "$HOME/.config/scripts/Decorations/animations_toggle.sh"
         ;;
 
     *)
