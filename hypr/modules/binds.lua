@@ -10,8 +10,19 @@ return function()
     local secMod = "SUPER+SHIFT"
     local thirdMod = "SUPER+ALT"
 
+    local qs = "qs -c MacShell ipc call "
+
+    hl.bind("SUPER + V",          hl.dsp.exec_cmd(qs .. "spotlight clipboard"))
+    hl.bind("SUPER + period",     hl.dsp.exec_cmd(qs .. "spotlight emoji"))
+    hl.bind("SUPER + Space",      hl.dsp.exec_cmd(qs .. "spotlight toggle"))
+    hl.bind("ALT + TAB",          hl.dsp.exec_cmd(qs .. "switcher next"))
+    hl.bind("CTRL + ALT + W",     hl.dsp.exec_cmd(qs .. "wallpapers toggle"))
+    hl.bind("PRINT",              hl.dsp.exec_cmd(qs .. "screenshot region"))
+
+    -- MacLock (lock screen)
+    hl.bind("SUPER + L",          hl.dsp.exec_cmd("sh ~/.config/quickshell/MacLock/lock-via-ipc.sh"))
+
     bind(mainMod .. "+Q", hypr.window.close())
-    bind(mainMod .. "+V", hypr.window.float({ action = "toggle" }))
 
     bind(mainMod .. "+RETURN", exec(progs.terminal))
     bind(mainMod .. "+SHIFT+RETURN", exec(progs.terminal_alt))
@@ -52,16 +63,6 @@ return function()
     bind(mainMod .. "+ALT+up", hypr.window.move({ x = 0, y = -50, relative = true }))
     bind(mainMod .. "+ALT+down", hypr.window.move({ x = 0, y = 50, relative = true }))
 
-    bind(mainMod .. "+H", hypr.focus({ direction = "l" }))
-    bind(mainMod .. "+L", hypr.focus({ direction = "r" }))
-    bind(mainMod .. "+K", hypr.focus({ direction = "u" }))
-    bind(mainMod .. "+J", hypr.focus({ direction = "d" }))
-
-    bind(mainMod .. "+ALT+L", hypr.window.move({ x = 50, y = 0, relative = true }))
-    bind(mainMod .. "+ALT+H", hypr.window.move({ x = -50, y = 0, relative = true }))
-    bind(mainMod .. "+ALT+K", hypr.window.move({ x = 0, y = -50, relative = true }))
-    bind(mainMod .. "+ALT+J", hypr.window.move({ x = 0, y = 50, relative = true }))
-
     for i = 1, 9 do
         bind(mainMod .. "+" .. i, hypr.focus({ workspace = tostring(i) }))
         bind(secMod .. "+" .. i, hypr.window.move({ workspace = tostring(i) }))
@@ -73,21 +74,12 @@ return function()
     bind(mainMod .. "+ALT+right", hypr.window.swap({ direction = "r" }))
     bind(mainMod .. "+ALT+up", hypr.window.swap({ direction = "u" }))
     bind(mainMod .. "+ALT+down", hypr.window.swap({ direction = "d" }))
-    bind(mainMod .. "+ALT+H", hypr.window.swap({ direction = "l" }))
-    bind(mainMod .. "+ALT+L", hypr.window.swap({ direction = "r" }))
-    bind(mainMod .. "+ALT+K", hypr.window.swap({ direction = "u" }))
-    bind(mainMod .. "+ALT+J", hypr.window.swap({ direction = "d" }))
 
     bind(mainMod .. "+SHIFT+right", hypr.window.resize({ x = 50, y = 0, relative = true }))
     bind(mainMod .. "+SHIFT+left", hypr.window.resize({ x = 0, y = -50, relative = true }))
     bind(mainMod .. "+SHIFT+down", hypr.window.resize({ x = 0, y = 50, relative = true }))
-    bind(mainMod .. "+SHIFT+L", hypr.window.resize({ x = 50, y = 0, relative = true }))
-    bind(mainMod .. "+SHIFT+H", hypr.window.resize({ x = -50, y = 0, relative = true }))
-    bind(mainMod .. "+SHIFT+J", hypr.window.resize({ x = 0, y = 50, relative = true }))
-    bind(mainMod .. "+SHIFT+K", hypr.window.resize({ x = 0, y = -50, relative = true }))
 
     bind(mainMod .. "+mouse:272", hypr.window.drag(), { mouse = true })
-    -- bind("z", exec("python3 ~/stun-slam.py"))
     bind(mainMod .. "+mouse:273", hypr.window.resize(), { mouse = true })
 
     bind("XF86AudioRaiseVolume", exec("pamixer --increase 5 ; ~/.config/scripts/OSD.sh"),
