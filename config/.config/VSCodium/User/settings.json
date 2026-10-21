@@ -86,7 +86,7 @@
 
     // Disable function signature output
     "editor.parameterHints.enabled": false,
-    "editor.hover.enabled": "off",
+    "editor.hover.enabled": false,
     "files.trimTrailingWhitespace": false,
     "editor.links": false,
 

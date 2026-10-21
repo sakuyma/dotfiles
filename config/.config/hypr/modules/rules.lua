@@ -20,7 +20,7 @@ return function()
     })
 
     hl.layer_rule({
-        match = { namespace = "rofi" },
+        match = { namespace = "launcher" },
         dim_around = true,
         animation = "popin 85%",
         name = "rofi"

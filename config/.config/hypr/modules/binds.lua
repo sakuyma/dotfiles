@@ -100,6 +100,20 @@ return function()
 
     bind("ALT+TAB", function() plugin.hyprexpo.expo() end)
 
+    -- Toggle DPMS на SUPER+F12
+    local dpms_off = false
+    bind(mainMod .. "+F12", function()
+        hl.timer(function()
+            if dpms_off then
+                hl.dispatch(hl.dsp.dpms({ action = "enable" }))
+                dpms_off = false
+            else
+                hl.dispatch(hl.dsp.dpms({ action = "disable" }))
+                dpms_off = true
+            end
+        end, { timeout = 500, type = "oneshot" })
+    end)
+
     hl.define_submap("hyprexpo", function()
         hl.bind("left", function() hl.plugin.hyprexpo.kb_focus("left") end)
         hl.bind("right", function() hl.plugin.hyprexpo.kb_focus("right") end)

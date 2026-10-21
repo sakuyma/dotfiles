@@ -5,13 +5,13 @@
             "1": "blue",
             "2": "black"
         },
-        "source": "$HOME/.config/fastfetch/ascii/rose.txt",
+        // "source": "$HOME/.config/fastfetch/ascii/arch.txt",
         "padding": {
             "top": 2,
-            "right": 0 // ← ГЛАВНОЕ: убрал отступ справа (было 5)
+            "right": 0
         },
         "height": 18,
-        "width": 27 // ← Оставил как у вас
+        "width": 27
     },
     "display": {
         "separator": " ▸ "

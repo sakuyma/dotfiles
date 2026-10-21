@@ -10,42 +10,37 @@
 // ====================== Main ======================
 {
     "reload_style_on_change": true,
+    "layer": "top",
     "position": "top",
-    "margin-top": 18,
-    "modules-center": [
-        "tray",
-        "clock",
-        "custom/media",
-        "niri/workspaces",
-        "pulseaudio",
-        "network",
-        "battery",
+    "mod": "dock",
+    "exclusive": true,
+    "gtk-layer-shell": true,
+    "margin-top": 0,
+    "margin-bottom": 0,
+    "margin-left": 0,
+    "margin-right": 0,
+    "passthrough": false,
+    "height": 20,
+    "modules-left": [
+        "group/leftSide"
     ],
-    "niri/workspaces": {
-        "format": "{icon}",
-        "format-icons": {
-            "1": "1",
-            "2": "2",
-            "3": "3",
-            "4": "4",
-            "5": "5",
-            "6": "6",
-            "7": "7",
-            "8": "8",
-            "10": "10",
-            "10": "10",
-            "default": " ",
-            "urgent": "",
-        },
-        "persistent-workspaces": {
-            "*": 5
-        },
-        "on-click": "activate",
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "group/rightSide"
+    ],
+    "niri/language": {
+        "format": "{}",
+        "format-en": "ENG",
+        "format-ru": "RU"
     },
+    // ============================================================
+    // ====================== Wireless ======================
     "network": {
         "format-wifi": "{icon}",
-        "format-ethernet": "󰤨 ",
-        "format-disconnected": "󰤨 ",
+        "format-ethernet": "🖧",
+        "format-disconnected": "󰌙 ",
         "tooltip-format": "{icon}",
         "format-icons": [
             "󰤯 ",
@@ -67,6 +62,8 @@
         "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
         "on-click": "blueman-manager"
     },
+    // ======================================================
+    // ====================== System ======================
     "battery": {
         "interval": 20,
         "full-at": 100,
@@ -90,6 +87,7 @@
             "warning": 30,
             "critical": 15
         },
+        "on-click": "bash ~/.config/scripts/actioncenter.sh",
     },
     "pulseaudio": {
         "max-volume": 150,
@@ -104,7 +102,7 @@
                 " "
             ]
         },
-        "on-click": "pavucontrol",
+        "on-click": "eww open volumewidget --toggle",
         "menu": "on-click-right",
         "menu-file": "~/.config/waybar/volume_menu.xml",
         "menu-actions": {
@@ -112,9 +110,49 @@
             "pavu": "pavucontrol",
         },
     },
+    "niri/workspaces": {
+        "format": "{icon}",
+        "persistent-workspaces": {
+            "*": 0
+        },
+        "format-icons": {
+            //"1": "一",
+            //"2": "二",
+            //"3": "三",
+            //"4": "四",
+            //"5": "五",
+            "urgent": "",
+            //"active": "一",
+            //"default": "󰧞"",
+            "sort-by-number": true
+        },
+    },
+    // ========================================================
     "clock": {
         "format": "{:%R}",
         "tooltip-format": "{:%d %B %Y}",
         "on-click": "eww open calendar --toggle --no-daemonize & eww close actioncenter musiccenter",
     },
-},
+    "group/controlCenter": {
+        "orientation": "horizontal",
+        "modules": [
+            "pulseaudio",
+            "network",
+            "battery",
+        ]
+    },
+    "group/leftSide": {
+        "orientation": "horizontal",
+        "modules": [
+            "mpris",
+            "niri/workspaces"
+        ]
+    },
+    "group/rightSide": {
+        "orientation": "horizontal",
+        "modules": [
+            "group/controlCenter"
+        ]
+    },
+}
+// ====================================================

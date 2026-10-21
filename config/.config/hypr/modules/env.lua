@@ -12,5 +12,5 @@ return function()
     env("MOZ_ENABLE_WAYLAND", "1")
     env("QT_WAYLAND_DISABLE_WINDOWDECORATION", "1")
     env("GTK_CSD", "0")
-    env("QT_QPA_PLATFORMTHEME", "qt6ct")
+    env("QT_QPA_PLATFORMTHEME", "hyprqt6engine")
 end

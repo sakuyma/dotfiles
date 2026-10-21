@@ -63,3 +63,11 @@ function compress() {
     tar -czf "${1%/}.tar.gz" "${1%/}"; 
 }
 alias decompress="tar -xzf"
+
+function os-age() {
+    echo "$(date -d "$(grep -i installed /var/log/pacman.log | head -1 | cut -d"]" -f1 | tr -d "[")" +"%d.%m.%Y") | Days: $(( ($(date +%s) - $(grep -i installed /var/log/pacman.log | head -1 | cut -d"]" -f1 | tr -d "[" | xargs -I{} date -d {} +%s)) / 86400 ))"
+}
+
+function ls(){
+    eza "$@" --icons=auto --group-directories-first 
+}

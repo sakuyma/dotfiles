@@ -5,111 +5,104 @@
 //    \_/\_/ \__,_|\__, |_.__/ \__,_|_|
 //                 |___/
 //
-
 // by sakuyma
 // ========================================================
-
-
-
 // ====================== Main ======================
-
 {
-	"reload_style_on_change": true,
+    "reload_style_on_change": true,
+    "layer": "top",
     "position": "top",
-    "margin-top": 18, 
-
-    "modules-center": [
-        "tray",
-        "clock",
-        "custom/media",
-        "hyprland/workspaces",
-        "pulseaudio",
-        "network",
-        "battery",
+    "mod": "dock",
+    "exclusive": true,
+    "gtk-layer-shell": true,
+    "margin-top": 0,
+    "margin-bottom": 0,
+    "margin-left": 0,
+    "margin-right": 0,
+    "passthrough": false,
+    "height": 20,
+    "modules-left": [
+        "group/leftSide"
     ],
-    
-
-    "hyprland/submap": {
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "group/rightSide"
+    ],
+    "hyprland/language": {
         "format": "{}",
-        "tooltip": false
+        "format-en": "ENG",
+        "format-ru": "RU"
     },
-
-    "hyprland/workspaces": {
-        "format":"{icon}",
-        "format-icons": {
-            "1": "1",
-            "2": "2",
-            "3": "3",
-            "4": "4",
-            "5": "5",
-            "6": "6",
-            "7": "7",
-            "8": "8",
-            "10": "10",
-            "10": "10",
-            "default": " ",
-            "urgent": "",
-        },
-        "persistent-workspaces": {
-            "*": 5
-        },
-        "on-click": "activate",
-        "on-scroll-down": "hyprctl dispatch workspace e+1",
-        "on-scroll-up": "hyprctl dispatch workspace  e-1"
-    },
-
+    // ============================================================
+    // ====================== Wireless ======================
     "network": {
         "format-wifi": "{icon}",
-        "format-ethernet": "󰤨 ",
-        "format-disconnected": "󰤨 ",
+        "format-ethernet": "🖧",
+        "format-disconnected": "󰌙 ",
         "tooltip-format": "{icon}",
-        "format-icons": ["󰤯 ", "󰤟 ", "󰤢 ", "󰤢 ", "󰤨 "],
-
+        "format-icons": [
+            "󰤯 ",
+            "󰤟 ",
+            "󰤢 ",
+            "󰤢 ",
+            "󰤨 "
+        ],
         "on-click": "bash ~/.config/scripts/rofiwifi.sh",
         "on-click-right": "bash ~/.config/scripts/rofiwifi.sh"
     },
-
     "bluetooth": {
-
         "format": "",
         "format-connected": " {device_alias}",
         "format-connected-battery": " {device_alias} {device_battery_percentage}%",
-
         "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
         "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
         "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
         "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
-
         "on-click": "blueman-manager"
     },
+    // ======================================================
+    // ====================== System ======================
     "battery": {
-        "interval": 20,
+        "interval": 60,
         "full-at": 100,
         "tooltip": true,
         "format-full": "",
         "format": "{icon} {capacity}%",
         "format-time": "{H}:{M:02}",
         "format-charging": " {capacity}% ({time})",
-        "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂂", "󰁹"],
+        "format-icons": [
+            "󰁺",
+            "󰁻",
+            "󰁼",
+            "󰁽",
+            "󰁾",
+            "󰁿",
+            "󰂀",
+            "󰂂",
+            "󰁹"
+        ],
         "states": {
             "warning": 30,
             "critical": 15
-          },
+        },
+        "on-click": "bash ~/.config/scripts/actioncenter.sh",
     },
     "pulseaudio": {
         "max-volume": 150,
         "scroll-step": 10,
-        
         "format": "{icon}",
         "tooltip-format": "{icon}  {volume}%",
-        
         "format-icons": {
-        "headphone": " ",
-        "format-muted": " ",
-        "default": [" ", " "]
+            "headphone": " ",
+            "format-muted": " ",
+            "default": [
+                " ",
+                " "
+            ]
         },
-
-        "on-click": "pavucontrol",
+        "on-click": "eww open volumewidget --toggle",
         "menu": "on-click-right",
         "menu-file": "~/.config/waybar/volume_menu.xml",
         "menu-actions": {
@@ -117,9 +110,51 @@
             "pavu": "pavucontrol",
         },
     },
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "on-scroll-up": "hyprctl dispatch workspace r+1",
+        "on-scroll-down": "hyprctl dispatch workspace r-1",
+        "persistent-workspaces": {
+            "*": 1
+        },
+        "format-icons": {
+            //"1": "一",
+            //"2": "二",
+            //"3": "三",
+            //"4": "四",
+            //"5": "五",
+            "urgent": "",
+            //"active": "一",
+            //"default": "󰧞"",
+            "sort-by-number": true
+        },
+    },
+    // ========================================================
     "clock": {
         "format": "{:%R}",
         "tooltip-format": "{:%d %B %Y}",
         "on-click": "eww open calendar --toggle --no-daemonize & eww close actioncenter musiccenter",
-      },
-},
+    },
+    "group/controlCenter": {
+        "orientation": "horizontal",
+        "modules": [
+            "pulseaudio",
+            "network",
+            "battery",
+        ]
+    },
+    "group/leftSide": {
+        "orientation": "horizontal",
+        "modules": [
+            "mpris",
+            "hyprland/workspaces"
+        ]
+    },
+    "group/rightSide": {
+        "orientation": "horizontal",
+        "modules": [
+            "group/controlCenter"
+        ]
+    },
+}
+// ====================================================
