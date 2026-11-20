@@ -4,7 +4,7 @@ return function()
     hl.config({
         decoration = {
             rounding = 0,      -- 12
-            rounding_power = 0, --3
+            rounding_power = 1, --3
             active_opacity = 1, --  0.85
             inactive_opacity = 1, -- 0.85
             fullscreen_opacity = 1,

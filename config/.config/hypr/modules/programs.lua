@@ -1,7 +1,7 @@
 local terminal = "footclient"
 local terminal_alt = "kitty"
 local file_manager = "thunar"
-local browser_main = "zen-browser"
+local browser_main = "librewolf"
 local browser_second = "helium-browser"
 local telegram = "AyuGram"
 local discord = "discord --enable-features=UseOzonePlatform --ozone-platform=wayland"

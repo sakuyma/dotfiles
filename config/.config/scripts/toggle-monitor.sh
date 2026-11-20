@@ -1,7 +1,9 @@
 #!/bin/bash
-# Проверяем состояние монитора (примерный способ)
-if [[ $(hyprctl monitors | grep -c "DPMS: On") -gt 0 ]]; then
-    hyprctl dispatch dpms off
+
+MON="DP-1"   # ← replace with your real monitor name
+
+if hyprctl monitors -j | grep -q '"name": "'"$MON"'"' && hyprctl monitors -j | grep -q '"disabled": false'; then
+    hyprctl keyword monitor "$MON", disable
 else
-    hyprctl dispatch dpms on
+    hyprctl keyword monitor "$MON", preferred, auto, 1
 fi

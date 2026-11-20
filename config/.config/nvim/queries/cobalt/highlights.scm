@@ -1,0 +1,1 @@
+/home/saku/Projects/Cobalt/tree-sitter-cobalt/queries/highlights.scm

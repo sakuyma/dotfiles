@@ -1,60 +1,74 @@
--- general options --
-local key = vim.keymap.set                  -- set local variable
-vim.g.mapleader = ""                       -- set <leader> key
--- files --
-key("n", "<leader>w", "<cmd>w<cr>", { silent = true }) -- save file
-key("n", "<leader>q", "<cmd>q!<cr>", { silent = true })-- exit without saving
+-- Core keymaps. Nothing in this file may require a plugin:
+-- plugin keymaps live in lua/plugin.lua and are loaded by lazy.nvim on use.
+--
+-- Leader prefix layout:
+--   <leader>f  find / pickers      <leader>g  git
+--   <leader>l  LSP                 <leader>d  debugger
+--   <leader>h  git hunks           <leader>b  buffers
+--   <leader>t  terminal            <leader>T  tab pages
+--   <leader>x  diagnostics         <leader>s  AI (sidekick)
+--   <leader>a  outline             <leader>v  splits
+--   <leader>w/q  write / quit
 
+local map = vim.keymap.set
 
--- movement --
-key("n", "j", "gj")                         -- move down based on transfer
-key("n", "k", "gk")                         -- move up based on transfer
+-- files
+map("n", "<leader>w", "<cmd>write<cr>", { silent = true, desc = "Write buffer" })
+map("n", "<leader>q", "<cmd>quit<cr>", { silent = true, desc = "Quit window" })
+map("n", "<leader>Q", "<cmd>quitall!<cr>", { silent = true, desc = "Force quit all" })
 
-key("n", "H", "b")                          -- move to previous word
-key("n", "L", "w")                          -- move to next word
-key("n", "J", "^")                          -- move to beginning of line
-key("n", "K", "$")                          -- move to end of line
-key("i", "<c-h>", "<left>")                 -- move left in insert mode
-key("i", "<c-j>", "<down>")                 -- move down in insert mode
-key("i", "<c-k>", "<up>")                   -- move up in insert mode
-key("i", "<c-l>", "<right>")                -- move right in insert mode
-key("n", "<c-h>", "<c-w>h")                 -- pane movement left
-key("n", "<c-j>", "<c-w>j")                 -- pane movement down
-key("n", "<c-k>", "<c-w>k")                 -- pane movement up
-key("n", "<c-l>", "<c-w>l")                 -- pane movement right
+-- movement
+map("n", "j", "gj", { desc = "Down (display line)" })
+map("n", "k", "gk", { desc = "Up (display line)" })
+map("n", "J", "^", { desc = "Start of line" })
+map("n", "K", "$", { desc = "End of line" })
 
+map("i", "<c-h>", "<left>", { desc = "Move left" })
+map("i", "<c-j>", "<down>", { desc = "Move down" })
+map("i", "<c-k>", "<up>", { desc = "Move up" })
+map("i", "<c-l>", "<right>", { desc = "Move right" })
+map("i", "jj", "<esc>", { desc = "Leave insert mode" })
+map("i", "<d-space>", "<nop>", { desc = "Ignore layout switch" })
 
--- visual --
-key("v", "J", ":m '>+1<cr>gv=gv")           -- move selection down
-key("v", "K", ":m '<-2<cr>gv=gv")           -- move selection up
-key("v", "<", "<gv")                        -- indent left and keep selection
-key("v", ">", ">gv")                        -- indent right and keep selection
+-- windows
+map("n", "<c-h>", "<c-w>h", { desc = "Window left" })
+map("n", "<c-j>", "<c-w>j", { desc = "Window down" })
+map("n", "<c-k>", "<c-w>k", { desc = "Window up" })
+map("n", "<c-l>", "<c-w>l", { desc = "Window right" })
+map("n", "<leader>vs", "<c-w>v", { desc = "Split vertical" })
+map("n", "<leader>vh", "<c-w>s", { desc = "Split horizontal" })
 
+-- visual
+map("v", "J", ":m '>+1<cr>gv=gv", { desc = "Move selection down" })
+map("v", "K", ":m '<-2<cr>gv=gv", { desc = "Move selection up" })
+map("v", "<", "<gv", { desc = "Indent left" })
+map("v", ">", ">gv", { desc = "Indent right" })
 
--- yank and paste --
-key("n", "x", "\"_x")                       -- cut without storing to clipboard
-key("n", "Y", "yyp")
-key("n", "<C-Y>", function()
-  vim.cmd('normal! yyp')
-  vim.cmd('normal! ==')
-end)
+-- yank / paste
+map("n", "x", '"_x', { desc = "Delete without yanking" })
+map("n", "<C-Y>", function()
+    vim.cmd("normal! yyp")
+    vim.cmd("normal! ==")
+end, { desc = "Duplicate line" })
 
--- window management --
-key("n", "<leader>sv", "<c-w>v")           -- split window vertical
-key("n", "<leader>sh", "<c-w>s")            -- split window horizontally
+-- scrolling
+map("n", "<c-u>", "<c-u>zz", { desc = "Scroll up (centered)" })
+map("n", "<c-d>", "<c-d>zz", { desc = "Scroll down (centered)" })
 
+-- numbers
+map("n", "+", "<c-a>", { desc = "Increment number" })
+map("n", "-", "<c-x>", { desc = "Decrement number" })
 
--- scrolling --
-key("n", "<c-u>", "<c-u>zz")                -- scrolling up with centering
-key("n", "<c-d>", "<c-d>zz")                -- scrolling down with centering
+-- buffers (plugin-independent)
+map("n", "<leader>bb", "<cmd>edit #<cr>", { silent = true, desc = "Alternate buffer" })
 
+-- tab pages (rarely used, hence the separate prefix)
+map("n", "<leader>Tn", "<cmd>tabnew<cr>", { silent = true, desc = "Tab: new" })
+map("n", "<leader>Td", "<cmd>tab split<cr>", { silent = true, desc = "Tab: duplicate" })
+map("n", "<leader>Te", "<cmd>tabedit ", { desc = "Tab: edit file" })
+map("n", "<leader>Tc", "<cmd>tabclose<cr>", { silent = true, desc = "Tab: close" })
+map("n", "<leader>To", "<cmd>tabonly<cr>", { silent = true, desc = "Tab: close others" })
+map("n", "<leader>Tm", "<cmd>tabmove ", { desc = "Tab: move" })
 
--- increment/decrement number --
-key("n", "+", "<c-a>")                      -- increment number
-key("n", "-", "<c-x>")                      -- decrement number
-
-
--- other keymaps --
-key("i", "jj", "<esc>")                     -- quit insert mode
-key("i", "<d-space>", "<nop>")              -- ignore switch keyboard layout
-key("n", "<leader>hl", "<cmd>noh<cr>", { silent = true }) -- disable highlight after searching
+-- search
+map("n", "<leader>hl", "<cmd>nohlsearch<cr>", { silent = true, desc = "Clear search highlight" })

@@ -71,3 +71,7 @@ function os-age() {
 function ls(){
     eza "$@" --icons=auto --group-directories-first 
 }
+
+function nsh() {
+    nix run nixpkgs#"$1" -- "${@:2}"
+}

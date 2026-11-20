@@ -1,36 +1,30 @@
-require("aerial").setup {
-    backends = {
-        "lsp",
-        "treesitter",
-    },
-    filter_kind = {
-        "Class",
-        "Function",
-        "Method",
-        "Interface",
-        "Struct",
-        "Array",
-        "Constructor",
-        "Enum",
-        "Module",
-    },
-    close_behavior = "global",
-    show_guides = false,
-    layout = {
-        default_direction = "left",
-        max_width = {
-            40,
-            0.3
+-- Aerial outline.
+
+local M = {}
+
+function M.setup()
+    require("aerial").setup({
+        backends = { "lsp", "treesitter" },
+        filter_kind = {
+            "Class",
+            "Function",
+            "Method",
+            "Interface",
+            "Struct",
+            "Array",
+            "Constructor",
+            "Enum",
+            "Module",
         },
-        min_width = 25,
-    },
-    ignore = {
-        filetypes = {},
-    },
-    icons = require("icons").outline,
-}
+        close_behavior = "global",
+        show_guides = false,
+        layout = {
+            default_direction = "left",
+            max_width = { 40, 0.3 },
+            min_width = 25,
+        },
+        icons = require("icons").outline,
+    })
+end
 
-
--- vim.keymap.set("n", "<leader>a", "<cmd>AerialToggle!<cr>")
--- vim.keymap.set("n", "[[", "<cmd>AerialPrev<cr>")
--- vim.keymap.set("n", "]]", "<cmd>AerialNext<cr>")
+return M

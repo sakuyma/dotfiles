@@ -88,7 +88,6 @@ window#waybar {
 #custom-os_button {
     padding-left: 4px;
 }
-#mpris, 
 #network, #pulseaudio, #backlight {
     background-color: @bg-main;
     padding: 0px 6px;
@@ -174,7 +173,7 @@ window#waybar {
 }
 
 /* Styling for memory, search, os button, etc. */
-#cpu, #memory, #custom-os_button, #mpris, #custom-cafein, #cava, #clock {
+#cpu, #memory, #custom-os_button, #custom-cafein, #cava, #clock {
     font-family: "Symbols Nerd Font", "JetbrainsMono Nerd Font";
     background-color: @bg-main;
     font-weight: bold;
@@ -184,18 +183,8 @@ window#waybar {
     transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-#mpris {
-	padding: 0px;
-  margin: 0px 8px;
-	min-width: 90px;
-}
-
-#mpris.paused {
-	color: @bg-third;
-}
-
 /* Hover effect for bar elements */
-#custom-swaync:hover,#tray > widget:hover, #custom-os_button:hover, #mpris:hover, #custom-cafein:hover, #clock:hover, #power-profiles-daemon:hover {
+#custom-swaync:hover,#tray > widget:hover, #custom-os_button:hover, #custom-cafein:hover, #clock:hover, #power-profiles-daemon:hover {
     background-color: @bg-hover;
 }
 

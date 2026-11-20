@@ -13,7 +13,7 @@ end
 _G.toggle_minimize = toggle_minize
 
 return function()
-    require("modules.plugins.hyprglass")
+    -- require("modules.plugins.hyprglass")
     require("modules.plugins.hyprbars")
     require("modules.plugins.dynamic_cursors")
 end

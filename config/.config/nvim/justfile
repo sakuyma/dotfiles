@@ -1,21 +1,40 @@
-# Dotfiles Installer Justfile
-# Run commands with: just <command>
-# List all commands: just --list
+# Neovim config maintenance tasks: just <command>
 
 set shell := ["bash", "-c"]
-set dotenv-load := true
 
-# Default command (show help)
+# Default: list available commands
 default:
     @just --list
 
-count:
-    @echo "Line count: "
-    @find -name "*.lua" -exec wc -l {} + | tail -1
-    @echo ""
-    @echo "By module: "
-    @find -name "*.lua" -exec wc -l {} + | sort -rn
+# Format the Lua tree (requires stylua)
+fmt:
+    stylua .
 
-# Show help
-help:
-    @just --list
+# Verify formatting without writing (requires stylua)
+check:
+    stylua --check .
+
+# Lua line count
+count:
+    @find lua -name "*.lua" -exec wc -l {} + | tail -1
+
+# Show the slowest startup phases
+startup:
+    nvim --headless --startuptime /tmp/nvim-startup.log "+qa"
+    @sort -k2 -nr /tmp/nvim-startup.log | head -20
+
+# Interactive health check
+health:
+    nvim "+checkhealth"
+
+# Install/update tree-sitter parsers (requires tree-sitter-cli on $PATH)
+parsers:
+    nvim --headless "+TSUpdate" +qa
+
+# Remove plugins that are no longer in the spec
+clean:
+    nvim --headless "+Lazy! clean" +qa
+
+# Install/update plugins from the spec
+sync:
+    nvim --headless "+Lazy! sync" +qa

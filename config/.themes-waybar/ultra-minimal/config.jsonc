@@ -146,7 +146,6 @@
     "group/leftSide": {
         "orientation": "horizontal",
         "modules": [
-            "mpris",
             "hyprland/workspaces"
         ]
     },

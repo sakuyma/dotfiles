@@ -12,5 +12,6 @@ return function()
         exec("foot --server")
         exec("hyprpm reload")
         exec("hyprsunset")
+        exec("openrgb -d 0 -m direct -c FFFFFF -b 100")
     end)
 end

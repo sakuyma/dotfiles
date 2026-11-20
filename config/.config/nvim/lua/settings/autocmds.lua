@@ -1,28 +1,30 @@
--- general options --
 local autocmd = vim.api.nvim_create_autocmd
+
 local function augroup(name)
     return vim.api.nvim_create_augroup("general_" .. name, { clear = true })
 end
 
-
--- check for spell in text filetypes --
+-- Spell checking for prose.
 autocmd("FileType", {
     group = augroup("spell"),
-    pattern = {
-        "text",
-        "markdown",
-    },
+    pattern = { "text", "markdown", "gitcommit" },
     callback = function()
-        vim.opt_local.spelllang = {
-            "ru",
-            "en",
-        }
         vim.opt_local.spell = true
+        vim.opt_local.spelllang = { "ru", "en" }
     end,
 })
 
+-- Soft-wrap prose, keep code hard-wrapped.
+autocmd("FileType", {
+    group = augroup("prose_wrap"),
+    pattern = { "text", "markdown", "gitcommit", "tex", "asciidoc" },
+    callback = function()
+        vim.opt_local.wrap = true
+        vim.opt_local.linebreak = true
+    end,
+})
 
--- highlight on yank --
+-- Briefly highlight yanked text.
 autocmd("TextYankPost", {
     group = augroup("highlight_yank"),
     callback = function()
